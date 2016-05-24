@@ -86,3 +86,5 @@ C:\dev\sandbox\USDutyGear\USDutyGear\bin\Microsoft.Owin.Security.MicrosoftAccoun
 C:\dev\sandbox\USDutyGear\USDutyGear\obj\Debug\USDutyGear.csprojResolveAssemblyReference.cache
 C:\dev\sandbox\USDutyGear\USDutyGear\obj\Debug\USDutyGear.dll
 C:\dev\sandbox\USDutyGear\USDutyGear\obj\Debug\USDutyGear.pdb
+C:\dev\sandbox\USDutyGear\USDutyGear\bin\USDutyGear.Core.dll
+C:\dev\sandbox\USDutyGear\USDutyGear\bin\USDutyGear.Core.pdb
