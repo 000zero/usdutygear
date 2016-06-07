@@ -60,3 +60,5 @@ C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\System.Net.Http.Formatting.
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\obj\Debug\USDutyGear.Tests.csprojResolveAssemblyReference.cache
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\obj\Debug\USDutyGear.Tests.dll
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\obj\Debug\USDutyGear.Tests.pdb
+C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.Core.dll
+C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.Core.pdb

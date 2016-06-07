@@ -65,3 +65,9 @@ model 88-83-3
 model 88-83-2
 88 glock
 2 basketweave
+
+Images Needed
+--------------
+
+	- Finish icons
+	-

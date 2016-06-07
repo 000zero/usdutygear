@@ -1,4 +1,4 @@
-﻿@model USDutyGear.Core.Models.Product
+﻿@model USDutyGear.Models.ProductViewModel
 
 @{
     ViewBag.Title = "Product";
@@ -6,70 +6,60 @@
 }
 
 <h2>Product</h2>
+<hr />
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="row">
+    <!-- Image section -->
+    <div class="col-lg-8">
+        <div class="row">
+            <!-- large image -->
+            <div class="col-lg-12">
 
-        <dd>
+            </div>
+        </div>
+        <div class="row">
+            <!-- small image row: foreach small images -->
+        </div>
+    </div>
+    <!-- product info -->
+    <div class="col-lg-4">
+        <div class="product-info product-info-title">
             @Html.DisplayFor(model => model.Name)
-        </dd>
+        </div>
+        <div class="product-info product-info-price">
+            $@Html.DisplayFor(model => model.Price)
+        </div>
+        <hr/>
+        <div class="product-info">
+            <span>Selected finish: </span><span id="selectedFinish"></span>
+            @foreach (var finish in Model.Finishes)
+            {
+                <a href="#" alt="@finish" class="@finish.Replace(" ", "")" onclick="productController.finishSelected(@finish)"></a>
+            }
+        </div>
+        <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
+        <!-- partial here for optional stuff: select size -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Category)
-        </dd>
+        <div class="product-info">
+            <button class="btn">Add to Cart</button>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
+        <div class="product-info">Description</div>
+        <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.Model)
-        </dd>
+        <div class="product-info">
+            <ul>
+                @foreach (var detail in Model.Details)
+                {
+                    <li>@detail</li>
+                }
+            </ul>
+        </div>
+        <hr />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Finish)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Finish)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sku)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sku)
-        </dd>
-
-    </dl>
+        <div class="product-info">
+            Model @Html.DisplayFor(model => model.Model) &bull; @Html.DisplayFor(model => model.Sku)
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

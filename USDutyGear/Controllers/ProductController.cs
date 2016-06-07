@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using USDutyGear.Models;
+using USDutyGear.Core.Models;
 
 namespace USDutyGear.Controllers
 {
@@ -17,7 +19,7 @@ namespace USDutyGear.Controllers
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(ProductViewModel.Decorate(new Product()));
         }
 
         // GET: Product/Create
