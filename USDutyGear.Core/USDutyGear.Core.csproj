@@ -46,6 +46,7 @@
     <Compile Include="Models\Belt.cs" />
     <Compile Include="Models\Keeper.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductChronicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

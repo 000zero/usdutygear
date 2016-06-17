@@ -5,18 +5,18 @@ using USDutyGear.Core.Models;
 
 namespace USDutyGear.Models
 {
-    public class ProductViewModel
+    public class ProductPageViewModel
     {
         private Product _product;
 
-        private ProductViewModel(Product product)
+        private ProductPageViewModel(Product product)
         {
             _product = product;
         }
 
-        public static ProductViewModel Decorate(Product product)
+        public static ProductPageViewModel Decorate(Product product)
         {
-            return new ProductViewModel(product);
+            return new ProductPageViewModel(product);
         }
 
         public int Id { get { return _product.Id; } }
