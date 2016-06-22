@@ -1,0 +1,25 @@
+CREATE TABLE `db_9f5a66_usdgts`.`products` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `category` VARCHAR(45) NULL,
+  `model` VARCHAR(16) NULL,
+  `sizes` VARCHAR(256) NULL,
+  `finishes` VARCHAR(256) NULL,
+  `price` DECIMAL NULL DEFAULT 0,
+  `shipping_cost` DECIMAL NULL DEFAULT 0,
+  `sku` VARCHAR(16) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
+ENGINE = InnoDB;
+
+CREATE TABLE `db_9f5a66_usdgts`.`product_details` (
+  `id` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  `detail` VARCHAR(512) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `product_id_idx` (`product_id` ASC),
+  CONSTRAINT `product_id`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `db_9f5a66_usdgts`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

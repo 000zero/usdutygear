@@ -10,7 +10,7 @@ namespace USDutyGear.Core.Models
         // MODEL-SIZE-FINISH
         public string Model { get; set; }
         public List<int> Sizes { get; set; }
-        public List<string> Finishes { get; set; }
+        public string Finish { get; set; }
         public List<string> Details { get; set; }
         public decimal Price { get; set; }
         public decimal ShippingCost { get; set; }

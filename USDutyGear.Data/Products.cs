@@ -13,5 +13,10 @@ namespace USDutyGear.Data
         {
             return new List<Product>();
         }
+
+        protected static Product GetProduct(int id)
+        {
+            return null;
+        }
     }
 }
