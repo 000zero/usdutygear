@@ -1,31 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using USDutyGear.Core.Models;
 
 namespace USDutyGear.Models
 {
-    public class ProductPageViewModel
+    public class ProductViewModel
     {
-        private Product _product;
-
-        private ProductPageViewModel(Product product)
+        private ProductViewModel(List<Product> products, List<string> details)
         {
-            _product = product;
+            Name = products.First().Name;
+            Category = products.First().Category;
+            Details = details;
+            Products = products.Select(x => new ProductStub
+            {
+                Model = x.Model,
+                Finish = x.Finish,
+                Price = x.Price,
+                ShippingCost = x.ShippingCost,
+                Sizes = x.Sizes
+            }).ToList();
+
         }
 
-        public static ProductPageViewModel Decorate(Product product)
+        public static ProductViewModel Create(List<Product> products, List<string> details)
         {
-            return new ProductPageViewModel(product);
+            return products.Count > 0
+                ? new ProductViewModel(products, details)
+                : null;
         }
 
-        public int Id { get { return _product.Id; } }
-        public string Name { get { return _product.Name; } }
-        public string Category { get { return _product.Category; } }
-        public string Model { get { return _product.Model; } }
-        public decimal Price { get { return _product.Price; } }
-        public string Sku { get { return _product.Sku; } }
-        public List<string> Details { get { return _product.Details; } }
-        public List<string> Finishes { get { return _product.Finishes; } }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public List<string> Details { get; set; }
+        public List<ProductStub> Products { get; set; } 
+    }
+
+    public class ProductStub
+    {
+        public string Model { get; set; }
+        public string Finish { get; set; }
+        public decimal Price { get; set; }
+        public decimal ShippingCost { get; set; }
+        public List<int> Sizes { get; set; } 
     }
 }

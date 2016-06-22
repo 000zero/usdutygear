@@ -304,6 +304,10 @@
       <Project>{8fdd3b36-22d6-43b6-b548-46a3ff0a7aa8}</Project>
       <Name>USDutyGear.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\USDutyGear.Data\USDutyGear.Data.csproj">
+      <Project>{0ec63df0-e477-477d-bb2e-558e0223da8c}</Project>
+      <Name>USDutyGear.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

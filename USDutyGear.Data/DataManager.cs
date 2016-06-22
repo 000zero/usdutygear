@@ -29,7 +29,7 @@ namespace USDutyGear.Data
                 Category = Categories.LinerBelt,
                 Model = "12-1",
                 Finish = Finishes.Karma,
-                Description = "1.5\" Karma liner belt.",
+                //Description = "1.5\" Karma liner belt.",
                 Price = 19.99m,
                 Sku = "121000"
             });
@@ -41,7 +41,7 @@ namespace USDutyGear.Data
                 Category = Categories.LinerBelt,
                 Model = "12-2",
                 Finish = Finishes.BasketWeave,
-                Description = "1.5\" Basketweave liner belt.",
+                //Description = "1.5\" Basketweave liner belt.",
                 Price = 19.99m,
                 Sku = "122000"
             });
@@ -53,7 +53,7 @@ namespace USDutyGear.Data
                 Category = Categories.LinerBelt,
                 Model = "12-3",
                 Finish = Finishes.HighGloss,
-                Description = "1.5\" High gloss liner belt.",
+                //Description = "1.5\" High gloss liner belt.",
                 Price = 19.99m,
                 Sku = "123000"
             });
@@ -65,7 +65,7 @@ namespace USDutyGear.Data
                 Category = Categories.LinerBelt,
                 Model = "12-1",
                 Finish = Finishes.Karma,
-                Description = "1.5\" Karma liner belt.",
+                //Description = "1.5\" Karma liner belt.",
                 Price = 19.99m,
                 Sku = "121000"
             });
@@ -77,7 +77,7 @@ namespace USDutyGear.Data
                 Category = Categories.SamBrowneBelt,
                 Model = "200-1",
                 Finish = Finishes.Leather,
-                Description = "2.25\" Leather Sam Browne belt.",
+                //Description = "2.25\" Leather Sam Browne belt.",
                 Price = 19.99m,
                 Sku = "200100"
             });
@@ -89,7 +89,7 @@ namespace USDutyGear.Data
                 Category = Categories.SamBrowneBelt,
                 Model = "200-2",
                 Finish = Finishes.Nylon,
-                Description = "2.25\" Nylon Sam Browne belt.",
+                //Description = "2.25\" Nylon Sam Browne belt.",
                 Price = 19.99m,
                 Sku = "200200"
             });
@@ -101,7 +101,7 @@ namespace USDutyGear.Data
                 Category = Categories.Keeper,
                 Model = "72-1",
                 Finish = Finishes.Leather,
-                Description = "1\" Hidden snap leather belt keeper.",
+                //Description = "1\" Hidden snap leather belt keeper.",
                 Price = 19.99m,
                 Sku = "121000"
             });
