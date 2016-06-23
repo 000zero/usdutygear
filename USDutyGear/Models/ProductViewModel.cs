@@ -11,6 +11,7 @@ namespace USDutyGear.Models
             Name = products.First().Name;
             Category = products.First().Category;
             Details = details;
+            AvailableFinishes = products.Select(x => x.Finish).Distinct().ToList();
             Products = products.Select(x => new ProductStub
             {
                 Model = x.Model,
@@ -31,6 +32,7 @@ namespace USDutyGear.Models
 
         public string Name { get; set; }
         public string Category { get; set; }
+        public List<string> AvailableFinishes { get; set; }
         public List<string> Details { get; set; }
         public List<ProductStub> Products { get; set; } 
     }

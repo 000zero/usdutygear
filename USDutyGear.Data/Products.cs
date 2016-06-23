@@ -42,7 +42,7 @@ namespace USDutyGear.Data
                 Price = Convert.ToDecimal(row["price"]),
                 ShippingCost = Convert.ToDecimal(row["shipping_cost"]),
                 Sku = Convert.ToString(row["sku"]),
-                Title = Convert.ToString(row["title"]),
+                Title = Convert.ToString(row["title"])
             }).ToList();
         }
 

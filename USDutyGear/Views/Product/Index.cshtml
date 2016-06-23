@@ -23,19 +23,17 @@
     </div>
     <!-- product info -->
     <div class="col-lg-4">
-        <div class="product-info product-info-title">
-            @Html.DisplayFor(model => model.Name)
-        </div>
+        <div class="product-info product-info-title" data-bind="text: Name"></div>
         <div class="product-info product-info-price">
-            $@Html.DisplayFor(model => model.Price)
+            $99.00
         </div>
         <hr/>
         <div class="product-info">
             <span>Selected finish: </span><span id="selectedFinish"></span>
-            @foreach (var finish in Model.Finishes)
+            @*@foreach (var finish in Model.AvailableFinishes)
             {
                 <a href="#" alt="@finish" class="@finish.Replace(" ", "")" onclick="productController.finishSelected(@finish)"></a>
-            }
+            }*@
         </div>
         <hr />
 
@@ -50,16 +48,24 @@
 
         <div class="product-info">
             <ul>
-                @foreach (var detail in Model.Details)
+                @*@foreach (var detail in Model.Details)
                 {
                     <li>@detail</li>
-                }
+                }*@
             </ul>
         </div>
         <hr />
 
         <div class="product-info">
-            Model @Html.DisplayFor(model => model.Model) &bull; @Html.DisplayFor(model => model.Sku)
+            @*Model @Html.DisplayFor(model => model.Model) &bull; @Html.DisplayFor(model => model.Sku)*@
         </div>
     </div>
 </div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/js/__product.js"></script>
+    <script type="text/javascript">
+            ctrl.init(@Model);
+    </script>
+}

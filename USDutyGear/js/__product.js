@@ -1,16 +1,15 @@
-﻿var productController = $(function () {
-    var ctrl = {};
+﻿var ctrl = {};
 
-    ctrl.init = function () {
+ctrl.init = function (vm) {
+    ctrl.vm = vm;
 
-    };
+    ko.applyBindings(ctrl.vm);
+};
 
-    ctrl.finishSelected = function (finish) {
-        // load image list associated with the selected finish type
-    };
+// ready function
+$(function () {
+    var test = "test";
+});
 
-    return ctrl;
-})();
-
-productController.init();
+//productController.init();
 
