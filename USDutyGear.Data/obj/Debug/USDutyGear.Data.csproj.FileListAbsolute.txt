@@ -8,3 +8,11 @@ C:\Sandbox\USDutyGear\USDutyGear.Data\bin\Debug\USDutyGear.Core.dll
 C:\Sandbox\USDutyGear\USDutyGear.Data\bin\Debug\USDutyGear.Core.pdb
 C:\Sandbox\USDutyGear\USDutyGear.Data\obj\Debug\USDutyGear.Data.dll
 C:\Sandbox\USDutyGear\USDutyGear.Data\obj\Debug\USDutyGear.Data.pdb
+C:\dev\sandbox\USDutyGear\USDutyGear.Data\bin\Debug\USDutyGear.Data.dll.config
+C:\dev\sandbox\USDutyGear\USDutyGear.Data\bin\Debug\USDutyGear.Data.dll
+C:\dev\sandbox\USDutyGear\USDutyGear.Data\bin\Debug\USDutyGear.Data.pdb
+C:\dev\sandbox\USDutyGear\USDutyGear.Data\bin\Debug\MySql.Data.dll
+C:\dev\sandbox\USDutyGear\USDutyGear.Data\bin\Debug\USDutyGear.Core.dll
+C:\dev\sandbox\USDutyGear\USDutyGear.Data\bin\Debug\USDutyGear.Core.pdb
+C:\dev\sandbox\USDutyGear\USDutyGear.Data\obj\Debug\USDutyGear.Data.dll
+C:\dev\sandbox\USDutyGear\USDutyGear.Data\obj\Debug\USDutyGear.Data.pdb

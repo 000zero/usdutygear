@@ -1,25 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using USDutyGear.Models;
-using USDutyGear.Core.Models;
 using USDutyGear.Data;
+using USDutyGear.Core.Common;
 
 namespace USDutyGear.Controllers
 {
+    [RoutePrefix("product")]
     public class ProductController : Controller
     {
-        // GET: Product
-        public ActionResult Product(string name)
+        [Route("{name}")]
+        public ActionResult GetProductOverviewByName(string name)
         {
+            name = MapRouteNameToProductName(name);
+
             // get all products of the same name
             var products = Products.GetProductsByName(name);
 
-            // create the view model object
+            var details = Products.GetProductDetailsByName(name);
 
-            return View();
+            // create the view model object
+            var vm = ProductViewModel.Create(products, details);
+
+            return View(vm);
+        }
+
+        private string MapRouteNameToProductName(string name)
+        {
+            switch (name.ToLower())
+            {
+                case "linerbelt": return ProductNames.LinerBelt;
+                case "belt": return ProductNames.Belt;
+                case "sambrownebelt": return ProductNames.SamBrowneBelt;
+                case "dutybelt": return ProductNames.DutyBelt;
+                case "beltkeeper": return ProductNames.BeltKeeper;
+                case "keyholderkeeper": return ProductNames.KeyHolderKeeper;
+                case "gloveholder": return ProductNames.GloveHolder;
+                case "magazineholder": return ProductNames.MagazineHolder;
+                default: return null;
+            }
         }
     }
 }

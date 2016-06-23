@@ -178,3 +178,6 @@ C:\Sandbox\USDutyGear\USDutyGear\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Sandbox\USDutyGear\USDutyGear\bin\Microsoft.Owin.Security.Google.xml
 C:\Sandbox\USDutyGear\USDutyGear\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Sandbox\USDutyGear\USDutyGear\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\dev\sandbox\USDutyGear\USDutyGear\bin\USDutyGear.Data.dll
+C:\dev\sandbox\USDutyGear\USDutyGear\bin\MySql.Data.dll
+C:\dev\sandbox\USDutyGear\USDutyGear\bin\USDutyGear.Data.pdb
