@@ -181,3 +181,6 @@ C:\Sandbox\USDutyGear\USDutyGear\bin\Microsoft.Owin.Security.MicrosoftAccount.xm
 C:\dev\sandbox\USDutyGear\USDutyGear\bin\USDutyGear.Data.dll
 C:\dev\sandbox\USDutyGear\USDutyGear\bin\MySql.Data.dll
 C:\dev\sandbox\USDutyGear\USDutyGear\bin\USDutyGear.Data.pdb
+C:\Sandbox\USDutyGear\USDutyGear\bin\USDutyGear.Data.dll
+C:\Sandbox\USDutyGear\USDutyGear\bin\MySql.Data.dll
+C:\Sandbox\USDutyGear\USDutyGear\bin\USDutyGear.Data.pdb

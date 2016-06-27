@@ -1,21 +1,26 @@
-﻿.jumbotron {
-    background-color: white;
+﻿body {
+    background-image: url("../images/workshop.png");
+    background-repeat: repeat-x;
+}
+
+.jumbotron {
+    background-color: transparent;
     padding-top: 0;
     padding-bottom: 0;
 }
 
 .jumbotron img.logo {
     display: block;
-    margin-top: 20px;
+    margin-top: 0;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 20%;
 }
 
 .products {
     padding-top: 30px;
     /*background-color: #b4c8f1;*/
-    background-color: #ddd;
+    background-color: #f6f6f6;
     margin-bottom: 20px;
 }
 
@@ -33,8 +38,8 @@
     bottom: 0;
 }
 
-.products .feature .thumbnail .btn-container {
-    display: block;
-    position: absolute;
+.products .feature .thumbnail .product-desc {
+    /*display: block;*/
+    height: 40px;
     bottom: 0;
 }

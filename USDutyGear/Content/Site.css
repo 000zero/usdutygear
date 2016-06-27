@@ -4,10 +4,18 @@
 
 .navbar {
     margin-top: 10px;
+    color: #184787;
+    font-weight: bold;
+    
+}
+
+.navbar a {
+    color: #184787;
 }
 
 .navbar hr {
     margin-top: 0;
+    border-color: #184787;
 }
 
 .btn {
