@@ -1,0 +1,25 @@
+﻿.jumbotron {
+    background-color: white;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.jumbotron img.logo {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+.products {
+    padding-top: 30px;
+    background-color: #b4c8f1;
+    margin-bottom: 20px;
+}
+
+.products .feature .thumbnail {
+    height: 320px;
+    background-color: transparent;
+    border-style: none;
+}

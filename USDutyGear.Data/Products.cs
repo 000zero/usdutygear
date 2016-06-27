@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using MySql.Data.MySqlClient;
 using USDutyGear.Core.Models;
+using USDutyGear.Core.Common;
 
 namespace USDutyGear.Data
 {
@@ -14,6 +15,7 @@ namespace USDutyGear.Data
 
         public static List<Product> GetProductsByName(string name)
         {
+            // TODO: logging error handling
             var dt = new DataTable();
             var conn = new MySqlConnection(ConnectionString);
             conn.Open();
@@ -66,6 +68,71 @@ namespace USDutyGear.Data
             conn.Close();
 
             return dt.AsEnumerable().Select(row => Convert.ToString(row["name"])).ToList();
+        }
+
+        public static List<ProductCategory> GetProductCategories()
+        {
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = 
+                    @"SELECT category, GROUP_CONCAT(name) AS names FROM (
+                        SELECT DISTINCT category,name
+                        FROM products
+                        ORDER BY category,name) as categories
+                    GROUP BY category;"
+            };
+            cmd.ExecuteNonQuery();
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            conn.Close();
+
+            return dt.AsEnumerable().Select(row => new ProductCategory
+            {
+                Category = Convert.ToString(row["category"]),
+                Products = Convert.ToString(row["names"])
+                    .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => x.Trim())
+                    .ToList()
+            }).ToList();
+        }
+
+        public static List<KeyValuePair<string, List<string>>> GetProductFeatures()
+        {
+            // TODO: logging error handling
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = 
+                    @"SELECT name, GROUP_CONCAT(finish) AS finishes
+                    FROM products
+                    GROUP BY name"
+            };
+            cmd.ExecuteNonQuery();
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            conn.Close();
+
+            return dt.AsEnumerable()
+                .Select(row => new KeyValuePair<string, List<string>>(
+                    Convert.ToString(row["name"]),
+                    Convert.ToString(row["finishes"])
+                        .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(x => x.Trim())
+                        .ToList()
+                )).ToList();
         }
 
         protected static Product GetProduct(int id)

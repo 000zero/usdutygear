@@ -30,10 +30,8 @@
         <hr/>
         <div class="product-info">
             <span>Selected finish: </span><span id="selectedFinish"></span>
-            @*@foreach (var finish in Model.AvailableFinishes)
-            {
-                <a href="#" alt="@finish" class="@finish.Replace(" ", "")" onclick="productController.finishSelected(@finish)"></a>
-            }*@
+            <select data-bind="options: AvailableFinishes">
+            </select>
         </div>
         <hr />
 
@@ -66,6 +64,6 @@
 {
     <script type="text/javascript" src="~/js/__product.js"></script>
     <script type="text/javascript">
-            ctrl.init(@Model);
+            ctrl.init(@Html.Raw(Json.Encode(@Model)));
     </script>
 }

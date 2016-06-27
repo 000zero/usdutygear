@@ -1,4 +1,6 @@
-﻿namespace USDutyGear.Core.Common
+﻿using System.Collections.Generic;
+
+namespace USDutyGear.Core.Common
 {
     public static class Categories
     {
@@ -10,5 +12,11 @@
         public const string KeyHolderKeeper = "Key Holder Keeper";
         public const string GloveHolder = "Glove Holder";
         public const string MagazineHolder = "Magazine Holder";
+    }
+
+    public class ProductCategory
+    {
+        public string Category { get; set; }
+        public List<string> Products { get; set; }
     }
 }

@@ -8,7 +8,11 @@ ctrl.init = function (vm) {
 
 // ready function
 $(function () {
-    var test = "test";
+    // parse product name from URL
+    //var tokens = window.location.split('/');
+    //var productName = tokens[tokens.length - 1];
+
+    //ctrl.init(productName);
 });
 
 //productController.init();
