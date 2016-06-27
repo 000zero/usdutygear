@@ -8,28 +8,26 @@
     <img src="~/images/us_duty_gear_logo_transparant.png" alt="US Duty Gear Logo" class="logo" />
 </header>
 
-<hr />
-
-<!-- Title -->
-<div class="row">
-    <div class="col-lg-12">
-        <h3>Check out the gear</h3>
-    </div>
-</div>
-
 <!-- Page Features -->
-<div class="row text-center products">
+<div class="row products">
     <div class="container">
-        @foreach (var product in Model.Products)
-        {
-            <div class="col-md-3 col-sm-6 feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <h3>@product.Name</h3>
-                    <p>@product.Description</p>
-                    <p><a href="products/@product.RouteKey" class="btm">View Product</a></p>
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Check out the gear</h3>
             </div>
-        }
+        </div>
+        <div class="row text-center">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-3 col-sm-6 feature">
+                    <div class="thumbnail">
+                        <img src="http://placehold.it/800x500" alt="">
+                        <h3>@product.Name</h3>
+                        <p>@product.Description</p>
+                        <p class="btn-container"><a href="products/@product.RouteKey" class="btn btn-default">View Product</a></p>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>

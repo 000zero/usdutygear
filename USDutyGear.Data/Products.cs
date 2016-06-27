@@ -113,9 +113,10 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = 
-                    @"SELECT name, GROUP_CONCAT(finish) AS finishes
-                    FROM products
+                CommandText =
+                    @"SELECT name, GROUP_CONCAT(finish) AS finishes FROM (
+	                    SELECT DISTINCT name, finish
+                        FROM products) as names
                     GROUP BY name"
             };
             cmd.ExecuteNonQuery();
