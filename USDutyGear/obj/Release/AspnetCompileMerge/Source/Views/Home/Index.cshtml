@@ -1,0 +1,28 @@
+﻿@model USDutyGear.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<header class="jumbotron">
+    <img src="~/images/us_duty_gear_logo_white_stars_transparent.png" alt="US Duty Gear Logo" class="logo" />
+</header>
+
+<!-- Page Features -->
+<div class="row products">
+    <div class="container">
+        <div class="row text-center">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-3 col-sm-6 feature">
+                    <div class="thumbnail">
+                        <img src="~/images/@(product.RouteKey)_feature.png" alt="@product.Name">
+                        <h3>@product.Name</h3>
+                        <p class="product-desc">@product.Description</p>
+                        <p><a href="products/@product.RouteKey" class="btn btn-default">View Product</a></p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

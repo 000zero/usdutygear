@@ -236,12 +236,17 @@
     <Content Include="images\basketweave_sample.png" />
     <Content Include="images\beltkeeper_feature.png" />
     <Content Include="images\belt_feature.png" />
+    <Content Include="images\dutybelt_feature.png" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\gloveholder_feature.png" />
     <Content Include="images\higloss_sample.png" />
+    <Content Include="images\keyholderkeeper_feature.png" />
     <Content Include="images\leather_sample.png" />
+    <Content Include="images\linerbelt_feature.png" />
     <Content Include="images\magazineholder_feature.png" />
-    <Content Include="images\us_duty_gear_logo_transparant.png" />
+    <Content Include="images\sambrownebelt_feature.png" />
+    <Content Include="images\us_duty_gear_logo_transparent.png" />
+    <Content Include="images\us_duty_gear_logo_white_stars_transparent.png" />
     <Content Include="images\workshop.png" />
     <Content Include="js\__product.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -251,6 +256,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
