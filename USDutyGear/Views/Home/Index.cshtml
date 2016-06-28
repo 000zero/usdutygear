@@ -1,7 +1,7 @@
 ﻿@model USDutyGear.Models.HomeViewModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 <header class="jumbotron">
@@ -11,17 +11,12 @@
 <!-- Page Features -->
 <div class="row products">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Check out the gear</h3>
-            </div>
-        </div>
         <div class="row text-center">
             @foreach (var product in Model.Products)
             {
                 <div class="col-md-3 col-sm-6 feature">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="~/images/@(product.RouteKey)_feature.png" alt="@product.Name">
                         <h3>@product.Name</h3>
                         <p class="product-desc">@product.Description</p>
                         <p><a href="products/@product.RouteKey" class="btn btn-default">View Product</a></p>

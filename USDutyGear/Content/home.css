@@ -1,6 +1,7 @@
 ﻿body {
     background-image: url("../images/workshop.png");
     background-repeat: repeat-x;
+    color: #333;
 }
 
 .jumbotron {
@@ -19,9 +20,11 @@
 
 .products {
     padding-top: 30px;
-    /*background-color: #b4c8f1;*/
-    background-color: #f6f6f6;
+    /*background-color: #dee7ef;*/
+    /*background-color: #f6f6f6;*/
+    background-color: #e7e7e7;
     margin-bottom: 20px;
+    border-top: 3px solid #fff;
 }
 
 .products .feature .thumbnail {
