@@ -4,7 +4,7 @@ using USDutyGear.Core.Models;
 
 namespace USDutyGear.Models
 {
-    public class ProductViewModel
+    public class ProductViewModel : USDutyGearBaseViewModel
     {
         private ProductViewModel(List<Product> products, List<string> details)
         {

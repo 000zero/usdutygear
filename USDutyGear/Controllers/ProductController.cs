@@ -24,21 +24,21 @@ namespace USDutyGear.Controllers
             return View(vm);
         }
 
-        [Route("~/api/products/{name}")]
-        public JsonResult GetProductOverviewByName(string name)
-        {
-            name = CategoryHelper.MapRouteKeyToProductName(name);
+        //[Route("~/api/products/{name}")]
+        //public JsonResult GetProductOverviewByName(string name)
+        //{
+        //    name = CategoryHelper.MapRouteKeyToProductName(name);
 
-            // get all products of the same name
-            var products = Products.GetProductsByName(name);
+        //    // get all products of the same name
+        //    var products = Products.GetProductsByName(name);
 
-            var details = Products.GetProductDetailsByName(name);
+        //    var details = Products.GetProductDetailsByName(name);
 
-            // create the view model object
-            var vm = ProductViewModel.Create(products, details);
+        //    // create the view model object
+        //    var vm = ProductViewModel.Create(products, details);
 
-            return Json(vm);
-        }
+        //    return Json(vm);
+        //}
 
         
     }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using USDutyGear.Core.Common;
 using USDutyGear.Data;
 
 namespace USDutyGear.Models

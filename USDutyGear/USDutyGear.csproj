@@ -236,6 +236,7 @@
     <Content Include="images\basketweave_sample.png" />
     <Content Include="images\beltkeeper_feature.png" />
     <Content Include="images\belt_feature.png" />
+    <Content Include="images\carbonfiber.png" />
     <Content Include="images\dutybelt_feature.png" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\gloveholder_feature.png" />
@@ -245,6 +246,7 @@
     <Content Include="images\linerbelt_feature.png" />
     <Content Include="images\magazineholder_feature.png" />
     <Content Include="images\sambrownebelt_feature.png" />
+    <Content Include="images\us_duty_gear_brand.png" />
     <Content Include="images\us_duty_gear_logo_transparent.png" />
     <Content Include="images\us_duty_gear_logo_white_stars_transparent.png" />
     <Content Include="images\workshop.png" />
