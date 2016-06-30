@@ -20,7 +20,7 @@ namespace USDutyGear.Models
                 ShippingCost = x.ShippingCost,
                 Sizes = x.Sizes
             }).ToList();
-
+            SelectedProductIndex = 0;
         }
 
         public static ProductViewModel Create(List<Product> products, List<string> details)
@@ -34,7 +34,8 @@ namespace USDutyGear.Models
         public string Category { get; set; }
         public List<string> AvailableFinishes { get; set; }
         public List<string> Details { get; set; }
-        public List<ProductStub> Products { get; set; } 
+        public List<ProductStub> Products { get; set; }
+        public int SelectedProductIndex { get; set; }
     }
 
     public class ProductStub

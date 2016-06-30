@@ -1,2 +1,20 @@
-﻿body {
+﻿.product .breadcrumb {
+    background-color: transparent;
+    border-radius: 0;
+    border-bottom: 1px solid #98878f;
+    padding-top: 20px;
+    color: #192231;
+}
+
+.product {
+    background-color: #e9e9e9;
+}
+
+.product .product-info-title {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product .product-info hr {
+    border-bottom: 1px solid #98878f;
 }

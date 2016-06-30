@@ -1,60 +1,71 @@
 ﻿@model USDutyGear.Models.ProductViewModel
 
 @{
-    ViewBag.Title = "Product";
+    ViewBag.Title = Model.Name;
 }
 
-<h2>Product</h2>
-<hr />
+@section styles
+{
+    @Styles.Render("~/Content/product")
+}
 
-<div class="row">
-    <!-- Image section -->
-    <div class="col-lg-8">
-        <div class="row">
-            <!-- large image -->
-            <div class="col-lg-12">
+<div class="row product">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", "Index")</li>
+            <li>@Model.Category</li>
+            <li>@Model.Name</li>
+        </ol>
 
+        <!-- Image section -->
+        <div class="col-lg-8">
+            <div class="row">
+                <!-- large image -->
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="row">
+                <!-- small image row: foreach small images -->
             </div>
         </div>
-        <div class="row">
-            <!-- small image row: foreach small images -->
-        </div>
-    </div>
-    <!-- product info -->
-    <div class="col-lg-4">
-        <div class="product-info product-info-title" data-bind="text: Name"></div>
-        <div class="product-info product-info-price">
-            $99.00
-        </div>
-        <hr/>
-        <div class="product-info">
-            <span>Selected finish: </span><span id="selectedFinish"></span>
-            <select data-bind="options: AvailableFinishes">
-            </select>
-        </div>
-        <hr />
+        <!-- product info -->
+        <div class="col-lg-4 product-info">
+            <h3 class="product-info-title">@Model.Name</h3>
+            <div class="product-info-price"  data-bind="text: Products[SelectedProductIndex].Price"></div>
+            <hr />
+            <div class="product-finish">
+                <span>Selected finish: </span><span id="selectedFinish"></span>
+                <select data-bind="value: ctrl.selectedFinish">
+                    @for(var i = 0; i < Model.AvailableFinishes.Count; i++)
+                    { <option value="@Model.AvailableFinishes[i]" @(i == 0 ? "selected=\"selected\"" : "")>@Model.AvailableFinishes[i]</option>}
+                </select>
+                <!-- TODO: show the thumbnail here -->
+            </div>
+            <hr />
 
-        <!-- partial here for optional stuff: select size -->
+            <!-- partial here for optional stuff: select size -->
 
-        <div class="product-info">
-            <button class="btn">Add to Cart</button>
-        </div>
+            <div class="product-info">
+                <button class="btn">Add to Cart</button>
+            </div>
 
-        <div class="product-info">Description</div>
-        <hr />
+            <div class="product-info">Description</div>
+            <hr />
 
-        <div class="product-info">
-            <ul>
-                @*@foreach (var detail in Model.Details)
+            <div class="product-info">
+                <ul>
+                    @*@foreach (var detail in Model.Details)
                 {
                     <li>@detail</li>
                 }*@
-            </ul>
-        </div>
-        <hr />
+                </ul>
+            </div>
+            <hr />
 
-        <div class="product-info">
-            @*Model @Html.DisplayFor(model => model.Model) &bull; @Html.DisplayFor(model => model.Sku)*@
+            <div class="product-info">
+                @*Model @Html.DisplayFor(model => model.Model) &bull; @Html.DisplayFor(model => model.Sku)*@
+            </div>
         </div>
     </div>
 </div>
