@@ -26,6 +26,10 @@ namespace USDutyGear
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/usdutygear").Include(
+                        "~/js/underscore-min.js",
+                        "~/js/__usdutygear.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
