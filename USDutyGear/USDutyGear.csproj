@@ -251,6 +251,7 @@
     <Content Include="images\us_duty_gear_logo_white_stars_transparent.png" />
     <Content Include="images\workshop.png" />
     <Content Include="js\__product.js" />
+    <Content Include="js\__usdutygear.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
