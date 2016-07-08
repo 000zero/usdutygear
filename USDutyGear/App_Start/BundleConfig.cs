@@ -27,7 +27,8 @@ namespace USDutyGear
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/usdutygear").Include(
-                        "~/js/underscore-min.js",
+                        "~/Scripts/underscore-min.js",
+                        "~/Scripts/moment.min.js",
                         "~/js/__usdutygear.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

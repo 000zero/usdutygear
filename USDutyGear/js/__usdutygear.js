@@ -6,7 +6,10 @@ var rootCtrl = (function () {
     scope.cart = JSON.parse(localStorage.getItem('usdutygear-cart'));
 
     if (!scope.cart)
-        scope.cart = {};
+        scope.cart = {
+            lastRead: null,
+            lastWrite: moment()
+        };
 
     // public methods
     return {
@@ -15,13 +18,32 @@ var rootCtrl = (function () {
                 scope.cart[sku] += quantity;
             else
                 scope.cart[sku] = quantity;
+
+            scope.cart.lastWrite = moment();
         },
         emptyCart: function () {
-            scope.cart = {};
+            scope.cart = {
+                lastRead: null,
+                lastWrite: moment()
+            };
         },
         getCart: function () {
-            return _.clone(scope.cart);
-        },
+            var copy = _.clone(scope.cart);
+            scope.cart.lastRead = moment();
 
+            return copy;
+        },
+        getFinishImageName: function (finish) {
+            switch (finish) {
+                case 'Basketweave':
+                    return 'basketweave_sample.png';
+                case 'High Gloss':
+                    return 'highgloss_sample.png';
+                case 'Leather':
+                    return 'leather_sample.png';
+                default:
+                    return '';
+            }
+        }
     };
 })();
