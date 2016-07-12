@@ -4,6 +4,11 @@
     ViewBag.Title = "Home";
 }
 
+@section styles
+{
+    @Styles.Render("~/Content/home")
+}
+
 <header class="jumbotron">
     <img src="~/images/us_duty_gear_logo_white_stars_transparent.png" alt="US Duty Gear Logo" class="logo" />
 </header>
@@ -17,7 +22,7 @@
                 <div class="col-md-3 col-sm-6 feature">
                     <div class="thumbnail">
                         <img src="~/images/@(product.RouteKey)_feature.png" alt="@product.Name">
-                        <h3>@product.Name</h3>
+                        <h3>@(product.Name)s</h3>
                         <p class="product-desc">@product.Description</p>
                         <p><a href="products/@product.RouteKey" class="btn btn-default">View Product</a></p>
                     </div>

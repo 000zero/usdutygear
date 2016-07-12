@@ -26,7 +26,6 @@
 }
 
 .products .feature .thumbnail {
-    height: 320px;
     background-color: transparent;
     border-style: none;
     position: relative;

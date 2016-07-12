@@ -57,7 +57,7 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = "SELECT name FROM product_details WHERE name = @name;"
+                CommandText = "SELECT detail FROM product_details WHERE name = @name;"
             };
             cmd.Parameters.AddWithValue("@name", name);
             cmd.ExecuteNonQuery();
@@ -67,7 +67,29 @@ namespace USDutyGear.Data
 
             conn.Close();
 
-            return dt.AsEnumerable().Select(row => Convert.ToString(row["name"])).ToList();
+            return dt.AsEnumerable().Select(row => Convert.ToString(row["detail"])).ToList();
+        }
+
+        public static List<string> GetProductImagesByName(string name)
+        {
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = "SELECT path FROM product_images WHERE name = @name;"
+            };
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.ExecuteNonQuery();
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            conn.Close();
+
+            return dt.AsEnumerable().Select(row => Convert.ToString(row["path"])).ToList();
         }
 
         public static List<ProductCategory> GetProductCategories()

@@ -6,11 +6,13 @@ namespace USDutyGear.Models
 {
     public class ProductViewModel : USDutyGearBaseViewModel
     {
-        private ProductViewModel(List<Product> products, List<string> details)
+        private ProductViewModel(List<Product> products, List<string> details, List<string> images)
         {
             Name = products.First().Name;
             Category = products.First().Category;
             Details = details;
+            Images = images;
+            SelectedImage = images.FirstOrDefault();
             AvailableFinishes = products.Select(x => x.Finish).Distinct().ToList();
             Products = products.Select(x => new ProductStub
             {
@@ -23,10 +25,10 @@ namespace USDutyGear.Models
             SelectedProductIndex = 0;
         }
 
-        public static ProductViewModel Create(List<Product> products, List<string> details)
+        public static ProductViewModel Create(List<Product> products, List<string> details, List<string> images)
         {
             return products.Count > 0
-                ? new ProductViewModel(products, details)
+                ? new ProductViewModel(products, details, images)
                 : null;
         }
 
@@ -34,6 +36,8 @@ namespace USDutyGear.Models
         public string Category { get; set; }
         public List<string> AvailableFinishes { get; set; }
         public List<string> Details { get; set; }
+        public List<string> Images { get; set; }
+        public string SelectedImage { get; set; }
         public List<ProductStub> Products { get; set; }
         public int SelectedProductIndex { get; set; }
     }

@@ -18,28 +18,12 @@ namespace USDutyGear.Controllers
 
             var details = Products.GetProductDetailsByName(name);
 
+            var images = Products.GetProductImagesByName(name);
+
             // create the view model object
-            var vm = ProductViewModel.Create(products, details);
+            var vm = ProductViewModel.Create(products, details, images);
 
             return View(vm);
         }
-
-        //[Route("~/api/products/{name}")]
-        //public JsonResult GetProductOverviewByName(string name)
-        //{
-        //    name = CategoryHelper.MapRouteKeyToProductName(name);
-
-        //    // get all products of the same name
-        //    var products = Products.GetProductsByName(name);
-
-        //    var details = Products.GetProductDetailsByName(name);
-
-        //    // create the view model object
-        //    var vm = ProductViewModel.Create(products, details);
-
-        //    return Json(vm);
-        //}
-
-        
     }
 }

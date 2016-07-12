@@ -11,61 +11,65 @@
 
 <div class="row product">
     <div class="container">
-        <ol class="breadcrumb">
-            <li>@Html.ActionLink("Home", "Index")</li>
-            <li>@Model.Category</li>
-            <li>@Model.Name</li>
-        </ol>
+        <div class="row">
+            <ol class="breadcrumb">
+                <li>@Html.ActionLink("Home", "Index")</li>
+                <li>@Model.Category</li>
+                <li>@Model.Name</li>
+            </ol>
+        </div>
 
-        <!-- Image section -->
-        <div class="col-lg-8">
-            <div class="row">
-                <!-- large image -->
-                <div class="col-lg-12">
-                    <img src="~/images/magazineholder_basketweave_large.png" alt="" />
+        <div class="row">
+            <!-- Image section -->
+            <div class="col-lg-8 showcase">
+                <div class="row main-image">
+                    <!-- large image -->
+                    <div class="col-lg-12">
+                        <img alt="@Model.Name" data-bind="attr: { src: '/images/' + SelectedImage() + '_large.png' }" />
+                    </div>
+                </div>
+                <div class="row image-previews">
+                    <!-- small image row: foreach small images -->
+                    @foreach (var i in Model.Images)
+                    {<div class="col-lg-2 col-md-2 col-sm-2 preview"><img src="~/images/@(i)_small.png" alt="@(i)" onclick="ctrl.setSelectedImage('@i')" /></div>}
                 </div>
             </div>
-            <div class="row">
-                <!-- small image row: foreach small images -->
-            </div>
-        </div>
-        <!-- product info -->
-        <div class="col-lg-4 product-info">
-            <h3 class="product-info-title">@Model.Name</h3>
-            <div class="product-info-price"  data-bind="text: Products[SelectedProductIndex].Price"></div>
-            <hr />
-            <div class="product-finish">
-                <span>Selected finish: </span><span id="selectedFinish"></span>
-                <select data-bind="value: ctrl.selectedFinish">
-                    @for(var i = 0; i < Model.AvailableFinishes.Count; i++)
-                    { <option value="@Model.AvailableFinishes[i]" @(i == 0 ? "selected=\"selected\"" : "")>@Model.AvailableFinishes[i]</option>}
-                </select>
-                <!-- TODO: show the thumbnail here -->
-                
-            </div>
-            <hr />
+            <div class="col-lg-4 product-info">
+                <h3 class="product-info-title">@Model.Name</h3>
+                <div class="product-info-price" data-bind="text: Products[SelectedProductIndex].Price"></div>
+                <hr />
 
-            <!-- partial here for optional stuff: select size -->
+                <div class="product-finish">
+                    <span>Selected finish: </span><span id="selectedFinish"></span>
+                    <select data-bind="value: ctrl.selectedFinish">
+                        @for (var i = 0; i < Model.AvailableFinishes.Count; i++)
+                        {<option value="@Model.AvailableFinishes[i]" @(i == 0 ? "selected=\"selected\"" : "")>@Model.AvailableFinishes[i]</option>}
+                    </select>
+                    <!-- TODO: show the thumbnail here -->
 
-            <div class="product-info">
-                <button class="btn">Add to Cart</button>
-            </div>
+                </div>
+                <hr />
 
-            <div class="product-info">Description</div>
-            <hr />
+                <div class="product-info">
+                    Quantity: <input type="number" name="quantity" class="quantity" />
+                    <button class="btn add-to-cart-btn">Add to Cart</button>
+                </div>
+                <hr />
 
-            <div class="product-info">
-                <ul>
-                    @*@foreach (var detail in Model.Details)
-                {
-                    <li>@detail</li>
-                }*@
-                </ul>
-            </div>
-            <hr />
+                <div class="product-info">Description</div>
+                <div class="product-info">
+                    <ul>
+                        @foreach (var detail in Model.Details)
+                        {
+                            <li>@detail</li>
+                        }
+                    </ul>
+                </div>
+                <hr />
 
-            <div class="product-info">
-                @*Model @Html.DisplayFor(model => model.Model) &bull; @Html.DisplayFor(model => model.Sku)*@
+                <div class="product-info">
+                    @*Model @Html.DisplayFor(model => model.Model) &bull; @Html.DisplayFor(model => model.Sku)*@
+                </div>
             </div>
         </div>
     </div>
