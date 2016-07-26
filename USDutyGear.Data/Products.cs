@@ -13,7 +13,7 @@ namespace USDutyGear.Data
         private const string ConnectionString =
             "Server=MYSQL5011.Smarterasp.net;Database=db_9f5a66_usdgts;Uid=9f5a66_usdgts;Pwd=flores2016;";
 
-        public static List<Product> GetProductsByName(string name)
+        public static Product GetProductByName(string name)
         {
             // TODO: logging error handling
             var dt = new DataTable();
@@ -33,18 +33,52 @@ namespace USDutyGear.Data
 
             conn.Close();
 
-            return dt.AsEnumerable().Select(row => new Product
+            if (dt.Rows.Count < 1)
+                return null;
+
+            var row = dt.AsEnumerable().First();
+            return new Product
             {
                 Id = Convert.ToInt32(row["id"]),
                 Name = Convert.ToString(row["name"]),
                 Category = Convert.ToString(row["category"]),
                 Model = Convert.ToString(row["model"]),
-                Sizes = Convert.ToString(row["sizes"]).Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => Convert.ToInt32(x.Trim())).ToList(),
-                Finish = Convert.ToString(row["finish"]),
                 Price = Convert.ToDecimal(row["price"]),
-                ShippingCost = Convert.ToDecimal(row["shipping_cost"]),
                 Sku = Convert.ToString(row["sku"]),
                 Title = Convert.ToString(row["title"])
+            };
+        }
+
+        public static List<ProductAdjustment> GetProductAdjustmentsByModel(string model)
+        {
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = "SELECT * FROM product_adjustments WHERE product_model = @model;"
+            };
+            cmd.Parameters.AddWithValue("@model", model);
+            cmd.ExecuteNonQuery();
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            conn.Close();
+
+            return dt.AsEnumerable().Select(row => new ProductAdjustment
+            {
+                Id = Convert.ToString(row["id"]),
+                ProductName = Convert.ToString(row["product_name"]),
+                ProductModel = Convert.ToString(row["product_model"]),
+                Type = Convert.ToString(row["type"]),
+                Name = Convert.ToString(row["name"]),
+                PriceAdjustment = Convert.ToDecimal(row["price_adjustment"]),
+                Model = Convert.ToString(row["model"]),
+                Priority = Convert.ToInt32(row["priority"]),
+                Display = Convert.ToString(row["display"])
             }).ToList();
         }
 
@@ -127,6 +161,8 @@ namespace USDutyGear.Data
 
         public static List<KeyValuePair<string, List<string>>> GetProductFeatures()
         {
+            return new List<KeyValuePair<string, List<string>>>();
+
             // TODO: logging error handling
             var dt = new DataTable();
             var conn = new MySqlConnection(ConnectionString);

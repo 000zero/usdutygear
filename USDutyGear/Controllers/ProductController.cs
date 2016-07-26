@@ -14,14 +14,16 @@ namespace USDutyGear.Controllers
             name = CategoryHelper.MapRouteKeyToProductName(name);
 
             // get all products of the same name
-            var products = Products.GetProductsByName(name);
+            var product = Products.GetProductByName(name);
 
             var details = Products.GetProductDetailsByName(name);
 
             var images = Products.GetProductImagesByName(name);
 
+            var adjustments = Products.GetProductAdjustmentsByModel(product.Model);
+
             // create the view model object
-            var vm = ProductViewModel.Create(products, details, images);
+            var vm = ProductViewModel.Create(product, adjustments, details, images);
 
             return View(vm);
         }

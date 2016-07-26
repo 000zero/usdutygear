@@ -39,16 +39,31 @@
                 <div class="product-info-price" data-bind="text: Products[SelectedProductIndex].Price"></div>
                 <hr />
 
-                <div class="product-finish">
-                    <span>Selected finish: </span><span id="selectedFinish"></span>
-                    <select data-bind="value: ctrl.selectedFinish">
-                        @for (var i = 0; i < Model.AvailableFinishes.Count; i++)
-                        {<option value="@Model.AvailableFinishes[i]" @(i == 0 ? "selected=\"selected\"" : "")>@Model.AvailableFinishes[i]</option>}
-                    </select>
-                    <!-- TODO: show the thumbnail here -->
+                @if (Model.Finishes.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span>Finish: </span><span id="selectedFinish"></span>
+                        <select data-bind="value: ctrl.selectedFinish">
+                            @for (var i = 0; i < Model.Finishes.Count; i++)
+                            {<option value="@Model.Finishes[i].Model" @(i == 0 ? "selected=\"selected\"" : "")>@Model.Finishes[i].Name</option>}
+                        </select>
+                        <!-- TODO: show the thumbnail here -->
 
-                </div>
-                <hr />
+                    </div>
+                    <hr />
+                }
+
+                @if (Model.Sizes.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span>Size: </span><span id="selectedSize"></span>
+                        <select data-bind="value: ctrl.selectedSize">
+                            @for (var i = 0; i < Model.Sizes.Count; i++)
+                            {<option value="@Model.Sizes[i].Model" @(i == 0 ? "selected=\"selected\"" : "")>@Model.Sizes[i].Name</option>}
+                        </select>
+                    </div>
+                    <hr />
+                }
 
                 <div class="product-info">
                     Quantity: <input type="number" name="quantity" class="quantity" />

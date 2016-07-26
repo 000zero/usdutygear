@@ -1,53 +1,38 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using USDutyGear.Core.Models;
+using USDutyGear.Core.Common;
 
 namespace USDutyGear.Models
 {
     public class ProductViewModel : USDutyGearBaseViewModel
     {
-        private ProductViewModel(List<Product> products, List<string> details, List<string> images)
+        private ProductViewModel(Product products, List<ProductAdjustment> adjustments, List<string> details, List<string> images)
         {
-            Name = products.First().Name;
-            Category = products.First().Category;
+            Name = products.Name;
+            Category = products.Category;
             Details = details;
             Images = images;
             SelectedImage = images.FirstOrDefault();
-            AvailableFinishes = products.Select(x => x.Finish).Distinct().ToList();
-            Products = products.Select(x => new ProductStub
-            {
-                Model = x.Model,
-                Finish = x.Finish,
-                Price = x.Price,
-                ShippingCost = x.ShippingCost,
-                Sizes = x.Sizes
-            }).ToList();
-            SelectedProductIndex = 0;
+            Finishes = adjustments
+                .Where(x => x.Type == ProductAdjustmentTypes.Finish)
+                .ToList();
+            Sizes = adjustments
+                .Where(x => x.Type == ProductAdjustmentTypes.Size)
+                .ToList();
         }
 
-        public static ProductViewModel Create(List<Product> products, List<string> details, List<string> images)
+        public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, List<string> images)
         {
-            return products.Count > 0
-                ? new ProductViewModel(products, details, images)
-                : null;
+            return new ProductViewModel(products, adjustments, details, images);
         }
 
         public string Name { get; set; }
         public string Category { get; set; }
-        public List<string> AvailableFinishes { get; set; }
         public List<string> Details { get; set; }
         public List<string> Images { get; set; }
         public string SelectedImage { get; set; }
-        public List<ProductStub> Products { get; set; }
-        public int SelectedProductIndex { get; set; }
-    }
-
-    public class ProductStub
-    {
-        public string Model { get; set; }
-        public string Finish { get; set; }
-        public decimal Price { get; set; }
-        public decimal ShippingCost { get; set; }
-        public List<int> Sizes { get; set; } 
+        public List<ProductAdjustment> Finishes { get; set; }
+        public List<ProductAdjustment> Sizes { get; set; }
     }
 }
