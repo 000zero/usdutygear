@@ -7,32 +7,40 @@ namespace USDutyGear.Models
 {
     public class ProductViewModel : USDutyGearBaseViewModel
     {
-        private ProductViewModel(Product products, List<ProductAdjustment> adjustments, List<string> details, List<string> images)
+        private ProductViewModel(Product product, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images)
         {
-            Name = products.Name;
-            Category = products.Category;
+            Name = product.Name;
+            Model = product.Model;
+            Category = product.Category;
+            Price = product.Price;
             Details = details;
             Images = images;
-            SelectedImage = images.FirstOrDefault();
+            SelectedImage = product.DefaultImageModel;
             Finishes = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Finish)
                 .ToList();
             Sizes = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Size)
                 .ToList();
+            Snaps = adjustments
+                .Where(x => x.Type == ProductAdjustmentTypes.Snap)
+                .ToList();
         }
 
-        public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, List<string> images)
+        public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images)
         {
             return new ProductViewModel(products, adjustments, details, images);
         }
 
         public string Name { get; set; }
+        public string Model { get; set; }
         public string Category { get; set; }
+        public decimal Price { get; set; }
         public List<string> Details { get; set; }
-        public List<string> Images { get; set; }
+        public Dictionary<string, string[]> Images { get; set; }
         public string SelectedImage { get; set; }
         public List<ProductAdjustment> Finishes { get; set; }
         public List<ProductAdjustment> Sizes { get; set; }
+        public List<ProductAdjustment> Snaps { get; set; }
     }
 }

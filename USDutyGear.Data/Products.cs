@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -102,6 +103,34 @@ namespace USDutyGear.Data
             conn.Close();
 
             return dt.AsEnumerable().Select(row => Convert.ToString(row["detail"])).ToList();
+        }
+
+        public static Dictionary<string, string[]> GetProductImagesByModel(string model)
+        {
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = @"
+                    SELECT model, GROUP_CONCAT(DISTINCT path ORDER BY priority) AS paths FROM (
+                        SELECT CONCAT(model, '-', adjustment_model) AS model, path, priority FROM product_images 
+                        WHERE model = '72'
+                    ) AS results GROUP BY results.model"
+            };
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            conn.Close();
+
+            return dt
+                .AsEnumerable()
+                .ToDictionary(
+                    row => Convert.ToString(row["model"]), 
+                    row => Convert.ToString(row["paths"])?.Split(','));
         }
 
         public static List<string> GetProductImagesByName(string name)

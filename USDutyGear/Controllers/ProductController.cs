@@ -18,7 +18,7 @@ namespace USDutyGear.Controllers
 
             var details = Products.GetProductDetailsByName(name);
 
-            var images = Products.GetProductImagesByName(name);
+            var images = Products.GetProductImagesByModel(product.Model);
 
             var adjustments = Products.GetProductAdjustmentsByModel(product.Model);
 

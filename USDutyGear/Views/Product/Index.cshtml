@@ -25,30 +25,23 @@
                 <div class="row main-image">
                     <!-- large image -->
                     <div class="col-lg-12">
-                        <img alt="@Model.Name" data-bind="attr: { src: '/images/' + SelectedImage() + '_large.png' }" />
+                        <img alt="@Model.Name" data-bind="attr: { src: '/images/' + selectedImage + '_large.png' }" />
                     </div>
-                </div>
-                <div class="row image-previews">
-                    <!-- small image row: foreach small images -->
-                    @foreach (var i in Model.Images)
-                    {<div class="col-lg-2 col-md-2 col-sm-2 preview"><img src="~/images/@(i)_small.png" alt="@(i)" onclick="ctrl.setSelectedImage('@i')" /></div>}
                 </div>
             </div>
             <div class="col-lg-4 product-info">
                 <h3 class="product-info-title">@Model.Name</h3>
-                <div class="product-info-price" data-bind="text: Products[SelectedProductIndex].Price"></div>
+                <div class="product-info-price" data-bind="text: '$' + totalPrice.toString()"></div>
                 <hr />
 
                 @if (Model.Finishes.Count > 0)
                 {
                     <div class="product-finish">
-                        <span>Finish: </span><span id="selectedFinish"></span>
-                        <select data-bind="value: ctrl.selectedFinish">
-                            @for (var i = 0; i < Model.Finishes.Count; i++)
-                            {<option value="@Model.Finishes[i].Model" @(i == 0 ? "selected=\"selected\"" : "")>@Model.Finishes[i].Name</option>}
-                        </select>
+                        <span>Finish: </span>
+                        <select data-bind="options: Finishes,
+                                           optionsText: 'Name',
+                                           value: selectedFinish"></select>
                         <!-- TODO: show the thumbnail here -->
-
                     </div>
                     <hr />
                 }
@@ -56,11 +49,21 @@
                 @if (Model.Sizes.Count > 0)
                 {
                     <div class="product-finish">
-                        <span>Size: </span><span id="selectedSize"></span>
-                        <select data-bind="value: ctrl.selectedSize">
-                            @for (var i = 0; i < Model.Sizes.Count; i++)
-                            {<option value="@Model.Sizes[i].Model" @(i == 0 ? "selected=\"selected\"" : "")>@Model.Sizes[i].Name</option>}
-                        </select>
+                        <span>Size: </span>
+                        <select data-bind="options: Sizes,
+                                           optionsText: 'Name',
+                                           value: selectedSize"></select>
+                    </div>
+                    <hr />
+                }
+
+                @if (Model.Snaps.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span>Snap: </span>
+                        <select data-bind="options: Snaps,
+                                           optionsText: 'Name',
+                                           value: selectedSnap"></select>
                     </div>
                     <hr />
                 }
@@ -70,6 +73,18 @@
                     <button class="btn add-to-cart-btn">Add to Cart</button>
                 </div>
                 <hr />
+
+                <div class="product-info">Images</div>
+                <div class="product-info">
+                    <div class="row">
+                        <!-- foreach goes here over the selected images -->
+                        <div class="col-lg-6" data-bind="foreach: imageList">
+                            <div class="thumbnail">
+                                <img data-bind="attr: { src: '/images/' + $data + '_small.png', alt: $data }" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="product-info">Description</div>
                 <div class="product-info">

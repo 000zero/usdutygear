@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace USDutyGear.Core.Models
+﻿namespace USDutyGear.Core.Models
 {
     public class Product
     {
@@ -11,5 +9,6 @@ namespace USDutyGear.Core.Models
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string Sku { get; set; }
+        public string DefaultImageModel { get; set; }
     }
 }

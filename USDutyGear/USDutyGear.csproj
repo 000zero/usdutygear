@@ -235,6 +235,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\basketweave_sample.png" />
     <Content Include="images\beltkeeper_feature.png" />
+    <Content Include="images\beltkeeper_leather_closed_large.png" />
+    <Content Include="images\beltkeeper_leather_closed_small.png" />
+    <Content Include="images\beltkeeper_leather_with_snap_large.png" />
+    <Content Include="images\beltkeeper_leather_with_snap_small.png" />
     <Content Include="images\belt_feature.png" />
     <Content Include="images\carbonfiber.png" />
     <Content Include="images\dutybelt_feature.png" />
