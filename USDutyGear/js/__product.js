@@ -5,18 +5,18 @@ ctrl.calculatePrice = function () {
     var price = ctrl.vm.Price;
 
     // get selected finish
-    if (ctrl.vm.selectedFinish())
-        price += ctrl.vm.selectedFinish().PriceAdjustment;
+    if (this.selectedFinish())
+        price += this.selectedFinish().PriceAdjustment;
 
     // get selected size
-    if (ctrl.vm.selectedSize())
-        price += ctrl.vm.selectedSize().PriceAdjustment;
+    if (this.selectedSize())
+        price += this.selectedSize().PriceAdjustment;
 
     // get selected snap
-    if (ctrl.vm.selectedSnap())
-        price += ctrl.vm.selectedSnap().PriceAdjustment;
+    if (this.selectedSnap())
+        price += this.selectedSnap().PriceAdjustment;
 
-    ctrl.vm.totalPrice(price);
+    return '$' + price.toString();
 };
 
 ctrl.setImageList = function () {
@@ -48,7 +48,6 @@ ctrl.setImageList = function () {
         // find the last - and remove that part of the string
         model = model.substring(0, model.lastIndexOf("-"));
     }
-    
 };
 
 ctrl.init = function (vm) {
@@ -63,9 +62,10 @@ ctrl.init = function (vm) {
     ctrl.vm.selectedSnap = ko.observable(ctrl.vm.Snaps()[0]);
     ctrl.vm.selectedImage = ko.observable();
     ctrl.vm.totalPrice = ko.observable();
+    ctrl.vm.calculatePrice = ko.computed(ctrl.calculatePrice, ctrl.vm);
     ko.applyBindings(ctrl.vm);
 
     ctrl.setImageList();
-    ctrl.calculatePrice();
+    //ctrl.calculatePrice();
 };
 

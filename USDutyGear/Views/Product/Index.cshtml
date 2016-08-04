@@ -25,13 +25,13 @@
                 <div class="row main-image">
                     <!-- large image -->
                     <div class="col-lg-12">
-                        <img alt="@Model.Name" data-bind="attr: { src: '/images/' + selectedImage + '_large.png' }" />
+                        <img alt="@Model.Name" data-bind="attr: { src: '/images/' + selectedImage() + '_large.png' }" />
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 product-info">
                 <h3 class="product-info-title">@Model.Name</h3>
-                <div class="product-info-price" data-bind="text: '$' + totalPrice.toString()"></div>
+                <div class="product-info-price" data-bind="text: calculatePrice"></div>
                 <hr />
 
                 @if (Model.Finishes.Count > 0)
@@ -75,10 +75,10 @@
                 <hr />
 
                 <div class="product-info">Images</div>
-                <div class="product-info">
+                <div class="product-info container-fluid">
                     <div class="row">
                         <!-- foreach goes here over the selected images -->
-                        <div class="col-lg-6" data-bind="foreach: imageList">
+                        <div class="col-md-6 col-lg-6" data-bind="foreach: imageList">
                             <div class="thumbnail">
                                 <img data-bind="attr: { src: '/images/' + $data + '_small.png', alt: $data }" />
                             </div>
