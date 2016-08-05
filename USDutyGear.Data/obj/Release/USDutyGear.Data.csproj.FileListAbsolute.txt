@@ -7,3 +7,12 @@ C:\dev\sandbox\USDutyGear\USDutyGear.Data\bin\Release\USDutyGear.Core.pdb
 C:\dev\sandbox\USDutyGear\USDutyGear.Data\obj\Release\USDutyGear.Data.csprojResolveAssemblyReference.cache
 C:\dev\sandbox\USDutyGear\USDutyGear.Data\obj\Release\USDutyGear.Data.dll
 C:\dev\sandbox\USDutyGear\USDutyGear.Data\obj\Release\USDutyGear.Data.pdb
+C:\Sandbox\USDutyGear\USDutyGear.Data\bin\Release\USDutyGear.Data.dll.config
+C:\Sandbox\USDutyGear\USDutyGear.Data\bin\Release\USDutyGear.Data.dll
+C:\Sandbox\USDutyGear\USDutyGear.Data\bin\Release\USDutyGear.Data.pdb
+C:\Sandbox\USDutyGear\USDutyGear.Data\bin\Release\MySql.Data.dll
+C:\Sandbox\USDutyGear\USDutyGear.Data\bin\Release\USDutyGear.Core.dll
+C:\Sandbox\USDutyGear\USDutyGear.Data\bin\Release\USDutyGear.Core.pdb
+C:\Sandbox\USDutyGear\USDutyGear.Data\obj\Release\USDutyGear.Data.csprojResolveAssemblyReference.cache
+C:\Sandbox\USDutyGear\USDutyGear.Data\obj\Release\USDutyGear.Data.dll
+C:\Sandbox\USDutyGear\USDutyGear.Data\obj\Release\USDutyGear.Data.pdb
