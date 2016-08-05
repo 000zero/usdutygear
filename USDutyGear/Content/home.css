@@ -45,9 +45,15 @@
 }
 
 .shelf {
-    /*background-image: url("../images/stock-photo-73774339-wooden-wall-background.jpg");*/
+    background-image: url("../images/stock-photo-65259267-old-metal-texture.jpg");
     background-position: center;
     min-height: 200px;
+    color: #fff;
+    opacity: .5;
+}
+
+.shelf-images, .shelf-description {
+    opacity: 1;
 }
 
 .alt-shelf {
