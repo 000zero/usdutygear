@@ -190,8 +190,6 @@ namespace USDutyGear.Data
 
         public static List<KeyValuePair<string, List<string>>> GetProductFeatures()
         {
-            return new List<KeyValuePair<string, List<string>>>();
-
             // TODO: logging error handling
             var dt = new DataTable();
             var conn = new MySqlConnection(ConnectionString);
@@ -200,11 +198,7 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText =
-                    @"SELECT name, GROUP_CONCAT(finish) AS finishes FROM (
-	                    SELECT DISTINCT name, finish
-                        FROM products) as names
-                    GROUP BY name"
+                CommandText = @"SELECT name, title FROM products"
             };
             cmd.ExecuteNonQuery();
 
@@ -216,7 +210,7 @@ namespace USDutyGear.Data
             return dt.AsEnumerable()
                 .Select(row => new KeyValuePair<string, List<string>>(
                     Convert.ToString(row["name"]),
-                    Convert.ToString(row["finishes"])
+                    Convert.ToString(row["title"])
                         .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(x => x.Trim())
                         .ToList()

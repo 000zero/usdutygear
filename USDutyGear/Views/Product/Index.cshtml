@@ -22,9 +22,9 @@
         <div class="row">
             <!-- Image section -->
             <div class="col-lg-8 showcase">
-                <div class="row main-image">
+                <div class="main-image">
                     <!-- large image -->
-                    <div class="col-lg-12">
+                    <div>
                         <img alt="@Model.Name" data-bind="attr: { src: '/images/' + selectedImage() + '_large.png' }" />
                     </div>
                 </div>
@@ -75,13 +75,13 @@
                 <hr />
 
                 <div class="product-info">Images</div>
-                <div class="product-info container-fluid">
-                    <div class="row">
+                <div class="container-fluid product-info">
+                    <div class="row" data-bind="foreach: imageList">
                         <!-- foreach goes here over the selected images -->
-                        <div class="col-md-6 col-lg-6" data-bind="foreach: imageList">
-                            <div class="thumbnail">
+                        <div class="col-md-6 col-lg-6 image-thumbnail">
+                            <a href="javascript:;" data-bind="click: ctrl.vm.selectedImage($data)">
                                 <img data-bind="attr: { src: '/images/' + $data + '_small.png', alt: $data }" />
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

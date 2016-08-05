@@ -9,17 +9,44 @@
     @Styles.Render("~/Content/home")
 }
 
-<header class="jumbotron">
+@*<header class="jumbotron">
     <img src="~/images/us_duty_gear_logo_white_stars_transparent.png" alt="US Duty Gear Logo" class="logo" />
-</header>
+</header>*@
+
+<div class="row">
+    <div class="container splash-container">
+        <div class="splash">
+            @*<img src="~/images/us_duty_gear_logo_white_stars_transparent.png" alt="US Duty Gear Logo" class="logo" />*@
+            <img src="~/images/us_duty_gear_logo_brand_transparent.png" alt="US Duty Gear Logo" class="logo" />
+        </div>
+    </div>
+</div>
 
 <!-- Page Features -->
-<div class="row products">
-    <div class="container">
-        <div class="row text-center">
-            @foreach (var product in Model.Products)
+<div class="row">
+    <div class="container products">
+        <div class="row shelf">
+            <div class="col-lg-7">
+                <img src="~/images/magazineholder_leather_metal_snap_large.png" alt="Leather Magazine Holder" class="shelf-image" />
+            </div>
+            @*<div class="col-lg-3">
+                <img src="~/images/magazineholder_basketweave_metal_snap_large.png" alt="Basketweave Magazine Holder" class="shelf-image" />
+            </div>
+            <div class="col-lg-3">
+                <img src="~/images/magazineholder_highgloss_metal_snap_large.png" alt="High Gloss Magazine Holder" class="shelf-image" />
+            </div>*@
+            <div class="col-lg-5 shelf-card">
+                <h2>Magazine Holders</h2>
+
+                <a href="products/magazineholder" class="btn btn-default">View Product</a>
+            </div>
+            @*<div class="col-lg-6">
+                <img src="~/images/magazineholder_basketweave_metal_snap_large.png" alt="Basketweave Magazine Holder" />
+            </div>*@
+
+            @*@foreach (var product in Model.Products)
             {
-                <div class="col-md-3 col-sm-6 feature">
+                <div class="col-lg-6 col-md-6 col-sm-12 feature">
                     <div class="thumbnail">
                         <img src="~/images/@(product.RouteKey)_feature.png" alt="@product.Name">
                         <h3>@(product.Name)s</h3>
@@ -27,7 +54,17 @@
                         <p><a href="products/@product.RouteKey" class="btn btn-default">View Product</a></p>
                     </div>
                 </div>
-            }
+            }*@
+        </div>
+
+        <div class="row shelf alt-shelf">
+            <div class="col-lg-5 shelf-card">
+                <h2>Belt Keepers</h2>
+                <a href="products/beltkeeper" class="btn btn-default">View Product</a>
+            </div>
+            <div class="col-lg-7">
+                <img src="~/images/beltkeeper_leather_with_snap_large.png" alt="Leather Belt Keeper" class="shelf-image" />
+            </div>
         </div>
     </div>
 </div>

@@ -50,6 +50,10 @@ ctrl.setImageList = function () {
     }
 };
 
+ctrl.selectImage = function (imageName) {
+
+};
+
 ctrl.init = function (vm) {
     ctrl.vm = vm;
 

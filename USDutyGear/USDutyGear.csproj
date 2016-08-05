@@ -262,7 +262,11 @@
     <Content Include="images\magazineholder_leather_metal_snap_large.png" />
     <Content Include="images\magazineholder_leather_metal_snap_small.png" />
     <Content Include="images\sambrownebelt_feature.png" />
+    <Content Include="images\stock-photo-65259267-old-metal-texture.jpg" />
+    <Content Include="images\stock-photo-73774339-wooden-wall-background.jpg" />
+    <Content Include="images\stock-photo-90391651-set-of-old-tools-on-rustic-background.jpg" />
     <Content Include="images\us_duty_gear_brand.png" />
+    <Content Include="images\us_duty_gear_logo_brand_transparent.png" />
     <Content Include="images\us_duty_gear_logo_transparent.png" />
     <Content Include="images\us_duty_gear_logo_white_stars_transparent.png" />
     <Content Include="images\workshop.png" />

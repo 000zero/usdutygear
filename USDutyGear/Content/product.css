@@ -53,3 +53,15 @@
     width: 100%;
     cursor: pointer;
 }
+
+.product .image-thumbnail {
+    padding: 0;
+    background-color: #fff;
+    border: 1px solid #98878f;
+}
+
+.product .image-thumbnail img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
