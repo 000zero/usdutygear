@@ -12,7 +12,7 @@
     background-color: #192231;
     border-radius: 0;
     margin-bottom: 0;
-    height: 100px;
+    height: 80px;
     box-shadow: 0 5px 5px -2px #000; /*#39322C;*/
     padding-top: 20px;
     z-index: 100;
@@ -62,7 +62,7 @@
 }
 
 .navbar .navbar-nav li.belt-header-detail {
-    margin-top: -20px;
+    margin-top: -18px;
 }
 
 .btn {
