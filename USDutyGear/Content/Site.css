@@ -4,17 +4,17 @@
 }
 
 .navbar {
-    background-image: url('../images/leather_header.png');
+    background-image: url('../images/belt_header.png');
     margin-top: -1px;
     color: #333;
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 1px;
     background-color: #192231;
     border-radius: 0;
     margin-bottom: 0;
-    height: 72px;
+    height: 100px;
     box-shadow: 0 5px 5px -2px #000; /*#39322C;*/
-    padding-top: 10px;
+    padding-top: 20px;
     z-index: 100;
 }
 
@@ -28,7 +28,7 @@
 
 .navbar a {
     color: #fff;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 10px;
 }
 
@@ -59,6 +59,10 @@
     margin-top: 0;
     border-color: #fff;
     border-width: 1px;
+}
+
+.navbar .navbar-nav li.belt-header-detail {
+    margin-top: -20px;
 }
 
 .btn {

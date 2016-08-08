@@ -79,16 +79,11 @@
     margin-right: auto
 }
 
-.shelf-image-container {
-    position: relative;
-    width: 33%;
-    overflow: hidden;
-    float: left;
-}
-
 .shelf-image-container img {
-    width: 400px;
-    margin-left: -100px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /*float: left;*/
 }
 
 /*.shelf-image {
