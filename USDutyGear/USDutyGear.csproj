@@ -250,6 +250,11 @@
     <Content Include="images\glovepouches.png" />
     <Content Include="images\halftone.png" />
     <Content Include="images\higloss_sample.png" />
+    <Content Include="images\iStock_90391651_1170.jpg" />
+    <Content Include="images\iStock_90391651_570.jpg" />
+    <Content Include="images\iStock_90391651_750.jpg" />
+    <Content Include="images\iStock_90391651_970.jpg" />
+    <Content Include="images\iStock_90391651_SMALL.jpg" />
     <Content Include="images\keyholderkeeper_feature.png" />
     <Content Include="images\leather_header.png" />
     <Content Include="images\leather_sample.png" />
