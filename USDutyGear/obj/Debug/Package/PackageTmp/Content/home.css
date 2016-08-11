@@ -1,5 +1,5 @@
 ﻿body {
-    color: #192231;
+    color: #999;
     background-color: #e9e9e9;
     background-image: url("../images/halftone.png");
     background-repeat: repeat;
@@ -37,6 +37,12 @@
         background-image: url("../images/iStock_90391651_450.jpg");
         min-height: 260px;
     }
+
+    .splash .logo {
+        width: 45%;
+        right: 10%;
+        top: 10%;
+    }
 }
 
 /* 450 */
@@ -44,6 +50,12 @@
     .splash {
         background-image: url("../images/iStock_90391651_550.jpg");
         min-height: 320px;
+    }
+
+    .splash .logo {
+        width: 40%;
+        right: 15%;
+        top: 10%;
     }
 }
 
@@ -58,6 +70,12 @@
     .splash {
         background-image: url("../images/iStock_90391651_768.jpg");
         min-height: 430px;
+    }
+
+    .splash .logo {
+        width: 40%;
+        right: 10%;
+        top: 7%;
     }
 }
 
@@ -80,6 +98,12 @@
         background-image: url("../images/iStock_90391651_1170.jpg");
         min-height: 650px;
     }
+
+    .splash .logo {
+        width: 35%;
+        right: 15%;
+        top: 10%;
+    }
 }
 
 
@@ -95,6 +119,14 @@
 
 .shelf-card {
     padding-left: 25px;
+    padding-bottom: 15px;
+}
+
+.shelf-card h1,
+.shelf-card h2 {
+    font-family: 'Poiret One', sans-serif;
+    /*font-weight: bold;*/
+    color: #985e6d;
 }
 
 .category-title {

@@ -22,10 +22,10 @@
 .splash .logo {
     display: block;
     margin-top: 0;
-    top: 15%;
-    right: 20%;
+    top: 10%;
+    right: 15%;
     position:absolute;
-    width: 30%;
+    width: 35%;
     opacity: .8;
     -ms-transform: rotate(10deg);
     -webkit-transform: rotate(10deg);
@@ -119,12 +119,14 @@
 
 .shelf-card {
     padding-left: 25px;
+    padding-bottom: 15px;
 }
 
+.shelf-card h1,
 .shelf-card h2 {
     font-family: 'Poiret One', sans-serif;
-    font-weight: bold;
-    color: #192231;
+    /*font-weight: bold;*/
+    color: #985e6d;
 }
 
 .category-title {
