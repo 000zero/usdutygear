@@ -25,6 +25,9 @@ namespace USDutyGear.Models
             Snaps = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Snap)
                 .ToList();
+            Packages = adjustments
+                .Where(x => x.Type == ProductAdjustmentTypes.Package)
+                .ToList();
         }
 
         public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images)
@@ -42,5 +45,6 @@ namespace USDutyGear.Models
         public List<ProductAdjustment> Finishes { get; set; }
         public List<ProductAdjustment> Sizes { get; set; }
         public List<ProductAdjustment> Snaps { get; set; }
+        public List<ProductAdjustment> Packages { get; set; } 
     }
 }

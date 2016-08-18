@@ -108,23 +108,25 @@ namespace USDutyGear.Data
         public static Dictionary<string, string[]> GetProductImagesByModel(string model)
         {
             var dt = new DataTable();
-            var conn = new MySqlConnection(ConnectionString);
-            conn.Open();
-
-            var cmd = new MySqlCommand
+            using (var conn = new MySqlConnection(ConnectionString))
             {
-                Connection = conn,
-                CommandText = @"
-                    SELECT model, GROUP_CONCAT(DISTINCT path ORDER BY priority) AS paths FROM (
-                        SELECT CONCAT(model, '-', adjustment_model) AS model, path, priority FROM product_images 
-                        WHERE model = '72'
-                    ) AS results GROUP BY results.model"
-            };
+                conn.Open();
 
-            var adapter = new MySqlDataAdapter(cmd);
-            adapter.Fill(dt);
+                var cmd = new MySqlCommand
+                {
+                    Connection = conn,
+                    CommandText = @"
+                        SELECT model, GROUP_CONCAT(DISTINCT path ORDER BY priority) AS paths FROM (
+                            SELECT CONCAT(model, '-', adjustment_model) AS model, path, priority FROM product_images 
+                            WHERE model = '72'
+                        ) AS results GROUP BY results.model"
+                };
 
-            conn.Close();
+                var adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(dt);
+
+                conn.Close();
+            }
 
             return dt
                 .AsEnumerable()

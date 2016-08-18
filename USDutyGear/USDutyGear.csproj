@@ -245,6 +245,7 @@
     <Content Include="images\belt_leather.png" />
     <Content Include="images\betlkeepers_title.png" />
     <Content Include="images\betls_title.png" />
+    <Content Include="images\divider.png" />
     <Content Include="images\dutybelt_feature.png" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\gloveholder_feature.png" />

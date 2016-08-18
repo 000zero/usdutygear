@@ -5,5 +5,6 @@
         public const string Finish = "Finish";
         public const string Size = "Size";
         public const string Snap = "Snap";
+        public const string Package = "Package";
     }
 }
