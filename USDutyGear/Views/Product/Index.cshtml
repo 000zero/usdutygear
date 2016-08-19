@@ -20,7 +20,7 @@
             </ol>
         </div>
 
-        <div class="row product">
+        <div id="product-section" class="row product">
             <!-- Image section -->
             <div class="col-lg-8 col-md-8 showcase">
                 <div class="main-image">
@@ -53,8 +53,8 @@
                         <span class="adj-label">Finish: </span>
                         <select data-bind="options: Finishes,
                                            optionsText: 'Name',
-                                           value: selectedFinish"></select>
-                        <!-- TODO: show the thumbnail here -->
+                                           value: selectedFinish,
+                                           event: { onchange: setImageList }"></select>
                     </div>
                     <hr />
                 }
@@ -76,7 +76,8 @@
                         <span class="adj-label">Snap: </span>
                         <select data-bind="options: Snaps,
                                            optionsText: 'Name',
-                                           value: selectedSnap"></select>
+                                           value: selectedSnap,
+                                           event: { onchange: setImageList }"></select>
                     </div>
                     <hr />
                 }
@@ -87,13 +88,13 @@
                         <span class="adj-label">Package: </span>
                         <select data-bind="options: Packages,
                                            optionsText: 'Name',
-                                           value: selectedSnap"></select>
+                                           value: selectedPackage"></select>
                     </div>
                     <hr />
                 }
 
                 <div class="product-info">
-                    <span class="adj-label">Quantity: </span><input type="number" name="quantity" class="quantity" />
+                    <span class="adj-label">Quantity: </span><input type="number" name="quantity" class="quantity" data-bind="value: quantity" />
                     <button class="btn add-to-cart-btn">Add to Cart</button>
                 </div>
                 <hr />

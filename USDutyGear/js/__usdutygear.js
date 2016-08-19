@@ -7,22 +7,45 @@ var rootCtrl = (function () {
 
     if (!scope.cart)
         scope.cart = {
+            products: {},
             lastRead: null,
             lastWrite: moment()
         };
 
+    scope.setCartViewModel = function () {
+        scope.cartViewModel.products.removeAll();
+        for (var prop in scope.cart.products) {
+            if (scope.cart.hasOwnProperty(prop)) {
+                scope.cartViewModel.products.push({
+                    Model: prop,
+                    Quantity: scope.cart.products[prop]
+                });
+            }
+        }
+    };
+
+    // setup global viewModel
+    scope.cartViewModel = {};
+    scope.cartViewModel.products = ko.observableArray();
+    scope.setCartViewModel();
+
+    ko.applyBindings(scope.cartViewModel, $("shopping-cart-form")[0]);
+
     // public methods
     return {
-        addToCart: function (sku, quantity) {
-            if (scope.cart[sku])
-                scope.cart[sku] += quantity;
-            else
-                scope.cart[sku] = quantity;
+        addToCart: function (model, quantity) {
+            if (scope.cart.products[model]) {
+                scope.cart.products[model] += quantity;
+            } else {
+                scope.cart.products[model] = quantity;
+            }
 
             scope.cart.lastWrite = moment();
+            scope.setCartViewModel();
         },
         emptyCart: function () {
             scope.cart = {
+                products: {},
                 lastRead: null,
                 lastWrite: moment()
             };
@@ -32,6 +55,9 @@ var rootCtrl = (function () {
             scope.cart.lastRead = moment();
 
             return copy;
+        },
+        getCartViewModel: function () {
+            return scope.cartViewModel;
         },
         getFinishImageName: function (finish) {
             switch (finish) {
