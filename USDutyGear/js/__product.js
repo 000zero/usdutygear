@@ -15,6 +15,9 @@ ctrl.getModel = function () {
     if (ctrl.vm.selectedPackage())
         model += "-" + ctrl.vm.selectedPackage().Model;
 
+    if (model.slice(-1) === '-')
+        model = model.slice(0, -1);
+
     return model;
 };
 

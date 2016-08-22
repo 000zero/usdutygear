@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MySql.Data.MySqlClient;
 using USDutyGear.Core.Models;
 using USDutyGear.Core.Common;
@@ -45,8 +46,8 @@ namespace USDutyGear.Data
                 Category = Convert.ToString(row["category"]),
                 Model = Convert.ToString(row["model"]),
                 Price = Convert.ToDecimal(row["price"]),
-                Sku = Convert.ToString(row["sku"]),
-                Title = Convert.ToString(row["title"])
+                Title = Convert.ToString(row["title"]),
+                ModelTemplate = new Regex(Convert.ToString(row["model_template"]))
             };
         }
 

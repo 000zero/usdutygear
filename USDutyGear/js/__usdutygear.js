@@ -3,7 +3,11 @@ var rootCtrl = (function () {
     var scope = this;
 
     // get the cart from local storage if present
-    scope.cart = JSON.parse(localStorage.getItem('usdutygear-cart'));
+    try {
+        scope.cart = JSON.parse(localStorage.getItem('usdutygear-cart'));
+    } catch (e) {
+        console.log(e);
+    }
 
     if (!scope.cart)
         scope.cart = {
@@ -12,10 +16,14 @@ var rootCtrl = (function () {
             lastWrite: moment()
         };
 
+    scope.saveCart = function() {
+        localStorage.setItem('usdutygear-cart', JSON.stringify(scope.cart));
+    };
+
     scope.setCartViewModel = function () {
         scope.cartViewModel.products.removeAll();
         for (var prop in scope.cart.products) {
-            if (scope.cart.hasOwnProperty(prop)) {
+            if (scope.cart.products.hasOwnProperty(prop)) {
                 scope.cartViewModel.products.push({
                     Model: prop,
                     Quantity: scope.cart.products[prop]
@@ -29,7 +37,7 @@ var rootCtrl = (function () {
     scope.cartViewModel.products = ko.observableArray();
     scope.setCartViewModel();
 
-    ko.applyBindings(scope.cartViewModel, $("shopping-cart-form")[0]);
+    ko.applyBindings(scope.cartViewModel, $("#shopping-cart-nav-form")[0]);
 
     // public methods
     return {
@@ -42,6 +50,7 @@ var rootCtrl = (function () {
 
             scope.cart.lastWrite = moment();
             scope.setCartViewModel();
+            scope.saveCart();
         },
         emptyCart: function () {
             scope.cart = {
@@ -49,6 +58,7 @@ var rootCtrl = (function () {
                 lastRead: null,
                 lastWrite: moment()
             };
+            scope.saveCart();
         },
         getCart: function () {
             var copy = _.clone(scope.cart);

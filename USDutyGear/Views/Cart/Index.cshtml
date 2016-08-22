@@ -1,8 +1,48 @@
-﻿@{
+﻿@using System.Globalization
+@model USDutyGear.Models.CartViewModel
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<div>
-    <p>This is the cart</p>
+<div class="row">
+    <div class="container cart-list">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Shopping Cart</h1>
+            </div>
+            <div class="col-lg-4">
+                <button class="btn btn-default" onclick="rootCtrl.emptyCart()">Empty Cart</button>
+                <label for="submit-shopping-list-cart"><button class="btn btn-default">Update Cart</button></label>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new {id = "shopping-cart-list-form"}))
+        {
+            foreach (var item in Model.Items)
+            {
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>@item.Title</h3>
+                        <div><span>Model #</span>@item.Model</div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div><span>Quantity: </span><input type="number" name="cart[@Model]" value="@item.Quantity" /></div>
+                        <div><span>Price:</span>@item.Price.ToString(CultureInfo.InvariantCulture)</div>
+                    </div>
+                </div>
+            }
+            <input type="submit" id="submit-shopping-list-cart" class="hidden" />
+        }
+    </div>
+    <!-- total -->
 </div>
+
+<!-- shipping address -->
+<!-- billing address -->
+
+@section scripts
+{
+    <script type="text/javascript" src="~/js/__cart.js"></script>
+}

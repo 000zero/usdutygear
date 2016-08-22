@@ -48,14 +48,18 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right cart">
                     <li>
-                        <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { id = "shopping-cart-form" }))
+                        <label for="submit-shopping-cart">
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                        </label>
+                        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new {id = "shopping-cart-nav-form"}))
                         {
                             <div id="shopping-cart" data-bind="foreach: products">
-                                <input type="hidden" data-bind="attr: { id: Model, value: Quantity }" />
+                                <input type="hidden" data-bind="attr: { name: 'cart[' + Model + ']', value: Quantity }"/>
                             </div>
+                            <input type="submit" id="submit-shopping-cart" class="hidden"/>
                         }
                     </li>
+                    @*<li><label for="submit-shopping-cart">Cart</label></li>*@
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

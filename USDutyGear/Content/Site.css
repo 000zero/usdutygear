@@ -148,3 +148,18 @@ h1, h2, h3, h4 {
     color: #985e6d;
     border: 1px solid #985e6d;
 }
+
+.navbar .glyphicon.glyphicon-shopping-cart {
+    color: #fff;
+    padding-top: 10px;
+}
+
+.navbar .glyphicon.glyphicon-shopping-cart {
+    color: #fff;
+    padding-top: 10px;
+}
+
+.navbar .glyphicon.glyphicon-shopping-cart:hover {
+    opacity: .9;
+    cursor: pointer;
+}

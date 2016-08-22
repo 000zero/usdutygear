@@ -7,6 +7,18 @@ namespace USDutyGear.Models
 {
     public class ProductViewModel : USDutyGearBaseViewModel
     {
+        public string Name { get; set; }
+        public string Model { get; set; }
+        public string Category { get; set; }
+        public decimal Price { get; set; }
+        public List<string> Details { get; set; }
+        public Dictionary<string, string[]> Images { get; set; }
+        public string SelectedImage { get; set; }
+        public List<ProductAdjustment> Finishes { get; set; }
+        public List<ProductAdjustment> Sizes { get; set; }
+        public List<ProductAdjustment> Snaps { get; set; }
+        public List<ProductAdjustment> Packages { get; set; }
+
         private ProductViewModel(Product product, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images)
         {
             Name = product.Name;
@@ -34,17 +46,5 @@ namespace USDutyGear.Models
         {
             return new ProductViewModel(products, adjustments, details, images);
         }
-
-        public string Name { get; set; }
-        public string Model { get; set; }
-        public string Category { get; set; }
-        public decimal Price { get; set; }
-        public List<string> Details { get; set; }
-        public Dictionary<string, string[]> Images { get; set; }
-        public string SelectedImage { get; set; }
-        public List<ProductAdjustment> Finishes { get; set; }
-        public List<ProductAdjustment> Sizes { get; set; }
-        public List<ProductAdjustment> Snaps { get; set; }
-        public List<ProductAdjustment> Packages { get; set; } 
     }
 }

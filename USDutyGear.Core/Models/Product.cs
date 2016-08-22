@@ -1,4 +1,6 @@
-﻿namespace USDutyGear.Core.Models
+﻿using System.Text.RegularExpressions;
+
+namespace USDutyGear.Core.Models
 {
     public class Product
     {
@@ -8,7 +10,7 @@
         public string Model { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
-        public string Sku { get; set; }
         public string DefaultImageModel { get; set; }
+        public Regex ModelTemplate { get; set; }
     }
 }
