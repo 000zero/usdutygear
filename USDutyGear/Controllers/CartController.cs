@@ -11,16 +11,29 @@ namespace USDutyGear.Controllers
     public class CartController : Controller
     {
         // GET: Cart
-        [HttpPost]
+        [HttpGet]
         [Route("")]
         public ActionResult Index(Dictionary<string, string> cart)
         {
             // get all the product objects for the items in the cart
 
             // go through the cart and figure out the price
-            var vm = CartViewModel.Create(cart);
+            var vm = new USDutyGearBaseViewModel();
 
             return View(vm);
+        }
+
+        [HttpPost]
+        [Route("~/api/cart")]
+        public JsonResult GetCartViewModel(Dictionary<string, string> cart)
+        {
+            var vm = new CartViewModel();
+
+            // go through the cart
+
+            // get the product object from the model number
+
+            return Json(vm);
         }
     }
 }

@@ -5,19 +5,11 @@ namespace USDutyGear.Models
     public class CartViewModel : USDutyGearBaseViewModel
     {
         public List<ProductCartViewModel> Items { get; set; }
+        public decimal CartTotal { get; set; }
 
-        private CartViewModel(Dictionary<string, string> cart)
+        public CartViewModel()
         {
             Items = new List<ProductCartViewModel>();
-            foreach (var item in cart)
-            {
-                
-            }
-        }
-
-        public static CartViewModel Create(Dictionary<string, string> cart)
-        {
-            return new CartViewModel(cart);
         }
     }
 
@@ -27,5 +19,6 @@ namespace USDutyGear.Models
         public string Model { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
+        public decimal Total { get; set; }
     }
 }
