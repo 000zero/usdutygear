@@ -17,22 +17,28 @@
             </div>
         </div>
 
-        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new {id = "shopping-cart-list-form"}))
+        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new Dictionary<string, object>
         {
-            foreach (var item in Model.Items)
-            {
+            { "id", "shopping-cart-list-form" }, { "data-bind", "foreach: items" }
+        }))
+        {
                 <div class="row">
                     <div class="col-lg-8">
-                        <h3>@item.Title</h3>
-                        <div><span>Model #</span>@item.Model</div>
+                        <h3 data-bind="text: Title"></h3>
+                        <div>Model #<span data-bind="text: Model"></span></div>
                     </div>
                     <div class="col-lg-4">
-                        <div><span>Quantity: </span><input type="number" name="cart[@Model]" value="@item.Quantity" /></div>
-                        <div><span>Price:</span>@item.Price.ToString(CultureInfo.InvariantCulture)</div>
+                        <div>
+                            <span>Quantity: </span>
+                            <input type="number" data-bind="value: Quantity, attr: { name: 'cart[' + Model + ']' }" />
+                        </div>
+                        <div>
+                            <span>Price:</span>
+                            <span data-bind="text: Price"></span>
+                        </div>
                     </div>
                 </div>
-            }
-            <input type="submit" id="submit-shopping-list-cart" class="hidden" />
+            <input type="submit" id="submit-shopping-list-cart" class="hidden" data-bind="if: $index == $parent.items.length - 1" />
         }
 
         <div class="row">

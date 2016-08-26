@@ -32,12 +32,12 @@ var rootCtrl = (function () {
         }
     };
 
-    // setup global viewModel
+    // setup global viewModel TODO: figure out if we still need this
     scope.cartViewModel = {};
     scope.cartViewModel.products = ko.observableArray();
     scope.setCartViewModel();
 
-    ko.applyBindings(scope.cartViewModel, $("#shopping-cart-nav-form")[0]);
+    //ko.applyBindings(scope.cartViewModel, $("#shopping-cart-nav-form")[0]);
 
     // public methods
     return {
