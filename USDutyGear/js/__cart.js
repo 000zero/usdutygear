@@ -4,7 +4,13 @@ ctrl.init = function () {
     ctrl.vm = {};
 
     // get cart from the root controller
-    $.post("/api/cart", { cart: rootCtrl.getCart() }).then(function(response) {
+    $.ajax({
+        url: "/api/cart",
+        type: "POST",
+        data: JSON.stringify({ Items: rootCtrl.getCartItems() }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
+    }).then(function(response) {
         if (!response.data) {
             ctrl.vm.items = ko.observableArray();
             ctrl.vm.total = ko.observable(0);

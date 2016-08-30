@@ -2,7 +2,7 @@
 
 namespace USDutyGear.Core.Models
 {
-    public class ProductPromotion
+    public class ProductDiscount
     {
         public string Id { get; set; }
         public string Model { get; set; }

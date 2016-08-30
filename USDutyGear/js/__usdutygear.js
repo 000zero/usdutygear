@@ -11,7 +11,7 @@ var rootCtrl = (function () {
 
     if (!scope.cart)
         scope.cart = {
-            products: {},
+            items: {},
             lastRead: null,
             lastWrite: moment()
         };
@@ -21,12 +21,12 @@ var rootCtrl = (function () {
     };
 
     scope.setCartViewModel = function () {
-        scope.cartViewModel.products.removeAll();
-        for (var prop in scope.cart.products) {
-            if (scope.cart.products.hasOwnProperty(prop)) {
-                scope.cartViewModel.products.push({
+        scope.cartViewModel.items.removeAll();
+        for (var prop in scope.cart.items) {
+            if (scope.cart.items.hasOwnProperty(prop)) {
+                scope.cartViewModel.items.push({
                     Model: prop,
-                    Quantity: scope.cart.products[prop]
+                    Quantity: scope.cart.items[prop]
                 });
             }
         }
@@ -34,7 +34,7 @@ var rootCtrl = (function () {
 
     // setup global viewModel TODO: figure out if we still need this
     scope.cartViewModel = {};
-    scope.cartViewModel.products = ko.observableArray();
+    scope.cartViewModel.items = ko.observableArray();
     scope.setCartViewModel();
 
     //ko.applyBindings(scope.cartViewModel, $("#shopping-cart-nav-form")[0]);
@@ -42,10 +42,10 @@ var rootCtrl = (function () {
     // public methods
     return {
         addToCart: function (model, quantity) {
-            if (scope.cart.products[model]) {
-                scope.cart.products[model] += quantity;
+            if (scope.cart.items[model]) {
+                scope.cart.items[model] += quantity;
             } else {
-                scope.cart.products[model] = quantity;
+                scope.cart.items[model] = quantity;
             }
 
             scope.cart.lastWrite = moment();
@@ -54,7 +54,7 @@ var rootCtrl = (function () {
         },
         emptyCart: function () {
             scope.cart = {
-                products: {},
+                items: {},
                 lastRead: null,
                 lastWrite: moment()
             };
@@ -65,6 +65,17 @@ var rootCtrl = (function () {
             scope.cart.lastRead = moment();
 
             return copy;
+        },
+        getCartItems: function () {
+            var items = _.map(_.pairs(scope.cart.items), function (pair) {
+                return {
+                    Model: pair[0],
+                    Quantity: parseInt(pair[1])
+                };
+            });
+            scope.cart.lastRead = moment();
+
+            return items;
         },
         getCartViewModel: function () {
             return scope.cartViewModel;

@@ -2,23 +2,14 @@
 
 namespace USDutyGear.Models
 {
-    public class CartViewModel : USDutyGearBaseViewModel
+    public class CartViewModel
     {
-        public List<ProductCartViewModel> Items { get; set; }
-        public decimal CartTotal { get; set; }
+        public List<CartItem> Items { get; set; }
+        public decimal Total { get; set; }
 
         public CartViewModel()
         {
-            Items = new List<ProductCartViewModel>();
+            Items = new List<CartItem>();
         }
-    }
-
-    public class ProductCartViewModel
-    {
-        public string Title { get; set; }
-        public string Model { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
-        public decimal Total { get; set; }
     }
 }

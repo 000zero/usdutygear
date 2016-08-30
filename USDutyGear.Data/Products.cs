@@ -15,7 +15,22 @@ namespace USDutyGear.Data
         private const string ConnectionString =
             "Server=MYSQL5011.Smarterasp.net;Database=db_9f5a66_usdgts;Uid=9f5a66_usdgts;Pwd=flores2016;";
 
+        public static Product GetProductById(int id)
+        {
+            return GetProduct("id", id);
+        }
+
         public static Product GetProductByName(string name)
+        {
+            return GetProduct("name", name);
+        }
+
+        public static Product GetProductByModel(string model)
+        {
+            return GetProduct("model", model);
+        }
+
+        private static Product GetProduct<T>(string field, T value)
         {
             // TODO: logging error handling
             var dt = new DataTable();
@@ -25,9 +40,9 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = "SELECT * FROM products WHERE name = @name;"
+                CommandText = $"SELECT * FROM products WHERE {field} = @value;"
             };
-            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@value", value);
             cmd.ExecuteNonQuery();
 
             var adapter = new MySqlDataAdapter(cmd);
@@ -50,6 +65,7 @@ namespace USDutyGear.Data
                 ModelTemplate = new Regex(Convert.ToString(row["model_template"]))
             };
         }
+
 
         public static List<ProductAdjustment> GetProductAdjustmentsByModel(string model)
         {
@@ -218,11 +234,6 @@ namespace USDutyGear.Data
                         .Select(x => x.Trim())
                         .ToList()
                 )).ToList();
-        }
-
-        protected static Product GetProduct(int id)
-        {
-            return null;
         }
     }
 }

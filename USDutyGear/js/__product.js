@@ -99,7 +99,7 @@ ctrl.init = function (vm) {
     ctrl.vm.selectedSnap = ko.observable(ctrl.vm.Snaps()[0]);
     ctrl.vm.selectedPackage = ko.observable(ctrl.vm.Packages()[0]);
     ctrl.vm.selectedImage = ko.observable();
-    ctrl.vm.quantity = ko.observable(1);
+    ctrl.vm.quantity = ko.observable("1");
     // functions
     ctrl.vm.calculatePrice = ko.computed(ctrl.calculatePrice, ctrl.vm);
     ctrl.vm.setImageList = ko.computed(ctrl.setImageList, ctrl.vm);

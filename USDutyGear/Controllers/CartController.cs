@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using USDutyGear.Models;
 
@@ -21,19 +20,6 @@ namespace USDutyGear.Controllers
             var vm = new USDutyGearBaseViewModel();
 
             return View(vm);
-        }
-
-        [HttpPost]
-        [Route("~/api/cart")]
-        public JsonResult GetCartViewModel(Dictionary<string, string> cart)
-        {
-            var vm = new CartViewModel();
-
-            // go through the cart
-
-            // get the product object from the model number
-
-            return Json(vm);
         }
     }
 }
