@@ -1,0 +1,15 @@
+﻿.cart .cart-items {
+    background-color: #fff;
+    box-shadow: 5px 5px 5px -4px #888, -5px 5px 5px -4px #888, 0 5px 4px -2px #888;
+    padding: 15px;
+    padding-top: 0;
+}
+
+.cart .cart-items h3 {
+    font-family: 'Didact Gothic', sans-serif;
+    color: #555;
+}
+
+.cart .number {
+    font-family: 'Roma Sans', sans-serif;
+}

@@ -42,6 +42,9 @@ var rootCtrl = (function () {
     // public methods
     return {
         addToCart: function (model, quantity) {
+            if (!scope.cart.items)
+                scope.cart.items = {};
+
             if (scope.cart.items[model]) {
                 scope.cart.items[model] += quantity;
             } else {

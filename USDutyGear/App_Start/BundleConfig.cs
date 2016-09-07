@@ -40,6 +40,9 @@ namespace USDutyGear
 
             bundles.Add(new StyleBundle("~/Content/product").Include(
                         "~/Content/product.css"));
+
+            bundles.Add(new StyleBundle("~/Content/cart").Include(
+                        "~/Content/cart.css"));
         }
     }
 }

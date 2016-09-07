@@ -4,8 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section styles
+{
+    @Styles.Render("~/Content/cart")
+}
 
-<div class="row">
+<div class="row cart">
     <div class="container cart-list">
         <div class="row">
             <div class="col-lg-8">
@@ -17,15 +21,16 @@
             </div>
         </div>
 
-        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new Dictionary<string, object>
-        {
-            { "id", "shopping-cart-list-form" }, { "data-bind", "foreach: items" }
-        }))
-        {
+        <div class="cart-items">
+            @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new Dictionary<string, object>
+            {
+                { "id", "shopping-cart-list-form" }, { "data-bind", "foreach: items" }
+            }))
+            {
                 <div class="row">
                     <div class="col-lg-8">
                         <h3 data-bind="text: Title"></h3>
-                        <div>Model #<span data-bind="text: Model"></span></div>
+                        <div>Model # <span class="number" data-bind="text: Model"></span></div>
                     </div>
                     <div class="col-lg-4">
                         <div>
@@ -34,12 +39,17 @@
                         </div>
                         <div>
                             <span>Price:</span>
-                            <span data-bind="text: Price"></span>
+                            <span class="number" data-bind="text: PriceDisplay"></span>
+                        </div>
+                        <div>
+                            <span>Total:</span>
+                            <span class="number" data-bind="text: TotalDisplay"></span>
                         </div>
                     </div>
                 </div>
-            <input type="submit" id="submit-shopping-list-cart" class="hidden" data-bind="if: $index == $parent.items.length - 1" />
-        }
+                <input type="submit" id="submit-shopping-list-cart" class="hidden" data-bind="if: $index == $parent.items.length - 1" />
+            }
+        </div>
 
         <div class="row">
             <div class="col-lg-6 col-md-6">

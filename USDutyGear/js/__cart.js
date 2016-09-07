@@ -11,12 +11,12 @@ ctrl.init = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json"
     }).then(function(response) {
-        if (!response.data) {
+        if (!response.Items) {
             ctrl.vm.items = ko.observableArray();
             ctrl.vm.total = ko.observable(0);
         } else {// set the cart view model here
-            ctrl.vm.items = ko.observableArray(response.data.Items);
-            ctrl.vm.total = ko.observable(response.data.CartTotal);
+            ctrl.vm.items = ko.observableArray(response.Items);
+            ctrl.vm.total = ko.observable(response.CartTotal);
         }
 
         // apply view model binding
