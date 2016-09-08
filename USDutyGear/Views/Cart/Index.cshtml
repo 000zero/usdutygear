@@ -12,10 +12,10 @@
 <div class="row cart">
     <div class="container cart-list">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <h1>Shopping Cart</h1>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <button class="btn btn-default" onclick="rootCtrl.emptyCart()">Empty Cart</button>
                 <label for="submit-shopping-list-cart"><button class="btn btn-default">Update Cart</button></label>
             </div>
@@ -28,25 +28,25 @@
             }))
             {
                 <div class="row">
-                    <div class="col-lg-8">
-                        <h3 data-bind="text: Title"></h3>
+                    <div class="col-lg-8 col-md-8 col-sm-8 cart-item-main">
+                        <h4 data-bind="text: Title"></h4>
                         <div>Model # <span class="number" data-bind="text: Model"></span></div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-md-4 col-sm-4 cart-item-detail">
                         <div>
-                            <span>Quantity: </span>
-                            <input type="number" data-bind="value: Quantity, attr: { name: 'cart[' + Model + ']' }" />
+                            <span class="title">Quantity: </span>
+                            <input type="number" data-bind="value: Quantity, attr: { name: 'cart[' + Model + ']' }"/>
+                            <span class="at-price">&#64;</span>
+                            <span class="number" data-bind="text: PriceDisplay"></span> each
+                            @*<a href="javascript:;" onclick="ctrl.updateCart()"><span class="glyphicon glyphicon-refresh"></span></a>*@
                         </div>
-                        <div>
-                            <span>Price:</span>
-                            <span class="number" data-bind="text: PriceDisplay"></span>
-                        </div>
-                        <div>
-                            <span>Total:</span>
+                        <div class="item-total">
+                            <span class="title">Item Total:</span>
                             <span class="number" data-bind="text: TotalDisplay"></span>
                         </div>
                     </div>
                 </div>
+                <hr />
                 <input type="submit" id="submit-shopping-list-cart" class="hidden" data-bind="if: $index == $parent.items.length - 1" />
             }
         </div>

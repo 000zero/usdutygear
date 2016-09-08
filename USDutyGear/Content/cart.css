@@ -5,7 +5,32 @@
     padding-top: 0;
 }
 
-.cart .cart-items h3 {
+.cart .cart-items .cart-item-main {
+    padding-top: 5px;
+}
+
+.cart .cart-items .cart-item-detail {
+    padding-top: 15px;
+}
+
+.cart .cart-items .cart-item-detail .title {
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+}
+
+.cart .cart-items .cart-item-detail input {
+    width: 50px;
+}
+
+.cart .cart-items .cart-item-detail .item-total {
+    padding-top: 20px;
+    font-weight: 500;
+    color: #555;
+}
+
+.cart .cart-items h4,
+.cart .cart-items h5 {
     font-family: 'Didact Gothic', sans-serif;
     color: #555;
 }

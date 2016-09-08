@@ -47,6 +47,11 @@ namespace USDutyGear.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, cart);
         }
 
+        public HttpResponseMessage GetShippingOptions()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         private static string BuildProductTitle(string model, Product product, List<ProductAdjustment> adjustments)
         {
             var match = product.ModelTemplate.Match(model);
