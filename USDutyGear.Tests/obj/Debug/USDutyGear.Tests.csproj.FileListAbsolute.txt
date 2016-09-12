@@ -78,7 +78,6 @@ C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\roslyn\VBCSCompiler.exe.config
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.Tests.dll.config
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.Tests.dll
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.Tests.pdb
-C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\System.Web.Helpers.dll
@@ -103,7 +102,6 @@ C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\System.Web.Http.WebHost.dll
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\System.Net.Http.Formatting.dll
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.pdb
-C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\System.Web.Helpers.xml
 C:\Sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\System.Web.Mvc.xml

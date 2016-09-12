@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USDutyGear", "USDutyGear\USDutyGear.csproj", "{0BA3B494-7535-4E9D-87C8-09747F30A1CD}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USDutyGear.Core", "USDutyGear.Core\USDutyGear.Core.csproj", "{8FDD3B36-22D6-43B6-B548-46A3FF0A7AA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USDutyGear.Data", "USDutyGear.Data\USDutyGear.Data.csproj", "{0EC63DF0-E477-477D-BB2E-558E0223DA8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USDutyGear.UPS", "USDutyGear.UPS\USDutyGear.UPS.csproj", "{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0EC63DF0-E477-477D-BB2E-558E0223DA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EC63DF0-E477-477D-BB2E-558E0223DA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EC63DF0-E477-477D-BB2E-558E0223DA8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,5 @@
+C:\Sandbox\USDutyGear\USDutyGear.UPS\bin\Debug\USDutyGear.UPS.dll
+C:\Sandbox\USDutyGear\USDutyGear.UPS\bin\Debug\USDutyGear.UPS.pdb
+C:\Sandbox\USDutyGear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.csprojResolveAssemblyReference.cache
+C:\Sandbox\USDutyGear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.dll
+C:\Sandbox\USDutyGear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.pdb
