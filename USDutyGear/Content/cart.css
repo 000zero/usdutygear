@@ -13,6 +13,14 @@
     padding-top: 15px;
 }
 
+.cart .cart-items .cart-item-detail > div > hr {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 200px;
+    position: relative;
+    left: 0px;
+}
+
 .cart .cart-items .cart-item-detail .title {
     display: inline-block;
     width: 70px;
@@ -24,9 +32,9 @@
 }
 
 .cart .cart-items .cart-item-detail .item-total {
-    padding-top: 20px;
     font-weight: 500;
     color: #555;
+    padding-bottom: 30px;
 }
 
 .cart .cart-items h4,
@@ -37,4 +45,25 @@
 
 .cart .number {
     font-family: 'Roma Sans', sans-serif;
+}
+
+.cart .shipping-info .shipping-options,
+.cart .shipping-info .shipping-address {
+    background-color: #fff;
+    padding: 15px;
+    height: 250px;
+    box-shadow: 5px 5px 5px -4px #888, -5px 5px 5px -4px #888, 0 5px 4px -2px #888;
+    font-size: 16px;
+    /*border-top: 1px solid #eaeaea;*/
+}
+
+.cart .shipping-info .shipping-address > div {
+    padding-bottom: 5px;
+}
+
+.cart .shipping-info .shipping-address > div > span {
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+    padding-right: 10px;
 }

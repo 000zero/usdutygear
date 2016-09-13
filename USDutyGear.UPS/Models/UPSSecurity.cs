@@ -9,7 +9,7 @@ namespace USDutyGear.UPS.Models
     public class UPSFreightRateRequest
     {
         public UPSSecurity UPSSecurity { get; set; }
-        public UPSFreightRateRequestOptions FreightRateRequest { get; set; }
+        public UPSFreightRateRequestInfo RateRequest { get; set; }
         public UPSShippingInfo ShipFrom { get; set; }
         public string ShipperNumber { get; set; }
         public UPSShippingInfo ShipTo { get; set; }
@@ -45,7 +45,7 @@ namespace USDutyGear.UPS.Models
     }
 
 
-    public class UPSFreightRateRequestOptions
+    public class UPSFreightRateRequestInfo
     {
         public UPSRequest Request { get; set; }
     }

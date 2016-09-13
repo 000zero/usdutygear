@@ -27,7 +27,7 @@
                 { "id", "shopping-cart-list-form" }, { "data-bind", "foreach: items" }
             }))
             {
-                <div class="row">
+                <div class="row cart-item">
                     <div class="col-lg-8 col-md-8 col-sm-8 cart-item-main">
                         <h4 data-bind="text: Title"></h4>
                         <div>Model # <span class="number" data-bind="text: Model"></span></div>
@@ -39,6 +39,7 @@
                             <span class="at-price">&#64;</span>
                             <span class="number" data-bind="text: PriceDisplay"></span> each
                             @*<a href="javascript:;" onclick="ctrl.updateCart()"><span class="glyphicon glyphicon-refresh"></span></a>*@
+                            <hr />
                         </div>
                         <div class="item-total">
                             <span class="title">Item Total:</span>
@@ -46,34 +47,40 @@
                         </div>
                     </div>
                 </div>
-                <hr />
-                <input type="submit" id="submit-shopping-list-cart" class="hidden" data-bind="if: $index == $parent.items.length - 1" />
             }
+            <hr />
         </div>
 
-        <div class="row">
+        <div class="row shipping-info">
             <div class="col-lg-6 col-md-6">
                 <h2>Shipping Address</h2>
-                <div><span>First Name: </span><input type="text" name="firstname" /></div>
-                <div><span>Last Name: </span><input type="text" name="lastname" /></div>
-                <div><span>Address: </span><input type="text" name="address" /></div>
-                <div><span>City: </span><input type="text" name="city" /></div>
-                <div><span>State: </span><input type="text" name="state" /></div>
-                <div><span>Zip Code: </span><input type="text" name="zip" /></div>
-                <input type="checkbox" name="shippingSameAsBillingAddress"/> Use for billing info
+                <div class="shipping-address">
+                    <div><span>First Name: </span><input type="text" name="firstname" /></div>
+                    <div><span>Last Name: </span><input type="text" name="lastname" /></div>
+                    <div><span>Address: </span><input type="text" name="address" /></div>
+                    <div><span>City: </span><input type="text" name="city" /></div>
+                    <div><span>State: </span><input type="text" name="state" /></div>
+                    <div><span>Zip Code: </span><input type="text" name="zip" /></div>
+                </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <h2>Shipping Options</h2>
-                <span>First Name: </span><input type="text" name="billingfirstname"/>
-                <span>Last Name: </span><input type="text" name="billinglastname"/>
-                <span>Address: </span><input type="text" name="billingaddress"/>
-                <span>City: </span><input type="text" name="billingcity"/>
-                <span>State: </span><input type="text" name="billingstate"/>
-                <span>Zip Code: </span><input type="text" name="billingzip"/>
+                <div id="shipping-options" class="shipping-options">
+                    <button class="btn btn-default" onclick="ctrl.doUpsStuff()">Calculate</button>
+                    <div data-bind="foreach: Options">
+                        <div class="shipping-rate">
+                            <input type="radio" name="shippingOption" value="ServiceCode" />
+                            <span class="number">$</span><span class="number" data-bind="text: Charge"></span>
+                            <span> - </span>
+                            <span data-bind="text: Service"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row payment-info">
+            
             <!-- TODO: credit card info -->
         </div>
 
