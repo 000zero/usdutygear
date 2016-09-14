@@ -94,7 +94,10 @@ ctrl.doUpsStuff = function () {
 };
 
 ctrl.init = function () {
-    ctrl.cartVm = {};
+    ctrl.vm = {
+        cart: {},
+        shipping: {}
+    };
 
     // get cart from the root controller
     $.ajax({
@@ -105,22 +108,25 @@ ctrl.init = function () {
         dataType: "json"
     }).then(function(response) {
         if (!response.Items) {
-            ctrl.cartVm.items = ko.observableArray();
-            ctrl.cartVm.total = ko.observable(0);
+            ctrl.vm.cart.items = ko.observableArray();
+            ctrl.vm.cart.total = ko.observable(0);
         } else {// set the cart view model here
-            ctrl.cartVm.items = ko.observableArray(response.Items);
-            ctrl.cartVm.total = ko.observable(response.CartTotal);
+            ctrl.vm.cart.items = ko.observableArray(response.Items);
+            ctrl.vm.cart.total = ko.observable(response.CartTotal);
         }
 
         // apply view model binding
-        ko.applyBindings(ctrl.cartVm, $("#shopping-cart-list-form")[0]);
-    });
+        //ko.applyBindings(ctrl.cartVm, $("#shopping-cart-list-form")[0]);
+        ctrl.vm.cart = ko.observable(ctrl.vm.cart);
 
-    // setup shipping view model
-    ctrl.shippingVm = {
-        Options: ko.observableArray()
-    };
-    ko.applyBindings(ctrl.shippingVm, $("#shipping-options")[0]);
+        // setup shipping view model
+        ctrl.vm.shipping = ko.observable({
+            Options: ko.observableArray(),
+            SelectedRate: ko.observable()
+        });
+        //ko.applyBindings(ctrl.shippingVm, $("#shipping-options")[0]);
+        ko.applyBindings(ctrl.vm);
+    });
 };
 
 ctrl.init();

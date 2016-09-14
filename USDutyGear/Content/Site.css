@@ -137,8 +137,8 @@ h1, h2, h3, h4 {
     -webkit-border-radius: 0 !important;
     background-color: #985e6d;
     color: #fff;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border: 0;
     border: 1px solid #985e6d;
 }
