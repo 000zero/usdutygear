@@ -15,10 +15,6 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <h1>Shopping Cart</h1>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <button class="btn btn-default" onclick="rootCtrl.emptyCart()">Empty Cart</button>
-                <label for="submit-shopping-list-cart"><button class="btn btn-default">Update Cart</button></label>
-            </div>
         </div>
 
         <div class="cart-items">
@@ -27,14 +23,14 @@
                     <h2>Items</h2>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-5 ">
-                    <h2>Total</h2>
+                    <h2>Totals</h2>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12"><hr /></div>
             </div>
 
             @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new Dictionary<string, object>
             {
-                {"id", "shopping-cart-list-form"}, {"data-bind", "foreach: cart().items"}
+                {"id", "shopping-cart-list-form"}, {"data-bind", "foreach: cart.items"}
             }))
             {
                 <div class="row cart-item">
@@ -48,11 +44,14 @@
                             <input type="number" data-bind="value: Quantity, attr: { name: 'cart[' + Model + ']' }"/>
                             <span class="at-price">&#64;</span>
                             <span class="number" data-bind="text: PriceDisplay"></span> each
+                            <button type="button" class="btn btn-default btn-trash" aria-label="Trash" data-bind="attr: { onclick: ctrl.removeCartItem(Model, $index()) }">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </button>
                             <hr/>
                         </div>
                         <div class="item-total">
                             <span class="title">Item Total:</span>
-                            <span class="number" data-bind="text: TotalDisplay"></span>
+                            <span class="number" data-bind="text: Quantity * Price"></span>
                         </div>
                     </div>
                 </div>
@@ -60,7 +59,7 @@
             <hr/>
             <div class="row cart-items-footer">
                 <div class="col-lg-8 col-md-8 col-sm-7">
-
+                    <button class="btn btn-default" onclick="rootCtrl.emptyCart()">Empty Cart</button>
                 </div>
                 <div id="" class="col-lg-4 col-md-4 col-sm-5">
                     <div class="item-total">
@@ -93,7 +92,7 @@
                     <span data-bind="visible: shipping().Options().length > 0">Select your shipping method:</span>
                     <div class="shipping-rates" data-bind="foreach: shipping().Options">
                         <div class="shipping-rate">
-                            <input type="radio" name="selectedRates" data-bind="checkedValue: $data, checked: $parent.SelectedRate" />
+                            <input type="radio" name="selectedRates" data-bind="checkedValue: $data, checked: $parent.shipping().SelectedRate" />
                             <span class="number">$</span><span class="number" data-bind="text: Charge"></span>
                             <span> - </span>
                             <span data-bind="text: Service"></span>

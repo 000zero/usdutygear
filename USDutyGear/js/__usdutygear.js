@@ -63,6 +63,14 @@ var rootCtrl = (function () {
             };
             scope.saveCart();
         },
+        updateQuantity: function (model, quantity) {
+            if (scope.cart.items[model])
+                scope.cart.items[model] = quantity;
+        },
+        removeItem: function (model) {
+            if (scope.cart.items[model])
+                delete scope.cart.items[model];
+        },
         getCart: function () {
             var copy = _.clone(scope.cart);
             scope.cart.lastRead = moment();

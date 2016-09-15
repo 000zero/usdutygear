@@ -81,9 +81,9 @@ ctrl.doUpsStuff = function () {
     }).then(function (response) {
         if (response) {
             // build the shipping options view model
-            ctrl.shippingVm.Options.removeAll();
-            ctrl.shippingVm.Options = _.each(response.RateResponse.RatedShipment, function (shippingOption) {
-                ctrl.shippingVm.Options.push({
+            ctrl.vm.shipping().Options.removeAll();
+            _.each(response.RateResponse.RatedShipment, function (shippingOption) {
+                ctrl.vm.shipping().Options.push({
                     ServiceCode: shippingOption.Service.Code,
                     Service: consts.UPSServiceCodes[shippingOption.Service.Code],
                     Charge: shippingOption.TotalCharges.MonetaryValue
@@ -91,6 +91,11 @@ ctrl.doUpsStuff = function () {
             });
         }
     });
+};
+
+ctrl.removeCartItem = function (model, index) {
+    rootCtrl.removeItem(model);
+    ctrl.vm.cart.items.splice(index, 1);
 };
 
 ctrl.init = function () {
@@ -106,25 +111,29 @@ ctrl.init = function () {
         data: JSON.stringify({ Items: rootCtrl.getCartItems() }),
         contentType: "application/json; charset=utf-8",
         dataType: "json"
-    }).then(function(response) {
+    }).then(function (response) {
+        //ctrl.vm.cart = ko.observable();
+
         if (!response.Items) {
             ctrl.vm.cart.items = ko.observableArray();
             ctrl.vm.cart.total = ko.observable(0);
         } else {// set the cart view model here
             ctrl.vm.cart.items = ko.observableArray(response.Items);
-            ctrl.vm.cart.total = ko.observable(response.CartTotal);
+            ctrl.vm.cart.total = ko.computed(function () {
+                return _.reduce(this.ctrl.vm.cart.items(), function (memo, item) {
+                    return memo + item.Total;
+                }, 0);
+            });
         }
 
         // apply view model binding
-        //ko.applyBindings(ctrl.cartVm, $("#shopping-cart-list-form")[0]);
-        ctrl.vm.cart = ko.observable(ctrl.vm.cart);
+        //ctrl.vm.cart = ko.observable(ctrl.vm.cart);
 
         // setup shipping view model
         ctrl.vm.shipping = ko.observable({
             Options: ko.observableArray(),
             SelectedRate: ko.observable()
         });
-        //ko.applyBindings(ctrl.shippingVm, $("#shipping-options")[0]);
         ko.applyBindings(ctrl.vm);
     });
 };

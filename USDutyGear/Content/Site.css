@@ -135,18 +135,24 @@ h1, h2, h3, h4 {
     border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
-    background-color: #985e6d;
+    /*background-color: #985e6d;*/
+    background-color: #444;
     color: #fff;
     padding-top: 10px;
     padding-bottom: 10px;
     border: 0;
-    border: 1px solid #985e6d;
+    /*border: 1px solid #985e6d;*/
+}
+
+.btn:active {
+    background-color: #444;
+    color: #fff;
 }
 
 .btn:hover {
     background-color: #e5e5e5;
     color: #985e6d;
-    border: 1px solid #985e6d;
+    /*border: 1px solid #985e6d;*/
 }
 
 .navbar .glyphicon.glyphicon-shopping-cart {

@@ -1,8 +1,16 @@
-﻿.cart .cart-items {
+﻿.btn.btn-default.btn-trash {
+    background-color: #fff;
+    color: #444;
+    padding: 0;
+    padding-left: 10px;
+}
+
+.cart .cart-items {
     background-color: #fff;
     box-shadow: 5px 5px 5px -4px #888, -5px 5px 5px -4px #888, 0 5px 4px -2px #888;
     padding: 25px;
     padding-top: 10px;
+    margin-bottom: 10px;
 }
 
 .cart .cart-items .cart-items-header hr {
@@ -23,7 +31,6 @@
     margin-left: 72px;
     width: 130px;
 }
-
 
 .cart .cart-items .cart-item-detail .title,
 .cart .cart-items .cart-items-footer .title {
