@@ -49,6 +49,59 @@ namespace USDutyGear.Controllers
 
         public HttpResponseMessage GetShippingOptions()
         {
+            var customerCartId = Guid.NewGuid().ToString();
+
+            // create the UPS rates request object
+            var rateRequest = new FreightRateRequest
+            {
+                Security = new Security
+                {
+                    UsernameToken = new UserToken
+                    {
+                        Username = USDutyGearConfig.UpsUser,
+                        Password = USDutyGearConfig.UpsPw
+                    },
+                    ServiceAccessToken = new ServiceAccessToken
+                    {
+                        AccessLicenseNumber = USDutyGearConfig.UpsLicense
+                    }
+                },
+                RateRequest = new FreightRateRequestInfo
+                {
+                    Request = new RequestInfo
+                    {
+                        RequestOption = "Shop",
+                        TransactionReference = new TransactionRef
+                        {
+                            CustomerContext = customerCartId
+                        }
+                    },
+                    Shipment = new Shipment
+                    {
+                        Shipper = new ShippingInfo
+                        {
+
+                        },
+                        ShipTo = new ShippingInfo
+                        {
+
+                        },
+                        Package = new Package
+                        {
+
+                        },
+                        ShipmentRatingOptions = new ShipmentRatingOptions
+                        {
+
+                        }
+                    }
+                }
+            };
+
+            // create the HTTP request
+
+            // do the thang
+
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 

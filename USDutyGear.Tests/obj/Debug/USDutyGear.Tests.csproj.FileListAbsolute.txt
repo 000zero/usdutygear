@@ -14,7 +14,6 @@ C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\roslyn\VBCSCompiler.exe.con
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.Tests.dll.config
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.Tests.dll
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\USDutyGear.Tests.pdb
-C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\dev\sandbox\USDutyGear\USDutyGear.Tests\bin\Debug\System.Web.Helpers.dll

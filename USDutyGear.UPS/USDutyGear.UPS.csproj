@@ -40,7 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\UPSSecurity.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Dimensions.cs" />
+    <Compile Include="Models\FreightRateRequest.cs" />
+    <Compile Include="Models\FreightRateRequestInfo.cs" />
+    <Compile Include="Models\Package.cs" />
+    <Compile Include="Models\PackageType.cs" />
+    <Compile Include="Models\PackageWeight.cs" />
+    <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\RequestInfo.cs" />
+    <Compile Include="Models\Security.cs" />
+    <Compile Include="Models\ServiceAccessToken.cs" />
+    <Compile Include="Models\Shipment.cs" />
+    <Compile Include="Models\ShipmentRatingOptions.cs" />
+    <Compile Include="Models\ShippingInfo.cs" />
+    <Compile Include="Models\TransactionRef.cs" />
+    <Compile Include="Models\UnitOfMeasurement.cs" />
+    <Compile Include="Models\UserToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

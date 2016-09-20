@@ -206,6 +206,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\CategoryHelper.cs" />
+    <Compile Include="Common\USDutyGearConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartApiController.cs" />
     <Compile Include="Controllers\CartController.cs" />
