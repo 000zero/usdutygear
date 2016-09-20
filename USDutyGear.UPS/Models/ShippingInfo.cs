@@ -13,5 +13,6 @@
         public string AttentionName { get; set; }
         public Phone Phone { get; set; }
         public string EMailAddress { get; set; }
+        public string ShipperNumber { get; set; }
     }
 }

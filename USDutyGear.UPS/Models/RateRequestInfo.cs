@@ -1,8 +1,8 @@
 ﻿namespace USDutyGear.UPS.Models
 {
-    public class FreightRateRequestInfo
+    public class RateRequestInfo
     {
-        public FreightRateRequestInfo()
+        public RateRequestInfo()
         {
             Request = new RequestInfo();
             Shipment = new Shipment();

@@ -16,7 +16,7 @@ var rootCtrl = (function () {
             lastWrite: moment()
         };
 
-    scope.saveCart = function() {
+    scope.saveCart = function () {
         localStorage.setItem('usdutygear-cart', JSON.stringify(scope.cart));
     };
 

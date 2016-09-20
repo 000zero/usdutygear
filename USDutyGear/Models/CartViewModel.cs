@@ -6,13 +6,16 @@ namespace USDutyGear.Models
     {
         public List<CartItem> Items { get; set; }
         public decimal SubTotal { get; set; }
-        public string SubTotalDisplay => SubTotal.ToString("C");
-        public decimal Total { get; set; }
-        public string TotalDisplay => Total.ToString("C");
+        public decimal GrandTotal { get; set; }
         public decimal Shipping { get; set; }
-        public string ShippingDisplay => Shipping.ToString("C");
+        public string ShippingServiceCode { get; set; }
         public decimal Tax { get; set; }
-        public string TaxDisplay => Tax.ToString("C");
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
 
         public CartViewModel()
         {

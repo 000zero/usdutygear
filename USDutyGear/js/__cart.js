@@ -4,76 +4,19 @@ var ctrl = {};
 
 ctrl.doUpsStuff = function () {
     var request = {
-        "UPSSecurity": {
-            "UsernameToken": {
-                "Username": "usdutygear1",
-                "Password": "Flores2016"
-            },
-            "ServiceAccessToken": {
-                "AccessLicenseNumber": "0D1529428864B0D8"
-            }
-        },
-        "RateRequest": {
-            "Request": {
-                "RequestOption": "Shop",
-                "TransactionReference": {
-                    "CustomerContext": "YourCustomerContext"
-                }
-            },
-            "Shipment": {
-                "Shipper": {
-                    "Name": "US DUTY GEAR",
-                    "ShipperNumber": "1158Y8",
-                    "Address": {
-                        "AddressLine": ["2131 S Hellman Ave ", "UNIT D"],
-                        "City": "Ontario",
-                        "StateProvinceCode": "CA",
-                        "PostalCode": "91761",
-                        "CountryCode": "US"
-                    }
-                },
-                "ShipTo": {
-                    "Name": "Steven Garcia",
-                    "Address": {
-                        "AddressLine": ["6 Andalusia "],
-                        "City": "Rancho Santa Margarita",
-                        "StateProvinceCode": "CA",
-                        "PostalCode": "92688",
-                        "CountryCode": "US",
-                        "ResidentialAddressIndicator": "True"
-                    }
-                },
-                "Package": {
-                    "PackagingType": {
-                        "Code": "02",
-                        "Description": "Rate"
-                    },
-                    "Dimensions": {
-                        "UnitOfMeasurement": {
-                            "Code": "IN",
-                            "Description": "inches"
-                        },
-                        "Length": "5",
-                        "Width": "4",
-                        "Height": "3"
-                    },
-                    "PackageWeight": {
-                        "UnitOfMeasurement": {
-                            "Code": "Lbs",
-                            "Description": "pounds"
-                        },
-                        "Weight": "1"
-                    }
-                },
-                "ShipmentRatingOptions": {
-                    "NegotiatedRatesIndicator": ""
-                }
-            }
+        "Name": "Steven Garcia",
+        "Address": {
+            "AddressLine": ["6 Andalusia "],
+            "City": "Rancho Santa Margarita",
+            "StateProvinceCode": "CA",
+            "PostalCode": "92688",
+            "CountryCode": "US",
+            "ResidentialAddressIndicator": "True"
         }
     };
 
     $.ajax({
-        url: "https://wwwcie.ups.com/rest/Rate",
+        url: "/api/shipping/rates",
         type: "POST",
         data: JSON.stringify(request),
         contentType: "application/json",
@@ -82,7 +25,7 @@ ctrl.doUpsStuff = function () {
         if (response) {
             // build the shipping options view model
             ctrl.vm.shipping().Options.removeAll();
-            _.each(response.RateResponse.RatedShipment, function (shippingOption) {
+            _.each(response.RatedShipment, function (shippingOption) {
                 ctrl.vm.shipping().Options.push({
                     ServiceCode: shippingOption.Service.Code,
                     Service: consts.UPSServiceCodes[shippingOption.Service.Code],
@@ -93,9 +36,13 @@ ctrl.doUpsStuff = function () {
     });
 };
 
+ctrl.checkout = function () {
+    // TODO: convert observable computed values back to their value before sending to the server
+};
+
 ctrl.removeCartItem = function (model, index) {
     rootCtrl.removeItem(model);
-    ctrl.vm.cart.items.splice(index, 1);
+    ctrl.vm.cart.Items.splice(index, 1);
 };
 
 ctrl.init = function () {
@@ -112,22 +59,21 @@ ctrl.init = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json"
     }).then(function (response) {
-        //ctrl.vm.cart = ko.observable();
+        ctrl.vm.cart = response;
 
-        if (!response.Items) {
-            ctrl.vm.cart.items = ko.observableArray();
-            ctrl.vm.cart.total = ko.observable(0);
+        if (!ctrl.vm.cart.Items) {
+            ctrl.vm.cart.Items = ko.observableArray();
         } else {// set the cart view model here
-            ctrl.vm.cart.items = ko.observableArray(response.Items);
-            ctrl.vm.cart.total = ko.computed(function () {
-                return _.reduce(this.ctrl.vm.cart.items(), function (memo, item) {
-                    return memo + item.Total;
-                }, 0);
-            });
+            ctrl.vm.cart.Items = ko.observableArray(ctrl.vm.cart.Items);
         }
 
-        // apply view model binding
-        //ctrl.vm.cart = ko.observable(ctrl.vm.cart);
+        ctrl.vm.cart.GrandTotal = ko.computed(function () {
+            var grandTotal = _.reduce(this.ctrl.vm.cart.Items(), function (memo, item) {
+                return memo + item.Total;
+            }, 0)
+
+            return grandTotal;
+        });
 
         // setup shipping view model
         ctrl.vm.shipping = ko.observable({

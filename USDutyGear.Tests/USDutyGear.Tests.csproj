@@ -95,6 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\USDutyGear.UPS\USDutyGear.UPS.csproj">
+      <Project>{6c8d5c9d-e36c-48e2-a7f5-74b28ea6e17e}</Project>
+      <Name>USDutyGear.UPS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\USDutyGear\USDutyGear.csproj">
       <Project>{0BA3B494-7535-4E9D-87C8-09747F30A1CD}</Project>
       <Name>USDutyGear</Name>

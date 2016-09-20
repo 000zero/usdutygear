@@ -10,6 +10,10 @@ C:\dev\sandbox\USDG\usdutygear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.dll
 C:\dev\sandbox\USDG\usdutygear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.pdb
 C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\USDutyGear.UPS.dll
 C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\USDutyGear.UPS.pdb
-C:\dev\sandbox\usdutygear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.csprojResolveAssemblyReference.cache
 C:\dev\sandbox\usdutygear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.dll
 C:\dev\sandbox\usdutygear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.pdb
+C:\dev\sandbox\usdutygear\USDutyGear.UPS\obj\Debug\USDutyGear.UPS.csprojResolveAssemblyReference.cache
+C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\Newtonsoft.Json.dll
+C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\System.Net.Http.Formatting.dll
+C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\Newtonsoft.Json.xml
+C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\System.Net.Http.Formatting.xml

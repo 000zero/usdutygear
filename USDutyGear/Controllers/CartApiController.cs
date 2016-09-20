@@ -10,13 +10,14 @@ using USDutyGear.Models;
 using USDutyGear.Core.Models;
 using USDutyGear.Core.Common;
 
+
 namespace USDutyGear.Controllers
 {
-    [RoutePrefix("api")]
+    [RoutePrefix("api/cart")]
     public class CartApiController : ApiController
     {
         [HttpPost]
-        [Route("cart")]
+        [Route("")]
         public HttpResponseMessage GetCartViewModel(CartViewModel cart)
         {
             // cart comes in with only the models and quantities, need to set the rest
@@ -42,68 +43,12 @@ namespace USDutyGear.Controllers
 
             // TODO: apply tax
 
-            cart.Total = cart.SubTotal + cart.Shipping;
+            cart.GrandTotal = cart.SubTotal + cart.Shipping;
 
             return Request.CreateResponse(HttpStatusCode.OK, cart);
         }
 
-        public HttpResponseMessage GetShippingOptions()
-        {
-            var customerCartId = Guid.NewGuid().ToString();
-
-            // create the UPS rates request object
-            var rateRequest = new FreightRateRequest
-            {
-                Security = new Security
-                {
-                    UsernameToken = new UserToken
-                    {
-                        Username = USDutyGearConfig.UpsUser,
-                        Password = USDutyGearConfig.UpsPw
-                    },
-                    ServiceAccessToken = new ServiceAccessToken
-                    {
-                        AccessLicenseNumber = USDutyGearConfig.UpsLicense
-                    }
-                },
-                RateRequest = new FreightRateRequestInfo
-                {
-                    Request = new RequestInfo
-                    {
-                        RequestOption = "Shop",
-                        TransactionReference = new TransactionRef
-                        {
-                            CustomerContext = customerCartId
-                        }
-                    },
-                    Shipment = new Shipment
-                    {
-                        Shipper = new ShippingInfo
-                        {
-
-                        },
-                        ShipTo = new ShippingInfo
-                        {
-
-                        },
-                        Package = new Package
-                        {
-
-                        },
-                        ShipmentRatingOptions = new ShipmentRatingOptions
-                        {
-
-                        }
-                    }
-                }
-            };
-
-            // create the HTTP request
-
-            // do the thang
-
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
+        
 
         private static string BuildProductTitle(string model, Product product, List<ProductAdjustment> adjustments)
         {

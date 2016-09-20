@@ -4,10 +4,10 @@
     {
         public PackageWeight()
         {
-            UnitOfMeasurement = new UnitOfMeasurement();
+            UnitOfMeasurement = new CodeSet();
         }
 
-        public UnitOfMeasurement UnitOfMeasurement { get; set; }
-        public int Weight { get; set; }
+        public CodeSet UnitOfMeasurement { get; set; }
+        public string Weight { get; set; }
     }
 }

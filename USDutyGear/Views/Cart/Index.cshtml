@@ -30,7 +30,7 @@
 
             @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new Dictionary<string, object>
             {
-                {"id", "shopping-cart-list-form"}, {"data-bind", "foreach: cart.items"}
+                {"id", "shopping-cart-list-form"}, {"data-bind", "foreach: cart.Items"}
             }))
             {
                 <div class="row cart-item">
@@ -41,13 +41,13 @@
                     <div class="col-lg-4 col-md-4 col-sm-5 cart-item-detail">
                         <div>
                             <span class="title">Quantity: </span>
-                            <input type="number" data-bind="value: Quantity, attr: { name: 'cart[' + Model + ']' }"/>
+                            <input type="number" data-bind="value: Quantity, attr: { name: 'cart[' + Model + ']' }" />
                             <span class="at-price">&#64;</span>
                             <span class="number" data-bind="text: PriceDisplay"></span> each
                             <button type="button" class="btn btn-default btn-trash" aria-label="Trash" data-bind="attr: { onclick: ctrl.removeCartItem(Model, $index()) }">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </button>
-                            <hr/>
+                            <hr />
                         </div>
                         <div class="item-total">
                             <span class="title">Item Total:</span>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             }
-            <hr/>
+            <hr />
             <div class="row cart-items-footer">
                 <div class="col-lg-8 col-md-8 col-sm-7">
                     <button class="btn btn-default" onclick="rootCtrl.emptyCart()">Empty Cart</button>
@@ -68,7 +68,15 @@
                         <span data-bind="visible: !shipping().SelectedRate()">--</span>
                     </div>
                 </div>
-
+            </div>
+            <div class="row cart-items-footer">
+                <div class="col-lg-8 col-md-8 col-sm-7"></div>
+                <div id="" class="col-lg-4 col-md-4 col-sm-5">
+                    <div class="item-total">
+                        <span class="title">Grand Total:</span>
+                        <span class="number" data-bind="text: cart.GrandTotal"></span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -81,7 +89,7 @@
                     <div><span>Address: </span><input type="text" name="address" /></div>
                     <div><span>City: </span><input type="text" name="city" /></div>
                     <div><span>State: </span><input type="text" name="state" /></div>
-                    <div><span>Zip Code: </span><input type="text" name="zip"/></div>
+                    <div><span>Zip Code: </span><input type="text" name="zip" /></div>
                     <div><span>&nbsp;</span><div class="calculate-shipping-btn-container"><button class="btn btn-default btn-block" onclick="ctrl.doUpsStuff()">Shipping Rates</button></div></div>
                 </div>
             </div>
@@ -103,7 +111,7 @@
         </div>
 
         <div class="row payment-info">
-            
+
             <!-- TODO: credit card info -->
         </div>
 

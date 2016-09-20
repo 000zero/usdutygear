@@ -277,3 +277,5 @@ C:\dev\sandbox\USDG\usdutygear\USDutyGear\bin\Microsoft.Owin.Security.MicrosoftA
 C:\dev\sandbox\USDG\usdutygear\USDutyGear\obj\Debug\USDutyGear.csprojResolveAssemblyReference.cache
 C:\dev\sandbox\USDG\usdutygear\USDutyGear\obj\Debug\USDutyGear.dll
 C:\dev\sandbox\USDG\usdutygear\USDutyGear\obj\Debug\USDutyGear.pdb
+C:\dev\sandbox\usdutygear\USDutyGear\bin\USDutyGear.UPS.dll
+C:\dev\sandbox\usdutygear\USDutyGear\bin\USDutyGear.UPS.pdb

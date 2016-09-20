@@ -210,9 +210,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartApiController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShippingApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +222,7 @@
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\CheckoutViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\USDutyGearBaseViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -363,6 +366,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Checkout\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -383,6 +387,10 @@
     <ProjectReference Include="..\USDutyGear.Data\USDutyGear.Data.csproj">
       <Project>{0ec63df0-e477-477d-bb2e-558e0223da8c}</Project>
       <Name>USDutyGear.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\USDutyGear.UPS\USDutyGear.UPS.csproj">
+      <Project>{6c8d5c9d-e36c-48e2-a7f5-74b28ea6e17e}</Project>
+      <Name>USDutyGear.UPS</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
