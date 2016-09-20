@@ -64,12 +64,21 @@ ctrl.init = function () {
         if (!ctrl.vm.cart.Items) {
             ctrl.vm.cart.Items = ko.observableArray();
         } else {// set the cart view model here
-            ctrl.vm.cart.Items = ko.observableArray(ctrl.vm.cart.Items);
+            ctrl.vm.cart.Items = ko.observableArray(_.map(ctrl.vm.cart.Items, function (item) {
+                item.Quantity = ko.observable(item.Quantity);
+                item.Total = ko.observable(item.Total);
+                item.TotalFn = ko.computed(function () {
+                    this.Total(this.Quantity() * this.Price);
+                    return this.Total();
+                }, item);
+
+                return item;
+            }));
         }
 
         ctrl.vm.cart.GrandTotal = ko.computed(function () {
             var grandTotal = _.reduce(this.ctrl.vm.cart.Items(), function (memo, item) {
-                return memo + item.Total;
+                return memo + item.Total();
             }, 0)
 
             return grandTotal;
