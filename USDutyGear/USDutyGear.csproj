@@ -243,8 +243,13 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\basketweave_sample.png" />
+    <Content Include="images\beltkeeper_basketweave_closed_large.png" />
+    <Content Include="images\beltkeeper_basketweave_closed_small.png" />
     <Content Include="images\beltkeeper_basketweave_with_snap_large.png" />
+    <Content Include="images\beltkeeper_basketweave_with_snap_small.png" />
     <Content Include="images\beltkeeper_feature.png" />
+    <Content Include="images\beltkeeper_highgloss_closed_large.png" />
+    <Content Include="images\beltkeeper_highgloss_closed_small.png" />
     <Content Include="images\beltkeeper_leather_closed_large.png" />
     <Content Include="images\beltkeeper_leather_closed_small.png" />
     <Content Include="images\beltkeeper_leather_with_snap_large.png" />
