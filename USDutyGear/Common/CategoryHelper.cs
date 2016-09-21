@@ -13,9 +13,14 @@ namespace USDutyGear.Common
                 case "sambrownebelt": return ProductNames.SamBrowneBelt;
                 case "dutybelt": return ProductNames.DutyBelt;
                 case "beltkeeper": return ProductNames.BeltKeeper;
-                case "keyholderkeeper": return ProductNames.KeyHolderKeeper;
-                case "gloveholder": return ProductNames.GloveHolder;
-                case "magazineholder": return ProductNames.MagazineHolder;
+                case "keyringkeeper": return ProductNames.KeyRingKeeper;
+                case "glovepouch": return ProductNames.GlovePouch;
+                case "magazinepouch": return ProductNames.MagazineHolder;
+                case "beltkeeperclip": return ProductNames.BeltKeeperClip;
+                case "nylonbelt15": return ProductNames.NylonBelt15;
+                case "nylonbelt2": return ProductNames.NylonBelt2;
+                case "nylonbeltkeeper": return ProductNames.NylonBeltKeeper;
+                case "insidebelt": return ProductNames.InsideBelt;
                 default: return null;
             }
         }
@@ -29,9 +34,14 @@ namespace USDutyGear.Common
                 case ProductNames.SamBrowneBelt: return "sambrownebelt";
                 case ProductNames.DutyBelt: return "dutybelt";
                 case ProductNames.BeltKeeper: return "beltkeeper";
-                case ProductNames.KeyHolderKeeper: return "keyholderkeeper";
-                case ProductNames.GloveHolder: return "gloveholder";
-                case ProductNames.MagazineHolder: return "magazineholder";
+                case ProductNames.KeyRingKeeper: return "keyringkeeper";
+                case ProductNames.GlovePouch: return "glovepouch";
+                case ProductNames.MagazineHolder: return "magazinepouch";
+                case ProductNames.BeltKeeperClip: return "beltkeeperclip";
+                case ProductNames.NylonBelt15: return "nylonbelt15";
+                case ProductNames.NylonBelt2: return "nylonbelt2";
+                case ProductNames.NylonBeltKeeper: return "nylonbeltkeeper";
+                case ProductNames.InsideBelt: return "insidebelt";
                 default: return null;
             }
         }

@@ -44,6 +44,7 @@ namespace USDutyGear.Controllers
 
             var guid = Guid.NewGuid();
             var result = UpsServices.GetRatings(guid, Origin, to);
+            result.RatedShipment = result.RatedShipment.OrderBy(x => x.TotalCharges.MonetaryValue).ToList();
 
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }

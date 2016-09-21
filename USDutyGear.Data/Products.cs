@@ -135,10 +135,12 @@ namespace USDutyGear.Data
                     Connection = conn,
                     CommandText = @"
                         SELECT model, GROUP_CONCAT(DISTINCT path ORDER BY priority) AS paths FROM (
-                            SELECT CONCAT(model, '-', adjustment_model) AS model, path, priority FROM product_images 
-                            WHERE model = '72'
+                            SELECT IF(adjustment_model IS NULL, model, CONCAT(model, '-', adjustment_model)) AS model, path, priority FROM product_images 
+                            WHERE model = @model
                         ) AS results GROUP BY results.model"
                 };
+                cmd.Parameters.AddWithValue("@model", model);
+                cmd.ExecuteNonQuery();
 
                 var adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);

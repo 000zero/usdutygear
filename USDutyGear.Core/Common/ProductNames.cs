@@ -7,8 +7,13 @@
         public const string SamBrowneBelt = "Sam Browne Belt";
         public const string DutyBelt = "Duty Belt";
         public const string BeltKeeper = "Belt Keeper";
-        public const string KeyHolderKeeper = "Key Holder Keeper";
-        public const string GloveHolder = "Glove Holder";
-        public const string MagazineHolder = "Magazine Holder";
+        public const string KeyRingKeeper = "Key Ring Keeper";
+        public const string GlovePouch = "Glove Pouch";
+        public const string MagazineHolder = "Double Magazine Pouch";
+        public const string BeltKeeperClip = "Belt Keeper Clip";
+        public const string NylonBelt15 = "Nylon Belt (1.5\")";
+        public const string NylonBelt2 = "Nylon Belt (2\")";
+        public const string NylonBeltKeeper = "Nylon Belt Keeper";
+        public const string InsideBelt = "Inside Belt";
     }
 }

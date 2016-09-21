@@ -10,7 +10,11 @@ namespace USDutyGear.Models
         public CategoryViewModel(ProductCategory productCategory)
         {
             Category = productCategory.Category;
-            Products = productCategory.Products.Select(x => new CategoryProductViewModel(x)).ToList();
+            Products = productCategory
+                .Products
+                .Select(x => new CategoryProductViewModel(x))
+                .OrderBy(x => x.Name)
+                .ToList();
         }
 
         public string Category { get; set; }
