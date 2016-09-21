@@ -279,3 +279,5 @@ C:\dev\sandbox\USDG\usdutygear\USDutyGear\obj\Debug\USDutyGear.dll
 C:\dev\sandbox\USDG\usdutygear\USDutyGear\obj\Debug\USDutyGear.pdb
 C:\dev\sandbox\usdutygear\USDutyGear\bin\USDutyGear.UPS.dll
 C:\dev\sandbox\usdutygear\USDutyGear\bin\USDutyGear.UPS.pdb
+C:\Sandbox\usdutygear\USDutyGear\bin\USDutyGear.UPS.dll
+C:\Sandbox\usdutygear\USDutyGear\bin\USDutyGear.UPS.pdb

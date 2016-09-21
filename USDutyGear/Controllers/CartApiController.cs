@@ -48,17 +48,15 @@ namespace USDutyGear.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, cart);
         }
 
-        
-
         private static string BuildProductTitle(string model, Product product, List<ProductAdjustment> adjustments)
         {
-            var match = product.ModelTemplate.Match(model);
+            var match = product.ModelRegex.Match(model);
             var title = new StringBuilder(product.Title);
 
             title = title.Replace("{Finish}", GetProductAdjustment(adjustments, match, ProductAdjustmentTypes.Finish)?.Name ?? string.Empty);
             title = title.Replace("{Size}", GetProductAdjustment(adjustments, match, ProductAdjustmentTypes.Size)?.Name ?? string.Empty);
             title = title.Replace("{Snap}", GetProductAdjustment(adjustments, match, ProductAdjustmentTypes.Snap)?.Name ?? string.Empty);
-            if (match.Groups["package"].Success)
+            if (match.Groups["Package"].Success)
                 title = title.Append($" ({GetProductAdjustment(adjustments, match, ProductAdjustmentTypes.Package).Name})");
 
             return title.ToString();
@@ -67,7 +65,7 @@ namespace USDutyGear.Controllers
         private static decimal GetProductPrice(string model, Product product, List<ProductAdjustment> adjustments)
         {
             // get the product model
-            var match = product.ModelTemplate.Match(model);
+            var match = product.ModelRegex.Match(model);
 
             // set the base price
             var price = product.Price;
@@ -91,7 +89,7 @@ namespace USDutyGear.Controllers
         private static ProductAdjustment GetProductAdjustment(List<ProductAdjustment> adjustments, Match match, string adjustmentType)
         {
             // extract the adjustment model from the model string via regex
-            var adjustmentModel = match.Groups[adjustmentType.ToLower()].Value;
+            var adjustmentModel = match.Groups[adjustmentType].Value;
             // get the price adjustment by the adjustment model and type
             var adjustment = adjustments.FirstOrDefault(x => x.Model == adjustmentModel && x.Type == adjustmentType);
             return adjustment;

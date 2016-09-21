@@ -62,7 +62,8 @@ namespace USDutyGear.Data
                 Model = Convert.ToString(row["model"]),
                 Price = Convert.ToDecimal(row["price"]),
                 Title = Convert.ToString(row["title"]),
-                ModelTemplate = new Regex(Convert.ToString(row["model_template"]))
+                ModelTemplate = Convert.ToString(row["model_template"]),
+                ModelRegex = new Regex(Convert.ToString(row["model_regex"]))
             };
         }
 

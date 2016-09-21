@@ -24,9 +24,9 @@ ctrl.doUpsStuff = function () {
     }).then(function (response) {
         if (response) {
             // build the shipping options view model
-            ctrl.vm.shipping().Options.removeAll();
+            ctrl.vm.shipping.Options.removeAll();
             _.each(response.RatedShipment, function (shippingOption) {
-                ctrl.vm.shipping().Options.push({
+                ctrl.vm.shipping.Options.push({
                     ServiceCode: shippingOption.Service.Code,
                     Service: consts.UPSServiceCodes[shippingOption.Service.Code],
                     Charge: shippingOption.TotalCharges.MonetaryValue
@@ -51,7 +51,7 @@ ctrl.init = function () {
         shipping: {}
     };
 
-    // get cart from the root controller
+    // post the cart to get the prices populated from the server
     $.ajax({
         url: "/api/cart",
         type: "POST",
@@ -66,29 +66,40 @@ ctrl.init = function () {
         } else {// set the cart view model here
             ctrl.vm.cart.Items = ko.observableArray(_.map(ctrl.vm.cart.Items, function (item) {
                 item.Quantity = ko.observable(item.Quantity);
-                item.Total = ko.observable(item.Total);
-                item.TotalFn = ko.computed(function () {
-                    this.Total(this.Quantity() * this.Price);
-                    return this.Total();
+                item.TotalFn = ko.pureComputed(function () {
+                    return this.Quantity() * this.Price;
                 }, item);
 
                 return item;
             }));
         }
 
-        ctrl.vm.cart.GrandTotal = ko.computed(function () {
-            var grandTotal = _.reduce(this.ctrl.vm.cart.Items(), function (memo, item) {
-                return memo + item.Total();
-            }, 0)
+        // only the total of the items
+        ctrl.vm.cart.SubTotal = ko.pureComputed(function() {
+            var subTotal = _.reduce(this.cart.Items(), function (memo, item) {
+                return memo + item.TotalFn();
+            }, 0);
 
-            return grandTotal;
-        });
+            return '$' + subTotal.toFixed(2);
+        }, ctrl.vm);
+
+        // total of the items plus shipping and tax
+        ctrl.vm.cart.GrandTotal = ko.pureComputed(function () {
+            var grandTotal = _.reduce(this.cart.Items(), function (memo, item) {
+                return memo + item.TotalFn();
+            }, 0);
+
+            if (this.shipping.SelectedRate())
+                grandTotal += this.shipping.SelectedRate().Charge;
+
+            return '$' + grandTotal.toFixed(2);
+        }, ctrl.vm);
 
         // setup shipping view model
-        ctrl.vm.shipping = ko.observable({
+        ctrl.vm.shipping = {
             Options: ko.observableArray(),
             SelectedRate: ko.observable()
-        });
+        };
         ko.applyBindings(ctrl.vm);
     });
 };

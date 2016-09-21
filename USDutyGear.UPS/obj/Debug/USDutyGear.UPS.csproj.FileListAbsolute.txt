@@ -17,3 +17,7 @@ C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\Newtonsoft.Json.dll
 C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\System.Net.Http.Formatting.dll
 C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\Newtonsoft.Json.xml
 C:\dev\sandbox\usdutygear\USDutyGear.UPS\bin\Debug\System.Net.Http.Formatting.xml
+C:\Sandbox\usdutygear\USDutyGear.UPS\bin\Debug\Newtonsoft.Json.dll
+C:\Sandbox\usdutygear\USDutyGear.UPS\bin\Debug\System.Net.Http.Formatting.dll
+C:\Sandbox\usdutygear\USDutyGear.UPS\bin\Debug\Newtonsoft.Json.xml
+C:\Sandbox\usdutygear\USDutyGear.UPS\bin\Debug\System.Net.Http.Formatting.xml

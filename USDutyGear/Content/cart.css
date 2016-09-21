@@ -59,6 +59,21 @@
     font-family: 'Roma Sans', sans-serif;
 }
 
+.cart .cart-items-footer .footer-total {
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.cart .cart-items-footer .footer-total.shipping {
+    color: darkorange;
+}
+
+.cart .cart-items-footer .footer-total.grand-total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+
 .cart .shipping-info .shipping-options,
 .cart .shipping-info .shipping-address {
     background-color: #fff;

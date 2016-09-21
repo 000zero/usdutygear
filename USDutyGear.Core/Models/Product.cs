@@ -11,6 +11,7 @@ namespace USDutyGear.Core.Models
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string DefaultImageModel { get; set; }
-        public Regex ModelTemplate { get; set; }
+        public string ModelTemplate { get; set; }
+        public Regex ModelRegex { get; set; }
     }
 }
