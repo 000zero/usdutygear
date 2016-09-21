@@ -3,13 +3,23 @@
 var ctrl = {};
 
 ctrl.doUpsStuff = function () {
+    var validation = ctrl.validateShippingAddress();
+    if (!validation.valid) {
+        // set error message notification
+        ctrl.vm.shipping.ShowError(true);
+        ctrl.vm.shipping.ErrorMessage(validation.error);
+        return;
+    }
+
+    ctrl.vm.shipping.ShowError(false);
+
     var request = {
-        "Name": "Steven Garcia",
+        "Name": ctrl.vm.cart.Name(),
         "Address": {
-            "AddressLine": ["6 Andalusia "],
-            "City": "Rancho Santa Margarita",
-            "StateProvinceCode": "CA",
-            "PostalCode": "92688",
+            "AddressLine": [ctrl.vm.cart.Street()],
+            "City": ctrl.vm.cart.City(),
+            "StateProvinceCode": ctrl.vm.cart.State(),
+            "PostalCode": ctrl.vm.cart.Zip(),
             "CountryCode": "US",
             "ResidentialAddressIndicator": "True"
         }
@@ -38,11 +48,66 @@ ctrl.doUpsStuff = function () {
 
 ctrl.checkout = function () {
     // TODO: convert observable computed values back to their value before sending to the server
+    var validation = ctrl.validateShippingAddress();
+    if (!validation.valid) {
+        // set error message notification
+        ctrl.vm.shipping.ShowError(true);
+        ctrl.vm.shipping.ErrorMessage(validation.error);
+        return;
+    }
+
+    ctrl.vm.shipping.ShowError(false);
+    // all good post trigger the submit
+    alert("i would submit");
 };
 
 ctrl.removeCartItem = function (model, index) {
     rootCtrl.removeItem(model);
     ctrl.vm.cart.Items.splice(index, 1);
+};
+
+ctrl.validateShippingAddress = function () {
+    var isValid = true;
+    var errorMsg;
+
+    if (!ctrl.vm.cart.Name() || ctrl.vm.cart.Name().trim() == '') {
+        isValid = false;
+        errorMsg = 'Invalid Name';
+    }
+
+    if (!ctrl.vm.cart.Street() || ctrl.vm.cart.Street().trim() == '') {
+        isValid = false;
+        if (!errorMsg)
+            errorMsg = 'Invalid Street';
+        else
+            errorMsg += ', Street';
+    }
+        
+    if (!ctrl.vm.cart.City() || ctrl.vm.cart.City().trim() == '') {
+        isValid = false;
+        if (!errorMsg)
+            errorMsg = 'Invalid City';
+        else
+            errorMsg += ', City';
+    }
+
+    if (!ctrl.vm.cart.State() || ctrl.vm.cart.State().trim() == '') {
+        isValid = false;
+        if (!errorMsg)
+            errorMsg = 'Invalid State';
+        else
+            errorMsg += ', State';
+    }
+
+    if (!ctrl.vm.cart.Zip() || ctrl.vm.cart.Zip().trim() == '') {
+        isValid = false;
+        if (!errorMsg)
+            errorMsg = 'Invalid Zip';
+        else
+            errorMsg += ', Zip';
+    }
+
+    return { valid: isValid, error: '*' + errorMsg };
 };
 
 ctrl.init = function () {
@@ -74,6 +139,13 @@ ctrl.init = function () {
             }));
         }
 
+        // track the shipping address info
+        ctrl.vm.cart.Name = ko.observable(ctrl.vm.cart.Name);
+        ctrl.vm.cart.Street = ko.observable(ctrl.vm.cart.Street);
+        ctrl.vm.cart.City = ko.observable(ctrl.vm.cart.City);
+        ctrl.vm.cart.State = ko.observable(ctrl.vm.cart.State);
+        ctrl.vm.cart.Zip = ko.observable(ctrl.vm.cart.Zip);
+
         // only the total of the items
         ctrl.vm.cart.SubTotal = ko.pureComputed(function() {
             var subTotal = _.reduce(this.cart.Items(), function (memo, item) {
@@ -98,7 +170,9 @@ ctrl.init = function () {
         // setup shipping view model
         ctrl.vm.shipping = {
             Options: ko.observableArray(),
-            SelectedRate: ko.observable()
+            SelectedRate: ko.observable(),
+            ShowError: ko.observable(false),
+            ErrorMessage: ko.observable()
         };
         ko.applyBindings(ctrl.vm);
     });

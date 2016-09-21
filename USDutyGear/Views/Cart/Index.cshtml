@@ -91,8 +91,8 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-                        <button class="btn btn-default" onclick="rootCtrl.emptyCart()">Empty Cart</button>
-                        <button class="btn btn-default" onclick="">Checkout</button>
+                        <a href="javascript:;" class="btn btn-default" onclick="rootCtrl.emptyCart()">Empty Cart</a>
+                        <button class="btn btn-default checkout" onclick="">Checkout</button>
                     </div>
                 </div>
             
@@ -102,13 +102,21 @@
                 <div class="col-lg-6 col-md-6">
                     <h1>Shipping Address</h1>
                     <div class="shipping-address">
-                        <div><span>First Name: </span><input type="text" name="firstname" /></div>
-                        <div><span>Last Name: </span><input type="text" name="lastname" /></div>
-                        <div><span>Address: </span><input type="text" name="address" /></div>
-                        <div><span>City: </span><input type="text" name="city" /></div>
-                        <div><span>State: </span><input type="text" name="state" /></div>
-                        <div><span>Zip Code: </span><input type="text" name="zip" /></div>
-                        <div><span>&nbsp;</span><div class="calculate-shipping-btn-container"><button class="btn btn-default btn-block" onclick="ctrl.doUpsStuff()">Shipping Rates</button></div></div>
+                        <div><span>Name: </span><input type="text" name="name" data-bind="value: cart.Name" /></div>
+                        <div><span>Address: </span><input type="text" name="address" data-bind="value: cart.Street" /></div>
+                        <div><span>City: </span><input type="text" name="city" data-bind="value: cart.City" /></div>
+                        <div><span>State: </span><input type="text" name="state" data-bind="value: cart.State" /></div>
+                        <div><span>Zip Code: </span><input type="text" name="zip" data-bind="value: cart.Zip" /></div>
+                        <div>
+                            <span>&nbsp;</span>
+                            <div class="calculate-shipping-btn-container">
+                                <a href="javascript:;" class="btn btn-default btn-block" onclick="ctrl.doUpsStuff()">Shipping Rates</a>
+                            </div>
+                        </div>
+                        <div data-bind="visible: shipping.ShowError">
+                            <span>&nbsp;</span>
+                            <span class="error-msg" data-bind="text: shipping.ErrorMessage"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">

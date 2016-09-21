@@ -10,8 +10,7 @@ namespace USDutyGear.Models
         public decimal Shipping { get; set; }
         public string ShippingServiceCode { get; set; }
         public decimal Tax { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }

@@ -66,10 +66,18 @@ var rootCtrl = (function () {
         updateQuantity: function (model, quantity) {
             if (scope.cart.items[model])
                 scope.cart.items[model] = quantity;
+
+            scope.cart.lastWrite = moment();
+            scope.setCartViewModel();
+            scope.saveCart();
         },
         removeItem: function (model) {
             if (scope.cart.items[model])
                 delete scope.cart.items[model];
+
+            scope.cart.lastWrite = moment();
+            scope.setCartViewModel();
+            scope.saveCart();
         },
         getCart: function () {
             var copy = _.clone(scope.cart);

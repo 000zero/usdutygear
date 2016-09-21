@@ -104,6 +104,13 @@
     padding-right: 10px;
 }
 
+.cart .shipping-info .shipping-address .error-msg {
+    display: inline-block;
+    width: 70%;
+    text-align: left;
+    color: #CF5300;
+}
+
 .cart .shipping-info .shipping-options input {
     margin-bottom: 10px
 }
