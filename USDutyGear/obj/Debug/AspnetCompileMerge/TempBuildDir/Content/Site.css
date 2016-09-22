@@ -1,6 +1,8 @@
 ﻿body {
     font-family: 'Didact Gothic', sans-serif;
-    color: #ccc;
+    color: #959595;
+    background-image: url("../images/halftone.png");
+    background-repeat: repeat;
 }
 
 .navbar {
@@ -124,20 +126,46 @@ nav.navbar a {
     border-width: 1px;
 }
 
+h1, h2, h3, h4 {
+    font-family: 'Poiret One', sans-serif;
+    color: #985e6d;
+}
+
 .btn {
     border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
-    /*background-color: #192231;*/
-    background-color: #e5e5e5;
-    color: #985e6d;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    /*background-color: #985e6d;*/
+    background-color: #444;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border: 0;
-    /*border: 2px solid #985e6d;*/
+    /*border: 1px solid #985e6d;*/
+}
+
+.btn:active {
+    background-color: #444;
+    color: #fff;
 }
 
 .btn:hover {
-    background-color: #985e6d;
+    background-color: #e5e5e5;
+    color: #985e6d;
+    /*border: 1px solid #985e6d;*/
+}
+
+.navbar .glyphicon.glyphicon-shopping-cart {
     color: #fff;
+    padding-top: 10px;
+}
+
+.navbar .glyphicon.glyphicon-shopping-cart {
+    color: #fff;
+    padding-top: 10px;
+}
+
+.navbar .glyphicon.glyphicon-shopping-cart:hover {
+    opacity: .9;
+    cursor: pointer;
 }

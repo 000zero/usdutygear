@@ -1,18 +1,10 @@
-﻿body {
-    color: #999;
-    background-color: #e9e9e9;
-    background-image: url("../images/halftone.png");
-    background-repeat: repeat;
-}
-
-.splash-container {
+﻿.splash-container {
     padding: 0;
     box-shadow: 5px 5px 5px -4px #000, -5px 5px 5px -4px #000, 0 5px 4px -2px #000;
 }
 
 /* 369px width or less (Galaxy S5 or smaller) */
 .splash {
-    /*background-image: url("../images/iStock_90391651_MEDIUM.jpg");*/
     background-image: url("../images/iStock_90391651_360.jpg");
     min-height: 210px;
     background-position: center bottom;
@@ -22,10 +14,10 @@
 .splash .logo {
     display: block;
     margin-top: 0;
-    top: 15%;
-    right: 20%;
+    top: 10%;
+    right: 15%;
     position:absolute;
-    width: 30%;
+    width: 35%;
     opacity: .8;
     -ms-transform: rotate(10deg);
     -webkit-transform: rotate(10deg);
@@ -122,12 +114,7 @@
     padding-bottom: 15px;
 }
 
-.shelf-card h1,
-.shelf-card h2 {
-    font-family: 'Poiret One', sans-serif;
-    /*font-weight: bold;*/
-    color: #985e6d;
-}
+
 
 .category-title {
     margin-top: 60px;

@@ -3,35 +3,101 @@ var rootCtrl = (function () {
     var scope = this;
 
     // get the cart from local storage if present
-    scope.cart = JSON.parse(localStorage.getItem('usdutygear-cart'));
+    try {
+        scope.cart = JSON.parse(localStorage.getItem('usdutygear-cart'));
+    } catch (e) {
+        console.log(e);
+    }
 
     if (!scope.cart)
         scope.cart = {
+            items: {},
             lastRead: null,
             lastWrite: moment()
         };
 
+    scope.saveCart = function () {
+        localStorage.setItem('usdutygear-cart', JSON.stringify(scope.cart));
+    };
+
+    scope.setCartViewModel = function () {
+        scope.cartViewModel.items.removeAll();
+        for (var prop in scope.cart.items) {
+            if (scope.cart.items.hasOwnProperty(prop)) {
+                scope.cartViewModel.items.push({
+                    Model: prop,
+                    Quantity: scope.cart.items[prop]
+                });
+            }
+        }
+    };
+
+    // setup global viewModel TODO: figure out if we still need this
+    scope.cartViewModel = {};
+    scope.cartViewModel.items = ko.observableArray();
+    scope.setCartViewModel();
+
+    //ko.applyBindings(scope.cartViewModel, $("#shopping-cart-nav-form")[0]);
+
     // public methods
     return {
-        addToCart: function (sku, quantity) {
-            if (scope.cart[sku])
-                scope.cart[sku] += quantity;
-            else
-                scope.cart[sku] = quantity;
+        addToCart: function (model, quantity) {
+            if (!scope.cart.items)
+                scope.cart.items = {};
+
+            if (scope.cart.items[model]) {
+                scope.cart.items[model] += quantity;
+            } else {
+                scope.cart.items[model] = quantity;
+            }
 
             scope.cart.lastWrite = moment();
+            scope.setCartViewModel();
+            scope.saveCart();
         },
         emptyCart: function () {
             scope.cart = {
+                items: {},
                 lastRead: null,
                 lastWrite: moment()
             };
+            scope.saveCart();
+        },
+        updateQuantity: function (model, quantity) {
+            if (scope.cart.items[model])
+                scope.cart.items[model] = quantity;
+
+            scope.cart.lastWrite = moment();
+            scope.setCartViewModel();
+            scope.saveCart();
+        },
+        removeItem: function (model) {
+            if (scope.cart.items[model])
+                delete scope.cart.items[model];
+
+            scope.cart.lastWrite = moment();
+            scope.setCartViewModel();
+            scope.saveCart();
         },
         getCart: function () {
             var copy = _.clone(scope.cart);
             scope.cart.lastRead = moment();
 
             return copy;
+        },
+        getCartItems: function () {
+            var items = _.map(_.pairs(scope.cart.items), function (pair) {
+                return {
+                    Model: pair[0],
+                    Quantity: parseInt(pair[1])
+                };
+            });
+            scope.cart.lastRead = moment();
+
+            return items;
+        },
+        getCartViewModel: function () {
+            return scope.cartViewModel;
         },
         getFinishImageName: function (finish) {
             switch (finish) {

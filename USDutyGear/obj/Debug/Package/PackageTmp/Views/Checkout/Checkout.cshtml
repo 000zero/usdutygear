@@ -1,0 +1,58 @@
+﻿@model USDutyGear.Models.CheckoutViewModel
+
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row checkout">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <h1>Checkout</h1>
+        </div>
+    </div>
+    <div class="checkout-items">
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Description</th>
+                    <th>Quantit</th>
+                    <th>Unit Price</th>
+                    <th>Line Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Items)
+            {
+                    <tr>
+                        <td>@item.Model</td>
+                        <td>@item.Title</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price</td>
+                        <td>@item.Total</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">Sub Total</td>
+                    <td>$@Model.SubTotal.ToString("C")</td>
+                </tr>
+                <tr>
+                    <td colspan="4">Shipping (@Model.ShippingDescription)</td>
+                    <td>$@Model.Shipping.ToString("C")</td>
+                </tr>
+                <tr>
+                    <td colspan="4">Tax</td>
+                    <td>$@Model.Tax.ToString("C")</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="4">Total</td>
+                    <td>$@Model.Total.ToString("C")</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

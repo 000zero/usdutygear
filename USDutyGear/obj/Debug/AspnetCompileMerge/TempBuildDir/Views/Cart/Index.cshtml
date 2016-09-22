@@ -1,0 +1,150 @@
+﻿@using System.Globalization
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/cart")
+}
+
+<div class="row cart">
+    <div class="container cart-list">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <h1>Shopping Cart</h1>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("Index", "Cart", FormMethod.Post, new Dictionary<string, object>
+        {
+            {"id", "shopping-cart-list-form"}
+        }))
+        {
+            <div class="cart-items">
+                <div class="row cart-items-header">
+                    <div class="col-lg-8 col-md-8 col-sm-7">
+                        <h2>Items</h2>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-5 ">
+                        <h2>Totals</h2>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12"><hr /></div>
+                </div>
+
+                <!-- ko foreach: cart.Items -->
+                <div class="row cart-item">
+                    <div class="col-lg-8 col-md-8 col-sm-7 cart-item-main">
+                        <h4 data-bind="text: Title"></h4>
+                        <div>Model # <span class="number" data-bind="text: Model"></span></div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-5 cart-item-detail">
+                        <div>
+                            <span class="title">Quantity: </span>
+                            <input type="number" data-bind="value: Quantity, attr: { name: 'cart[' + Model + ']' }" />
+                            <span class="at-price">&#64;</span>
+                            <span class="number" data-bind="text: PriceDisplay"></span> each
+                            <button type="button" class="btn btn-default btn-trash" aria-label="Trash" data-bind="attr: { onclick: 'ctrl.removeCartItem(\'' + Model + '\', ' + $index() + ')' }">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </button>
+                            <hr />
+                        </div>
+                        <div class="item-total">
+                            <span class="title">Item Total:</span>
+                            <span class="number" data-bind="text: TotalFn"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+
+                <hr/>
+                <div class="row cart-items-footer">
+                    <div class="col-lg-8 col-md-8 col-sm-7"></div>
+                    <div id="" class="col-lg-4 col-md-4 col-sm-5">
+                        <div class="footer-total">
+                            <span class="title">Sub Total:</span>
+                            <span class="number" data-bind="text: cart.SubTotal"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cart-items-footer">
+                    <div class="col-lg-8 col-md-8 col-sm-7"></div>
+                    <div id="" class="col-lg-4 col-md-4 col-sm-5">
+                        <div class="footer-total shipping">
+                            <span class="title">Shipping:</span>
+                            <span class="number" data-bind="visible: shipping.SelectedRate(), text: shipping.SelectedRate() ? '$' + shipping.SelectedRate().Charge.toFixed(2) : ''"></span>
+                            <span data-bind="visible: !shipping.SelectedRate()">--</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cart-items-footer">
+                    <div class="col-lg-8 col-md-8 col-sm-7">
+                    
+                    </div>
+                    <div id="" class="col-lg-4 col-md-4 col-sm-5">
+                        <div class="footer-total grand-total">
+                            <span class="title">Total:</span>
+                            <span class="number" data-bind="text: cart.GrandTotal"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <a href="javascript:;" class="btn btn-default" onclick="rootCtrl.emptyCart()">Empty Cart</a>
+                        <button class="btn btn-default checkout" onclick="">Checkout</button>
+                    </div>
+                </div>
+            
+            </div>
+
+            <div class="row shipping-info">
+                <div class="col-lg-6 col-md-6">
+                    <h1>Shipping Address</h1>
+                    <div class="shipping-address">
+                        <div><span>Name: </span><input type="text" name="name" data-bind="value: cart.Name" /></div>
+                        <div><span>Address: </span><input type="text" name="address" data-bind="value: cart.Street" /></div>
+                        <div><span>City: </span><input type="text" name="city" data-bind="value: cart.City" /></div>
+                        <div><span>State: </span><input type="text" name="state" data-bind="value: cart.State" /></div>
+                        <div><span>Zip Code: </span><input type="text" name="zip" data-bind="value: cart.Zip" /></div>
+                        <div>
+                            <span>&nbsp;</span>
+                            <div class="calculate-shipping-btn-container">
+                                <a href="javascript:;" class="btn btn-default btn-block" onclick="ctrl.doUpsStuff()">Shipping Rates</a>
+                            </div>
+                        </div>
+                        <div data-bind="visible: shipping.ShowError">
+                            <span>&nbsp;</span>
+                            <span class="error-msg" data-bind="text: shipping.ErrorMessage"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <h1>Shipping Options</h1>
+                    <div id="shipping-options" class="shipping-options">
+                        <span data-bind="visible: shipping.Options().length === 0" class="warning">Enter a valid shipping address, then hit the Calculate button, to see shipping rates.</span>
+                        <span data-bind="visible: shipping.Options().length > 0">Select your shipping method:</span>
+                        <div class="shipping-rates" data-bind="foreach: shipping.Options">
+                            <div class="shipping-rate">
+                                <input type="radio" name="selectedRates" data-bind="checkedValue: $data, checked: $parent.shipping.SelectedRate" />
+                                <span class="number">$</span><span class="number" data-bind="text: Charge"></span>
+                                <span> - </span>
+                                <span data-bind="text: Service"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- total -->
+</div>
+
+<!-- shipping address -->
+<!-- billing address -->
+
+@section scripts
+{
+    <script type="text/javascript" src="~/js/__cart.js"></script>
+}
