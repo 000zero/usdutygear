@@ -9,7 +9,7 @@ namespace USDutyGear.Controllers
     public class ProductController : Controller
     {
         [Route("{name}")]
-        public ActionResult Index(string name)
+        public ActionResult Product(string name)
         {
             name = CategoryHelper.MapRouteKeyToProductName(name);
 

@@ -40,13 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BuckleTypes.cs" />
     <Compile Include="Common\Categories.cs" />
-    <Compile Include="Common\Finishes.cs" />
+    <Compile Include="Common\FinishTypes.cs" />
     <Compile Include="Common\ProductAdjustmentTypes.cs" />
+    <Compile Include="Common\ProductHelper.cs" />
     <Compile Include="Common\ProductNames.cs" />
-    <Compile Include="Common\SnapFinishes.cs" />
+    <Compile Include="Common\SnapTypes.cs" />
     <Compile Include="Models\Belt.cs" />
     <Compile Include="Models\Keeper.cs" />
+    <Compile Include="Models\ModelNumber.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductAdjustment.cs" />
     <Compile Include="Models\ProductDiscount.cs" />

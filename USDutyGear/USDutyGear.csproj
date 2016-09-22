@@ -238,6 +238,7 @@
     <Content Include="Content\cart.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\product.css" />
+    <Content Include="Content\theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -430,9 +431,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Checkout\Checkout.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

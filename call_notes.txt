@@ -1,7 +1,7 @@
 Duty Gear Notes
 ---------------
 
-	Chrome
+	Chrome (DONE)
 	Brass
 	Black
 	Hidden
@@ -12,16 +12,29 @@ Duty Gear Notes
 5 - Nylon Look
 
 
-	- model 15 chrome and brass buckle*
+	- model 15 chrome and brass buckle* (DONE)
 	- Add snaps to belt keeper clip & Key ring keeper
 	- Inside Velcro Belt Model 11 1.5"
-	- Liner Belt Model 12 1" (also nylon look)
-	- Sam Browne 2.25" (add high gloss, nylon look)
+	- Liner Belt Model 12 1" (also nylon look) (DONE)
+	- Sam Browne 2.25" (add high gloss, nylon look) (DONE)
 		+ 55 - inside suede
 		+ 556 - inside line is cow hide
 		+ 55V - inside line is velcro
-		+ chrome and brass buckle
+		+ chrome and brass buckle (DONE)
 	- HS is an extra $5
-	- Add nylon look to glove pouch
+	- Add nylon look to glove pouch (DONE)
 	- Privacy/Return Policy
 	
+	
+Belt Keeper
+
+	Single		4 Pack
+	------		------
+Normal	11		21
+HS	9.35		21.25
+Nylon	4		14.50
+
+https://www.behance.net/gallery/9819319/Free-Flat-UI-Kit
+http://www.graphberry.com/item/sven-modern-psd-ui-kit/
+http://blog.lemonstand.com/ultimate-list-free-ecommerce-ui-kits-design-resources/
+http://uispace.net/index.php?q=commerce

@@ -22,6 +22,11 @@ ctrl.getModel = function () {
 };
 
 ctrl.calculatePrice = function () {
+    // if package
+    if (_.isFunction(this.selectedPackage) && this.selectedPackage()) {
+        
+    }
+
     // base price
     var price = ctrl.vm.Price;
 
@@ -91,12 +96,14 @@ ctrl.init = function (vm) {
     ctrl.vm.Finishes = ko.observableArray(ctrl.vm.Finishes);
     ctrl.vm.Sizes = ko.observableArray(ctrl.vm.Sizes);
     ctrl.vm.Snaps = ko.observableArray(ctrl.vm.Snaps);
+    ctrl.vm.Buckles = ko.observableArray(ctrl.vm.Buckles);
     ctrl.vm.Packages = ko.observableArray(ctrl.vm.Packages);
     // client side only
     ctrl.vm.imageList = ko.observableArray();
     ctrl.vm.selectedFinish = ko.observable(ctrl.vm.Finishes()[0]);
     ctrl.vm.selectedSize = ko.observable(ctrl.vm.Sizes()[0]);
     ctrl.vm.selectedSnap = ko.observable(ctrl.vm.Snaps()[0]);
+    ctrl.vm.selectedBuckle = ko.observable(ctrl.vm.Buckles()[0]);
     ctrl.vm.selectedPackage = ko.observable(ctrl.vm.Packages()[0]);
     ctrl.vm.selectedImage = ko.observable();
     ctrl.vm.quantity = ko.observable("1");

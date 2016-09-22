@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Ajax.Utilities;
 using USDutyGear.Core.Models;
 using USDutyGear.Core.Common;
 
@@ -17,7 +18,10 @@ namespace USDutyGear.Models
         public List<ProductAdjustment> Finishes { get; set; }
         public List<ProductAdjustment> Sizes { get; set; }
         public List<ProductAdjustment> Snaps { get; set; }
+        public List<ProductAdjustment> Buckles { get; set; } 
+        public List<ProductAdjustment> InnerLiners { get; set; } 
         public List<ProductAdjustment> Packages { get; set; }
+        public Dictionary<string, decimal> Prices { get; set; } 
 
         private ProductViewModel(Product product, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images)
         {
@@ -37,9 +41,23 @@ namespace USDutyGear.Models
             Snaps = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Snap)
                 .ToList();
+            Buckles = adjustments
+                .Where(x => x.Type == ProductAdjustmentTypes.Buckle)
+                .ToList();
+            InnerLiners = adjustments
+                .Where(x => x.Type == ProductAdjustmentTypes.InnerLiner)
+                .ToList();
             Packages = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Package)
+                .DistinctBy(x => x.Name)
                 .ToList();
+
+            // build price list
+            var possibleModels = new List<string>();
+
+            var stuff =
+                from m in new [] {Model}
+                join f in Finishes
         }
 
         public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images)

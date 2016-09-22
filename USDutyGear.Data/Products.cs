@@ -12,6 +12,7 @@ namespace USDutyGear.Data
 {
     public class Products
     {
+        private static readonly string[] CommaSep = {","};
         private const string ConnectionString =
             "Server=MYSQL5011.Smarterasp.net;Database=db_9f5a66_usdgts;Uid=9f5a66_usdgts;Pwd=flores2016;";
 
@@ -97,7 +98,8 @@ namespace USDutyGear.Data
                 PriceAdjustment = Convert.ToDecimal(row["price_adjustment"]),
                 Model = Convert.ToString(row["model"]),
                 Priority = Convert.ToInt32(row["priority"]),
-                Display = Convert.ToString(row["display"])
+                Display = Convert.ToString(row["display"]),
+                DependentModels = Convert.ToString(row["dependent_models"]).Split(CommaSep, StringSplitOptions.RemoveEmptyEntries)
             }).ToList();
         }
 
@@ -154,6 +156,28 @@ namespace USDutyGear.Data
                     row => Convert.ToString(row["model"]), 
                     row => Convert.ToString(row["paths"])?.Split(','));
         }
+
+        public static List<string> GetPossibleModels(string model)
+        {
+            var query = "SELECT " +
+                "CONCAT(" +
+                    "p.model, " +
+                    "IF(finishes.model IS NOT NULL, CONCAT('-', finishes.model), ''), " +
+                    "IF(buckles.model IS NOT NULL, CONCAT('-', buckles.model), ''), " +
+                    "IF(snaps.model IS NOT NULL, CONCAT('-', snaps.model), ''), " +
+                    "IF(sizes.model IS NOT NULL, CONCAT('-', sizes.model), ''), " +
+                    "IF(packages.model IS NOT NULL AND packages.model != '', CONCAT('-', packages.model), '') " +
+                ") AS model " +
+FROM products AS p
+LEFT JOIN product_adjustments AS finishes ON p.model = finishes.product_model AND finishes.type = 'Finish'
+LEFT JOIN product_adjustments AS buckles ON p.model = buckles.product_model AND buckles.type = 'Buckle'
+LEFT JOIN product_adjustments AS snaps ON p.model = snaps.product_model AND snaps.type = 'Snap'
+LEFT JOIN product_adjustments AS sizes ON p.model = sizes.product_model AND sizes.type = 'Size'
+LEFT JOIN product_adjustments AS innerLiners ON p.model = innerLiners.product_model AND innerLiners.type = 'Size'
+LEFT JOIN product_adjustments AS packages ON p.model = packages.product_model AND packages.type = 'Package'
+WHERE p.model = '72'
+ORDER BY model"
+        } 
 
         public static List<string> GetProductImagesByName(string name)
         {

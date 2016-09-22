@@ -11,5 +11,6 @@
         public string Model { get; set; }
         public int Priority { get; set; }
         public string Display { get; set; }
+        public string[] DependentModels { get; set; }
     }
 }
