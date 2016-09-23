@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Ajax.Utilities;
 using USDutyGear.Core.Models;
 using USDutyGear.Core.Common;
+using USDutyGear.Data;
 
 namespace USDutyGear.Models
 {
@@ -20,10 +21,10 @@ namespace USDutyGear.Models
         public List<ProductAdjustment> Snaps { get; set; }
         public List<ProductAdjustment> Buckles { get; set; } 
         public List<ProductAdjustment> InnerLiners { get; set; } 
-        public List<ProductAdjustment> Packages { get; set; }
+        public List<ProductPackage> Packages { get; set; }
         public Dictionary<string, decimal> Prices { get; set; } 
 
-        private ProductViewModel(Product product, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images)
+        private ProductViewModel(Product product, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images, List<ProductPackage> packages)
         {
             Name = product.Name;
             Model = product.Model;
@@ -47,13 +48,27 @@ namespace USDutyGear.Models
             InnerLiners = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.InnerLiner)
                 .ToList();
-            Packages = adjustments
-                .Where(x => x.Type == ProductAdjustmentTypes.Package)
-                .DistinctBy(x => x.Name)
-                .ToList();
+
+            if (packages.Count > 0)
+            {
+                // add single package
+                Packages.Add(new ProductPackage
+                {
+                    Name = "Single", Model = null, Price = 0
+                });
+
+                Packages.AddRange(packages.DistinctBy(x => x.Model));
+            }
+            else
+                Packages = null;
 
             // build price list
-            var possibleModels = new List<string>();
+            Prices = new Dictionary<string, decimal>();
+            foreach (var m in Products.GetPossibleModels(product.Model))
+            {
+                Prices.Add(m, ProductHelper.CalculateProductPrice(m, product, adjustments, packages));
+            }
+            
 
             var stuff =
                 from m in new [] {Model}

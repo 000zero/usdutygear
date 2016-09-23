@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -8,31 +9,29 @@ namespace USDutyGear.Core.Common
 {
     public static class ProductHelper
     {
-        public static decimal CalculateProductPrice(string fullModel, Product product, List<ProductAdjustment> adjustments)
+        public static decimal CalculateProductPrice(string fullModel, Product product, List<ProductAdjustment> adjustments, List<ProductPackage> packages = null)
         {
             var modelNumber = ModelNumber.Create(product.ModelRegex, fullModel);
 
             // check packages for overriding price
             if (!string.IsNullOrWhiteSpace(modelNumber.Package)) // the current product is a package model
             {
-                var packages = adjustments.Where(x => x.Type == ProductAdjustmentTypes.Package).ToList();
+                // verify the package was passed in
+                if (packages == null)
+                    throw  new Exception($"Package specified in model # {fullModel} but no product package found!");
 
-                // check for packages dependent on other models first
-                if (packages.Any(x => x.DependentModels.Length > 0))
+                // find the package price for this particular model number
+                // NOTE: if the regex in the product_packages.applicable_model is ever not C# compliant then split it into two columns
+                // one for the C# code to use here and the other for the MySQL query search in the Products.cs file
+                ProductPackage package;
+                foreach (var p in packages)
                 {
-                    // get the first package where all of the dependent models are contained in the collection of adjustment models
-                    var dependentPackage = packages.FirstOrDefault(x => x.DependentModels.All(y => modelNumber.AdjustmentModels.Contains(y)));
-
-                    if (dependentPackage != null)
-                    {
-                        // found a model dependent package so override the price
-                        return dependentPackage.PriceAdjustment;
-                    }
+                    var regex = new Regex(p.ApplicableModelRegexStr);
+                    if (regex.IsMatch(fullModel))
+                        return p.Price;
                 }
 
-                // no model dependent packages matched so return the default package price
-                var package = packages.FirstOrDefault(x => x.DependentModels.Length == 0);
-                return package?.PriceAdjustment ?? 0;
+                return package.Price;
             }
 
             // if here then the current product is not a package

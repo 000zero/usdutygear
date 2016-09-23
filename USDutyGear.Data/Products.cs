@@ -68,7 +68,6 @@ namespace USDutyGear.Data
             };
         }
 
-
         public static List<ProductAdjustment> GetProductAdjustmentsByModel(string model)
         {
             var dt = new DataTable();
@@ -159,24 +158,59 @@ namespace USDutyGear.Data
 
         public static List<string> GetPossibleModels(string model)
         {
-            var query = "SELECT " +
-                "CONCAT(" +
-                    "p.model, " +
-                    "IF(finishes.model IS NOT NULL, CONCAT('-', finishes.model), ''), " +
-                    "IF(buckles.model IS NOT NULL, CONCAT('-', buckles.model), ''), " +
-                    "IF(snaps.model IS NOT NULL, CONCAT('-', snaps.model), ''), " +
-                    "IF(sizes.model IS NOT NULL, CONCAT('-', sizes.model), ''), " +
-                    "IF(packages.model IS NOT NULL AND packages.model != '', CONCAT('-', packages.model), '') " +
-                ") AS model " +
-FROM products AS p
-LEFT JOIN product_adjustments AS finishes ON p.model = finishes.product_model AND finishes.type = 'Finish'
-LEFT JOIN product_adjustments AS buckles ON p.model = buckles.product_model AND buckles.type = 'Buckle'
-LEFT JOIN product_adjustments AS snaps ON p.model = snaps.product_model AND snaps.type = 'Snap'
-LEFT JOIN product_adjustments AS sizes ON p.model = sizes.product_model AND sizes.type = 'Size'
-LEFT JOIN product_adjustments AS innerLiners ON p.model = innerLiners.product_model AND innerLiners.type = 'Size'
-LEFT JOIN product_adjustments AS packages ON p.model = packages.product_model AND packages.type = 'Package'
-WHERE p.model = '72'
-ORDER BY model"
+            const string query = @"
+                SELECT 
+	                models.model AS singleModel,  
+                    IF(packages.model IS NULL, NULL, CONCAT(models.model, '-', packages.model)) AS packageModel
+                FROM (
+	                SELECT 
+		                CONCAT(
+			                p.model,
+			                IF(finishes.model IS NOT NULL, CONCAT('-', finishes.model), ''),
+			                IF(buckles.model IS NOT NULL, CONCAT('-', buckles.model), ''),
+			                IF(snaps.model IS NOT NULL, CONCAT('-', snaps.model), ''),
+			                IF(sizes.model IS NOT NULL, CONCAT('-', sizes.model), '')
+			                #IF(packages.model IS NOT NULL AND packages.model != '', CONCAT('-', packages.model), '')
+		                ) AS model
+	                FROM products AS p
+	                LEFT JOIN product_adjustments AS finishes ON p.model = finishes.product_model AND finishes.type = 'Finish'
+	                LEFT JOIN product_adjustments AS buckles ON p.model = buckles.product_model AND buckles.type = 'Buckle'
+	                LEFT JOIN product_adjustments AS snaps ON p.model = snaps.product_model AND snaps.type = 'Snap'
+	                LEFT JOIN product_adjustments AS sizes ON p.model = sizes.product_model AND sizes.type = 'Size'
+	                LEFT JOIN product_adjustments AS innerLiners ON p.model = innerLiners.product_model AND innerLiners.type = 'Inner Liner'
+	                WHERE p.model = @model
+                ) AS models
+                LEFT JOIN product_packages packages ON models.model RLIKE packages.applicable_model
+                ORDER BY models.model;";
+
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = query
+            };
+            cmd.Parameters.AddWithValue("@model", model);
+            cmd.ExecuteNonQuery();
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            conn.Close();
+
+            var models = new List<string>();
+            foreach (var row in dt.AsEnumerable())
+            {
+                models.Add(Convert.ToString(row["singleModel"]));
+
+                var packageModel = Convert.ToString(row["packageModel"]);
+                if (!string.IsNullOrWhiteSpace(packageModel))
+                    models.Add(packageModel);
+            }
+
+            return models.Distinct().OrderBy(x => x).ToList();
         } 
 
         public static List<string> GetProductImagesByName(string name)
@@ -199,6 +233,38 @@ ORDER BY model"
             conn.Close();
 
             return dt.AsEnumerable().Select(row => Convert.ToString(row["path"])).ToList();
+        }
+
+        public static ProductPackage GetProductPackage(string model)
+        {
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = @"
+                    SELECT * FROM product_packages
+                    WHERE @model RLIKE applicable_model;"
+            };
+            cmd.ExecuteNonQuery();
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            conn.Close();
+
+            if (dt.Rows.Count < 1)
+                return null;
+
+            return new ProductPackage
+            {
+                Name = Convert.ToString(dt.Rows[0]["name"]),
+                Model = Convert.ToString(dt.Rows[0]["model"]),
+                Price = Convert.ToDecimal(dt.Rows[0]["price"]),
+                ApplicableModelRegexStr = Convert.ToString(dt.Rows[0]["model"]),
+            };
         }
 
         public static List<ProductCategory> GetProductCategories()

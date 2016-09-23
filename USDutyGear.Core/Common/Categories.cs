@@ -2,6 +2,7 @@
 
 namespace USDutyGear.Core.Common
 {
+    // TODO: do we need this?
     public static class Categories
     {
         public const string LinerBelt = "Liner Belt";

@@ -53,6 +53,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductAdjustment.cs" />
     <Compile Include="Models\ProductDiscount.cs" />
+    <Compile Include="Models\ProductPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
