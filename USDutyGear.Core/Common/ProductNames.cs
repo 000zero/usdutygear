@@ -7,7 +7,7 @@
         public const string SamBrowneBelt = "Sam Browne Belt";
         public const string DutyBelt = "Duty Belt";
         public const string BeltKeeper = "Belt Keeper";
-        public const string KeyRingKeeper = "Key Ring Keeper";
+        public const string BeltKeeperKeyRing = "Belt Keeper Key Ring";
         public const string GlovePouch = "Glove Pouch";
         public const string MagazineHolder = "Double Magazine Pouch";
         public const string BeltKeeperClip = "Belt Keeper Clip";

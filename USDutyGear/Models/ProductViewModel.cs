@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Ajax.Utilities;
+using USDutyGear.Data;
 using USDutyGear.Core.Models;
 using USDutyGear.Core.Common;
-using USDutyGear.Data;
 
 namespace USDutyGear.Models
 {
@@ -19,8 +19,8 @@ namespace USDutyGear.Models
         public List<ProductAdjustment> Finishes { get; set; }
         public List<ProductAdjustment> Sizes { get; set; }
         public List<ProductAdjustment> Snaps { get; set; }
-        public List<ProductAdjustment> Buckles { get; set; } 
-        public List<ProductAdjustment> InnerLiners { get; set; } 
+        public List<ProductAdjustment> Buckles { get; set; }
+        public List<ProductAdjustment> InnerLiners { get; set; }
         public List<ProductPackage> Packages { get; set; }
         public Dictionary<string, decimal> Prices { get; set; } 
 
@@ -35,23 +35,29 @@ namespace USDutyGear.Models
             SelectedImage = product.DefaultImageModel;
             Finishes = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Finish)
+                .OrderBy(x => x.Priority)
                 .ToList();
             Sizes = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Size)
+                .OrderBy(x => x.Priority)
                 .ToList();
             Snaps = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Snap)
+                .OrderBy(x => x.Priority)
                 .ToList();
             Buckles = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Buckle)
+                .OrderBy(x => x.Priority)
                 .ToList();
             InnerLiners = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.InnerLiner)
+                .OrderBy(x => x.Priority)
                 .ToList();
 
-            if (packages.Count > 0)
+            if ((packages?.Count ?? 0) > 0)
             {
                 // add single package
+                Packages = new List<ProductPackage>();
                 Packages.Add(new ProductPackage
                 {
                     Name = "Single", Model = null, Price = 0
@@ -65,19 +71,12 @@ namespace USDutyGear.Models
             // build price list
             Prices = new Dictionary<string, decimal>();
             foreach (var m in Products.GetPossibleModels(product.Model))
-            {
                 Prices.Add(m, ProductHelper.CalculateProductPrice(m, product, adjustments, packages));
-            }
-            
-
-            var stuff =
-                from m in new [] {Model}
-                join f in Finishes
         }
 
-        public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images)
+        public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images, List<ProductPackage> packages = null)
         {
-            return new ProductViewModel(products, adjustments, details, images);
+            return new ProductViewModel(products, adjustments, details, images, packages);
         }
     }
 }

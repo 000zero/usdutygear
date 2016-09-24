@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using USDutyGear.Common;
 using USDutyGear.Core.Common;
 
 namespace USDutyGear.Models
@@ -12,7 +11,7 @@ namespace USDutyGear.Models
             Category = productCategory.Category;
             Products = productCategory
                 .Products
-                .Select(x => new CategoryProductViewModel(x))
+                .Select(x => new CategoryProductViewModel(x.Key, x.Value))
                 .OrderBy(x => x.Name)
                 .ToList();
         }
@@ -26,10 +25,10 @@ namespace USDutyGear.Models
         public string Name { get; set; }
         public string RouteKey { get; set; }
 
-        public CategoryProductViewModel(string name)
+        public CategoryProductViewModel(string name, string model)
         {
             Name = name;
-            RouteKey = CategoryHelper.MapProductNameToRouteKey(name);
+            RouteKey = model;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using USDutyGear.Core.Models;
 
@@ -23,15 +23,14 @@ namespace USDutyGear.Core.Common
                 // find the package price for this particular model number
                 // NOTE: if the regex in the product_packages.applicable_model is ever not C# compliant then split it into two columns
                 // one for the C# code to use here and the other for the MySQL query search in the Products.cs file
-                ProductPackage package;
                 foreach (var p in packages)
                 {
                     var regex = new Regex(p.ApplicableModelRegexStr);
-                    if (regex.IsMatch(fullModel))
+                    if (regex.IsMatch(fullModel.Replace($"-{modelNumber.Package}", "")))
                         return p.Price;
                 }
 
-                return package.Price;
+                throw new Exception($"Package specified in model # {fullModel} but no product package found!");
             }
 
             // if here then the current product is not a package

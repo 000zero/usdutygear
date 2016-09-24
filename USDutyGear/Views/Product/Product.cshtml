@@ -57,19 +57,7 @@
                     </div>
                     <hr />
                 }
-
-                <!-- show all available sizes -->
-                @if (Model.Sizes.Count > 0)
-                {
-                    <div class="product-finish">
-                        <span class="adj-label">Size: </span>
-                        <select data-bind="options: Sizes,
-                                           optionsText: 'Name',
-                                           value: selectedSize"></select>
-                    </div>
-                    <hr />
-                }
-
+                
                 <!-- show all available snaps -->
                 @if (Model.Snaps.Count > 0)
                 {
@@ -83,7 +71,7 @@
                     <hr />
                 }
 
-                <!-- show all available finishes -->
+                <!-- show all available buckles -->
                 @if (Model.Buckles.Count > 0)
                 {
                     <div class="product-finish">
@@ -91,12 +79,38 @@
                         <select data-bind="options: Buckles,
                                            optionsText: 'Name',
                                            value: selectedBuckle,
-                                           event: { onchange: setIimageList }"></select>
+                                           event: { onchange: setImageList }"></select>
                     </div>
+                    <hr />
+                }
+
+                <!-- show all available inner liners -->
+                @if (Model.InnerLiners.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span class="adj-label">Inner Liner: </span>
+                        <select data-bind="options: InnerLiners,
+                                           optionsText: 'Name',
+                                           value: selectedInnerLiner,
+                                           event: { onchange: setImageList }"></select>
+                    </div>
+                    <hr />
+                }
+
+                <!-- show all available sizes -->
+                @if (Model.Sizes.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span class="adj-label">Size: </span>
+                        <select data-bind="options: Sizes,
+                                           optionsText: 'Name',
+                                           value: selectedSize"></select>
+                    </div>
+                    <hr />
                 }
 
                 <!-- show all available packages -->
-                @if (Model.Packages.Count > 0)
+                @if ((Model.Packages?.Count ?? 0) > 0)
                 {
                     <div class="product-finish">
                         <span class="adj-label">Package: </span>

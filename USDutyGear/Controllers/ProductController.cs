@@ -8,22 +8,24 @@ namespace USDutyGear.Controllers
     [RoutePrefix("products")]
     public class ProductController : Controller
     {
-        [Route("{name}")]
-        public ActionResult Product(string name)
+        [Route("{model}")]
+        public ActionResult Product(string model)
         {
-            name = CategoryHelper.MapRouteKeyToProductName(name);
+            //name = CategoryHelper.MapRouteKeyToProductName(name);
 
             // get all products of the same name
-            var product = Products.GetProductByName(name);
+            var product = Products.GetProductByModel(model);
 
-            var details = Products.GetProductDetailsByName(name);
+            var details = Products.GetProductDetailsByName(product.Model);
 
             var images = Products.GetProductImagesByModel(product.Model);
 
             var adjustments = Products.GetProductAdjustmentsByModel(product.Model);
 
+            var packages = Products.GetProductPackages(product.Model);
+
             // create the view model object
-            var vm = ProductViewModel.Create(product, adjustments, details, images);
+            var vm = ProductViewModel.Create(product, adjustments, details, images, packages);
 
             return View(vm);
         }

@@ -5,6 +5,7 @@ using USDutyGear.Common;
 
 namespace USDutyGear.Models
 {
+    // TODO: determine if this view model is used at all
     public class HomeViewModel : USDutyGearBaseViewModel
     {
         public List<ProductFeatureViewModel> Products { get; set; }
@@ -18,7 +19,7 @@ namespace USDutyGear.Models
                     Description = x.Value.Count > 1
                         ? $"Available in {string.Join(", ", x.Value.Take(x.Value.Count - 1))}, and {x.Value.Last()}"
                         : $"Available in {x.Value.First()}",
-                    RouteKey = CategoryHelper.MapProductNameToRouteKey(x.Key),
+                    RouteKey = x.Key,
                     ImagePath = ""
                 }).ToList();
         }

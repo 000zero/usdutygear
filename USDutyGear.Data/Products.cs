@@ -97,12 +97,11 @@ namespace USDutyGear.Data
                 PriceAdjustment = Convert.ToDecimal(row["price_adjustment"]),
                 Model = Convert.ToString(row["model"]),
                 Priority = Convert.ToInt32(row["priority"]),
-                Display = Convert.ToString(row["display"]),
-                DependentModels = Convert.ToString(row["dependent_models"]).Split(CommaSep, StringSplitOptions.RemoveEmptyEntries)
+                Display = Convert.ToString(row["display"])
             }).ToList();
         }
 
-        public static List<string> GetProductDetailsByName(string name)
+        public static List<string> GetProductDetailsByName(string model)
         {
             var dt = new DataTable();
             var conn = new MySqlConnection(ConnectionString);
@@ -111,9 +110,9 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = "SELECT detail FROM product_details WHERE name = @name;"
+                CommandText = "SELECT detail FROM product_details WHERE model = @model;"
             };
-            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@model", model);
             cmd.ExecuteNonQuery();
 
             var adapter = new MySqlDataAdapter(cmd);
@@ -248,6 +247,7 @@ namespace USDutyGear.Data
                     SELECT * FROM product_packages
                     WHERE @model RLIKE applicable_model;"
             };
+            cmd.Parameters.AddWithValue("@model", model);
             cmd.ExecuteNonQuery();
 
             var adapter = new MySqlDataAdapter(cmd);
@@ -261,10 +261,45 @@ namespace USDutyGear.Data
             return new ProductPackage
             {
                 Name = Convert.ToString(dt.Rows[0]["name"]),
+                ProductModel = Convert.ToString(dt.Rows[0]["product_model"]),
                 Model = Convert.ToString(dt.Rows[0]["model"]),
                 Price = Convert.ToDecimal(dt.Rows[0]["price"]),
-                ApplicableModelRegexStr = Convert.ToString(dt.Rows[0]["model"]),
+                ApplicableModelRegexStr = Convert.ToString(dt.Rows[0]["applicable_model"]),
             };
+        }
+
+        public static List<ProductPackage> GetProductPackages(string model)
+        {
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = @"
+                    SELECT * FROM product_packages
+                    WHERE product_model = @model;"
+            };
+            cmd.Parameters.AddWithValue("@model", model);
+            cmd.ExecuteNonQuery();
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            conn.Close();
+
+            if (dt.Rows.Count < 1)
+                return null;
+
+            return dt.AsEnumerable().Select(row => new ProductPackage
+            {
+                Name = Convert.ToString(row["name"]),
+                ProductModel = Convert.ToString(row["product_model"]),
+                Model = Convert.ToString(row["model"]),
+                Price = Convert.ToDecimal(row["price"]),
+                ApplicableModelRegexStr = Convert.ToString(row["applicable_model"]),
+            }).ToList();
         }
 
         public static List<ProductCategory> GetProductCategories()
@@ -276,12 +311,10 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = 
-                    @"SELECT category, GROUP_CONCAT(name) AS names FROM (
-                        SELECT DISTINCT category,name
-                        FROM products
-                        ORDER BY category,name) as categories
-                    GROUP BY category;"
+                CommandText = @"
+                    SELECT DISTINCT category, name, model
+                    FROM products
+                    ORDER BY category, name;"
             };
             cmd.ExecuteNonQuery();
 
@@ -290,14 +323,18 @@ namespace USDutyGear.Data
 
             conn.Close();
 
-            return dt.AsEnumerable().Select(row => new ProductCategory
-            {
-                Category = Convert.ToString(row["category"]),
-                Products = Convert.ToString(row["names"])
-                    .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(x => x.Trim())
-                    .ToList()
-            }).ToList();
+            var categories =
+                from row in dt.AsEnumerable()
+                group row by Convert.ToString(row["category"])
+                into grp
+                select new ProductCategory
+                {
+                    Category = grp.Key,
+                    Products = grp.Select(x => new KeyValuePair<string, string>(
+                        Convert.ToString(x["name"]), Convert.ToString(x["model"]))).ToList()
+                };
+
+            return categories.ToList();
         }
 
         public static List<KeyValuePair<string, List<string>>> GetProductFeatures()

@@ -1,7 +1,3 @@
-C:\dev\sandbox\USDutyGear\USDutyGear.Core\bin\Debug\USDutyGear.Core.dll
-C:\dev\sandbox\USDutyGear\USDutyGear.Core\bin\Debug\USDutyGear.Core.pdb
-C:\dev\sandbox\USDutyGear\USDutyGear.Core\obj\Debug\USDutyGear.Core.dll
-C:\dev\sandbox\USDutyGear\USDutyGear.Core\obj\Debug\USDutyGear.Core.pdb
 C:\Sandbox\USDutyGear\USDutyGear.Core\bin\Debug\USDutyGear.Core.dll
 C:\Sandbox\USDutyGear\USDutyGear.Core\bin\Debug\USDutyGear.Core.pdb
 C:\Sandbox\USDutyGear\USDutyGear.Core\obj\Debug\USDutyGear.Core.dll
@@ -12,4 +8,8 @@ C:\dev\sandbox\USDG\usdutygear\USDutyGear.Core\bin\Debug\USDutyGear.Core.pdb
 C:\dev\sandbox\USDG\usdutygear\USDutyGear.Core\obj\Debug\USDutyGear.Core.csprojResolveAssemblyReference.cache
 C:\dev\sandbox\USDG\usdutygear\USDutyGear.Core\obj\Debug\USDutyGear.Core.dll
 C:\dev\sandbox\USDG\usdutygear\USDutyGear.Core\obj\Debug\USDutyGear.Core.pdb
+C:\dev\sandbox\usdutygear\USDutyGear.Core\bin\Debug\USDutyGear.Core.dll
+C:\dev\sandbox\usdutygear\USDutyGear.Core\bin\Debug\USDutyGear.Core.pdb
 C:\dev\sandbox\usdutygear\USDutyGear.Core\obj\Debug\USDutyGear.Core.csprojResolveAssemblyReference.cache
+C:\dev\sandbox\usdutygear\USDutyGear.Core\obj\Debug\USDutyGear.Core.dll
+C:\dev\sandbox\usdutygear\USDutyGear.Core\obj\Debug\USDutyGear.Core.pdb

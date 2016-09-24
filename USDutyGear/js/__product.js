@@ -6,13 +6,19 @@ ctrl.getModel = function () {
     if (ctrl.vm.selectedFinish())
         model += "-" + ctrl.vm.selectedFinish().Model;
 
-    if (ctrl.vm.selectedSize())
-        model += "-" + ctrl.vm.selectedSize().Model;
-
     if (ctrl.vm.selectedSnap())
         model += "-" + ctrl.vm.selectedSnap().Model;
 
-    if (ctrl.vm.selectedPackage())
+    if (ctrl.vm.selectedBuckle())
+        model += "-" + ctrl.vm.selectedBuckle().Model;
+
+    if (ctrl.vm.selectedInnerLiner())
+        model += "-" + ctrl.vm.selectedInnerLiner().Model;
+
+    if (ctrl.vm.selectedSize())
+        model += "-" + ctrl.vm.selectedSize().Model;
+
+    if (ctrl.vm.selectedPackage() && ctrl.vm.selectedPackage().Model)
         model += "-" + ctrl.vm.selectedPackage().Model;
 
     if (model.slice(-1) === '-')
@@ -22,31 +28,13 @@ ctrl.getModel = function () {
 };
 
 ctrl.calculatePrice = function () {
-    // if package
-    if (_.isFunction(this.selectedPackage) && this.selectedPackage()) {
-        
-    }
+    var model = ctrl.getModel();
 
-    // base price
-    var price = ctrl.vm.Price;
+    price = ctrl.vm.Prices[model]
+        ? ctrl.vm.Prices[model]
+        : 0;
 
-    // get selected finish
-    if (_.isFunction(this.selectedFinish) && this.selectedFinish())
-        price += this.selectedFinish().PriceAdjustment;
-
-    // get selected size
-    if (_.isFunction(this.selectedSize) && this.selectedSize())
-        price += this.selectedSize().PriceAdjustment;
-
-    // get selected snap
-    if (_.isFunction(this.selectedSnap) && this.selectedSnap())
-        price += this.selectedSnap().PriceAdjustment;
-
-    // get selected package
-    if (_.isFunction(this.selectedPackage) && this.selectedPackage())
-        price += this.selectedPackage().PriceAdjustment;
-
-    return '$' + price.toString();
+    return '$' + price.toFixed(2).toString();
 };
 
 ctrl.setImageList = function () {
@@ -61,7 +49,6 @@ ctrl.setImageList = function () {
             for (var i = 0; i < list.length; i++) {
                 ctrl.vm.imageList.push(list[i]);
             }
-            //ctrl.vm.imageList = ko.observableArray(ctrl.vm.Images[model]);
             ctrl.vm.selectedImage(list[0]);
             break;
         }
@@ -97,6 +84,7 @@ ctrl.init = function (vm) {
     ctrl.vm.Sizes = ko.observableArray(ctrl.vm.Sizes);
     ctrl.vm.Snaps = ko.observableArray(ctrl.vm.Snaps);
     ctrl.vm.Buckles = ko.observableArray(ctrl.vm.Buckles);
+    ctrl.vm.InnerLiners = ko.observableArray(ctrl.vm.InnerLiners);
     ctrl.vm.Packages = ko.observableArray(ctrl.vm.Packages);
     // client side only
     ctrl.vm.imageList = ko.observableArray();
@@ -104,6 +92,7 @@ ctrl.init = function (vm) {
     ctrl.vm.selectedSize = ko.observable(ctrl.vm.Sizes()[0]);
     ctrl.vm.selectedSnap = ko.observable(ctrl.vm.Snaps()[0]);
     ctrl.vm.selectedBuckle = ko.observable(ctrl.vm.Buckles()[0]);
+    ctrl.vm.selectedInnerLiner = ko.observable(ctrl.vm.InnerLiners()[0]);
     ctrl.vm.selectedPackage = ko.observable(ctrl.vm.Packages()[0]);
     ctrl.vm.selectedImage = ko.observable();
     ctrl.vm.quantity = ko.observable("1");
