@@ -12,6 +12,11 @@ namespace USDutyGear.Controllers
             return View(ViewModel);
         }
 
+        public ActionResult Home()
+        {
+            return View(ViewModel);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

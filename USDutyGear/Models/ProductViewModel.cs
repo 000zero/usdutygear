@@ -71,7 +71,7 @@ namespace USDutyGear.Models
             // build price list
             Prices = new Dictionary<string, decimal>();
             foreach (var m in Products.GetPossibleModels(product.Model))
-                Prices.Add(m, ProductHelper.CalculateProductPrice(m, product, adjustments, packages));
+                Prices.Add(m, ProductHelper.GetTitleAndPrice(m, product, adjustments, packages).Item2);
         }
 
         public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images, List<ProductPackage> packages = null)

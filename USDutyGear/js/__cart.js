@@ -132,7 +132,7 @@ ctrl.init = function () {
             ctrl.vm.cart.Items = ko.observableArray(_.map(ctrl.vm.cart.Items, function (item) {
                 item.Quantity = ko.observable(item.Quantity);
                 item.TotalFn = ko.pureComputed(function () {
-                    return this.Quantity() * this.Price;
+                    return (this.Quantity() * this.Price).toFixed(2);
                 }, item);
 
                 return item;
@@ -149,7 +149,7 @@ ctrl.init = function () {
         // only the total of the items
         ctrl.vm.cart.SubTotal = ko.pureComputed(function() {
             var subTotal = _.reduce(this.cart.Items(), function (memo, item) {
-                return memo + item.TotalFn();
+                return memo + parseFloat(item.TotalFn());
             }, 0);
 
             return '$' + subTotal.toFixed(2);
@@ -158,7 +158,7 @@ ctrl.init = function () {
         // total of the items plus shipping and tax
         ctrl.vm.cart.GrandTotal = ko.pureComputed(function () {
             var grandTotal = _.reduce(this.cart.Items(), function (memo, item) {
-                return memo + item.TotalFn();
+                return memo + parseFloat(item.TotalFn());
             }, 0);
 
             if (this.shipping.SelectedRate())

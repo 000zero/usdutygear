@@ -24,16 +24,18 @@ namespace USDutyGear.Controllers
                 // get the product model
                 var product = Products.GetProductByModel(tokens[0]);
                 var adjustments = Products.GetProductAdjustmentsByModel(product.Model);
+                var packages = Products.GetProductPackages(product.Model);
 
                 // calculate the price of this particular object
-                item.Price = ProductHelper.CalculateProductPrice(item.Model, product, adjustments);
-                item.Title = ProductHelper.BuildProductTitle(item.Model, product, adjustments);
+                var results = ProductHelper.GetTitleAndPrice(item.Model, product, adjustments, packages);
+                item.Title = results.Item1;
+                item.Price = results.Item2;
                 item.Total = item.Price * item.Quantity;
 
                 cart.SubTotal += item.Total;
             }
 
-            // apply shipping and tax
+            // apply shipping and tax if a service code is specified
             cart.Shipping = 7.99m;
 
             // TODO: apply tax

@@ -9,9 +9,10 @@ namespace USDutyGear.Core.Common
 {
     public static class ProductHelper
     {
-        public static decimal CalculateProductPrice(string fullModel, Product product, List<ProductAdjustment> adjustments, List<ProductPackage> packages = null)
+        public static Tuple<string, decimal> GetTitleAndPrice(string fullModel, Product product, List<ProductAdjustment> adjustments, List<ProductPackage> packages = null)
         {
             var modelNumber = ModelNumber.Create(product.ModelRegex, fullModel);
+            var title = BuildProductTitle(fullModel, product, adjustments);
 
             // check packages for overriding price
             if (!string.IsNullOrWhiteSpace(modelNumber.Package)) // the current product is a package model
@@ -27,7 +28,7 @@ namespace USDutyGear.Core.Common
                 {
                     var regex = new Regex(p.ApplicableModelRegexStr);
                     if (regex.IsMatch(fullModel.Replace($"-{modelNumber.Package}", "")))
-                        return p.Price;
+                        return new Tuple<string, decimal>($"{title} ({p.Name})", p.Price);
                 }
 
                 throw new Exception($"Package specified in model # {fullModel} but no product package found!");
@@ -58,19 +59,16 @@ namespace USDutyGear.Core.Common
             if (!string.IsNullOrWhiteSpace(modelNumber.InnerLiner))
                 price += adjustments.FirstOrDefault(x => x.Type == ProductAdjustmentTypes.InnerLiner && x.Model == modelNumber.InnerLiner)?.PriceAdjustment ?? 0;
 
-            return price;
+            return new Tuple<string, decimal>(title, price);
         }
 
-        public static string BuildProductTitle(string model, Product product, List<ProductAdjustment> adjustments)
+        private static string BuildProductTitle(string model, Product product, List<ProductAdjustment> adjustments)
         {
             var match = product.ModelRegex.Match(model);
             var title = new StringBuilder(product.Title);
 
             title = ProductAdjustmentTypes.All.Aggregate(title, (current, adjustmentType) =>
-                current.Replace($"{adjustmentType}", GetProductAdjustment(adjustments, match, adjustmentType)?.Name ?? string.Empty));
-
-            if (match.Groups["Package"].Success)
-                title = title.Append($" ({GetProductAdjustment(adjustments, match, ProductAdjustmentTypes.Package).Name})");
+                current.Replace($"{{{adjustmentType}}}", GetProductAdjustment(adjustments, match, adjustmentType)?.Name ?? string.Empty));
 
             return title.ToString();
         }
