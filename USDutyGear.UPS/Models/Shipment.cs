@@ -14,5 +14,7 @@
         public ShippingInfo ShipTo { get; set; }
         public Package Package { get; set; }
         public ShipmentRatingOptions ShipmentRatingOptions { get; set; }
+
+        public string Description { get; set; }
     }
 }

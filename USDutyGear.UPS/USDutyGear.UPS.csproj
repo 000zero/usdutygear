@@ -68,12 +68,14 @@
     <Compile Include="Models\ServiceAccessToken.cs" />
     <Compile Include="Models\Shipment.cs" />
     <Compile Include="Models\ShipmentRatingOptions.cs" />
+    <Compile Include="Models\ShipmentRequest.cs" />
     <Compile Include="Models\ShippingInfo.cs" />
     <Compile Include="Models\CodeSet.cs" />
     <Compile Include="Models\TransactionRef.cs" />
     <Compile Include="Models\UserToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\RatingService.cs" />
+    <Compile Include="Models\ShipmentRequestInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

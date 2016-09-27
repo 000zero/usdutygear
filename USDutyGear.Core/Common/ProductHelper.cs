@@ -61,6 +61,7 @@ namespace USDutyGear.Core.Common
                 var adjustment = adjustments.FirstOrDefault(x =>
                     x.Type == ProductAdjustmentTypes.Size && 
                     x.Model == modelNumber.Size &&
+                    !string.IsNullOrWhiteSpace(x.DependentModelsRegexStr) &&
                     x.DependentModelsRegex.IsMatch(fullModel)) ??
                                  adjustments.FirstOrDefault(x => x.Type == ProductAdjustmentTypes.Size && x.Model == modelNumber.Size);
 

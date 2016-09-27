@@ -20,8 +20,8 @@
 }
 
 .product .product-info {
-    margin-left: 0;
-    /*clear: left;*/
+    margin-left: 0left
+    /*clear: ;_;*/
 }
 
 .product .product-info .adj-label {
@@ -43,6 +43,10 @@
     border-top: 1px solid #eee;
     /*background-image: url('../images/divider.png');
     background-position: center center;*/
+}
+
+.product .showcase {
+    padding-left: 0;
 }
 
 .product .showcase .main-image {

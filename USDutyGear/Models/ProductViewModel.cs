@@ -37,10 +37,6 @@ namespace USDutyGear.Models
                 .Where(x => x.Type == ProductAdjustmentTypes.Finish)
                 .OrderBy(x => x.Priority)
                 .ToList();
-            Sizes = adjustments
-                .Where(x => x.Type == ProductAdjustmentTypes.Size)
-                .OrderBy(x => x.Priority)
-                .ToList();
             Snaps = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Snap)
                 .OrderBy(x => x.Priority)
@@ -51,6 +47,11 @@ namespace USDutyGear.Models
                 .ToList();
             InnerLiners = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.InnerLiner)
+                .OrderBy(x => x.Priority)
+                .ToList();
+            Sizes = adjustments
+                .Where(x => x.Type == ProductAdjustmentTypes.Size)
+                .DistinctBy(x => x.Model)
                 .OrderBy(x => x.Priority)
                 .ToList();
 

@@ -40,8 +40,8 @@ namespace USDutyGear.Core.Models
             if (groups.Any(x => x == ProductAdjustmentTypes.Buckle))
                 modelNumber.Buckle = match.Groups[ProductAdjustmentTypes.Buckle].Value;
 
-            if (groups.Any(x => x == ProductAdjustmentTypes.InnerLiner))
-                modelNumber.InnerLiner = match.Groups[ProductAdjustmentTypes.InnerLiner].Value;
+            if (groups.Any(x => x == ProductAdjustmentTypes.InnerLiner.Replace(" ", "")))
+                modelNumber.InnerLiner = match.Groups[ProductAdjustmentTypes.InnerLiner.Replace(" ", "")].Value;
 
             if (groups.Any(x => x == ProductAdjustmentTypes.Size))
                 modelNumber.Size = match.Groups[ProductAdjustmentTypes.Size].Value;

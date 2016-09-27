@@ -169,8 +169,8 @@ namespace USDutyGear.Data
 			                IF(finishes.model IS NOT NULL, CONCAT('-', finishes.model), ''),
 			                IF(buckles.model IS NOT NULL, CONCAT('-', buckles.model), ''),
 			                IF(snaps.model IS NOT NULL, CONCAT('-', snaps.model), ''),
+                            IF(innerLiners.model IS NOT NULL, CONCAT('-', innerLiners.model), ''),
 			                IF(sizes.model IS NOT NULL, CONCAT('-', sizes.model), '')
-			                #IF(packages.model IS NOT NULL AND packages.model != '', CONCAT('-', packages.model), '')
 		                ) AS model
 	                FROM products AS p
 	                LEFT JOIN product_adjustments AS finishes ON p.model = finishes.product_model AND finishes.type = 'Finish'
