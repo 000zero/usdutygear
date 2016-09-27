@@ -51,13 +51,21 @@ namespace USDutyGear.Core.Common
             if (!string.IsNullOrWhiteSpace(modelNumber.Snap))
                 price += adjustments.FirstOrDefault(x => x.Type == ProductAdjustmentTypes.Snap && x.Model == modelNumber.Snap)?.PriceAdjustment ?? 0;
 
-            // adjust for size
-            if (!string.IsNullOrWhiteSpace(modelNumber.Size))
-                price += adjustments.FirstOrDefault(x => x.Type == ProductAdjustmentTypes.Size && x.Model == modelNumber.Size)?.PriceAdjustment ?? 0;
-
             // adjust for inner liner
             if (!string.IsNullOrWhiteSpace(modelNumber.InnerLiner))
                 price += adjustments.FirstOrDefault(x => x.Type == ProductAdjustmentTypes.InnerLiner && x.Model == modelNumber.InnerLiner)?.PriceAdjustment ?? 0;
+
+            // adjust for size
+            if (!string.IsNullOrWhiteSpace(modelNumber.Size))
+            {
+                var adjustment = adjustments.FirstOrDefault(x =>
+                    x.Type == ProductAdjustmentTypes.Size && 
+                    x.Model == modelNumber.Size &&
+                    x.DependentModelsRegex.IsMatch(fullModel)) ??
+                                 adjustments.FirstOrDefault(x => x.Type == ProductAdjustmentTypes.Size && x.Model == modelNumber.Size);
+
+                price += adjustment?.PriceAdjustment ?? 0;
+            }
 
             return new Tuple<string, decimal>(title, price);
         }

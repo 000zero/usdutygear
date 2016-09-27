@@ -1,0 +1,18 @@
+id,name,category,model,price,title,default_image_model,model_regex,model_template
+1,"Dress Belt",Belts,15,32.50,"{Finish} Dress Belt with {Buckle} Buckle ({Size})",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Buckle>\w+)-(?<Size>\w+)$,{Model}-{Finish}-{Buckle}-{Size}
+2,"Sam Browne Belt Suede Liner",Belts,55,70.13,"{Finish} Sam Browne Belt with Suede Liner and {Buckle} Buckle ({Size})",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Buckle>\w+)-(?<Size>\w+)$,{Model}-{Finish}-Buckle}-{Size}
+4,"Belt Keeper","Belt Keepers",66,4.00,"{Finish} Belt Keeper with {Snap} Snap",72-1,^(?<Model>\d+)-(?<Finish>\w+)-(?<Snap>\w+)-?(?<Package>\w+)?$,{Model}-{Finish}-{Snap}
+6,"Glove Pouch",Pouches,22,18.49,"{Finish} Glove Pouch",NULL,^(?<Model>\d+)-(?<Finish>\w+)$,{Model}-{Finish}
+7,"Double Magazine Pouch",Pouches,88,39.25,"{Finish} Double Magazine Pouch with {Snap} Snap",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Snap>\w+)-(?<Size>\w+)$,{Model}-{Finish}-{Snap}-{Size}
+8,"1"" Reversible Velcro Belt",Belts,12,21.50,"{Finish} 1"" Reversible Velcro Belt ({Size})",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Size>\w+)$,{Model}-{Finish}-{Size}
+52,"Reversible Velcro Duty Belt",Belts,11,36.55,"{Finish} Reversible Velcro Duty Belt ({Size})",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Size>\w+)$,{Model}-{Finish}-{Size}
+53,"1.5"" Nylon Belt",Belts,100,17.00,"Nylon 1.5"" Belt ({Size})",NULL,^(?<Model>\d+)-(?<Size>\w+)$,{Model}-{Size}
+54,"2"" Nylon Belt",Belts,120,33.58,"Nylon 1.5"" Belt ({Size})",NULL,^(?<Model>\d+)-(?<Size>\w+)$,{Model}-{Size}
+55,"Belt Keeper Key Ring","Belt Keepers",67,9.35,"{Finish} 1"" Belt Keeper Key Ring with {Snap} Snap",NULL,^(?<Model>\d+)-(?<Finish>\w+)-?(?<Snap>\w+)?$,{Model}-{Finish}-{Snap}
+57,"Belt Keeper Baton Ring","Belt Keepers",68,9.56,"{Finish} Belt Keeper Baton Ring with {Snap} Snap",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Snap>\w+)$,{Model}-{Finish}-{Snap}
+58,"Belt Keeper Heavy Duty Ring","Belt Keepers",69,9.56,"{Finish} Belt Keeper Heavy Duty Ring with {Snap} Snap",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Snap>\w+)$,{Model}-{Finish}-{Snap}
+59,"1"" Buckle Belt",Belts,13,23.50,"{Finish} 1"" Buckle Belt with {Buckle} Buckle ({Size})",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Buckle>\w+)-(?<Size>\w+)$,{Model}-{Finish}-Buckle}-{Size}
+60,"Dress Belt with Line",Belts,14,35.50,"{Finish} Dress Belt with Line and {Buckle} Buckle ({Size})",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Buckle>\w+)-(?<Size>\w+)$,{Model}-{Finish}-Buckle}-{Size}
+61,"Sam Browne Belt Velcro Liner",Belts,56,73.53,"{Finish} Sam Browne Belt with Velcro Liner and {Buckle} Buckle ({Size})",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Buckle>\w+)-(?<Size>\w+)$,{Model}-{Finish}-Buckle}-{Size}
+62,"Sam Browne Belt Cow Hide Liner",Belts,57,84.50,"{Finish} Sam Browne Belt with Cow Hide Liner and {Buckle} Buckle",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Buckle>\w+)-(?<Size>\w+)$,{Model}-{Finish}-Buckle}-{Size}
+63,"Handcuff Case",Pouches,180,31.45,"{Finish} Handcuff Case with {Snap} Snap",NULL,^(?<Model>\d+)-(?<Finish>\w+)-(?<Snap>\w+)$,{Model}-{Finish}-{Snap}

@@ -40,7 +40,7 @@ namespace USDutyGear
                         "~/Content/home.css"));
 
             bundles.Add(new StyleBundle("~/Content/earth2").Include(
-                        "~/Content/theme.css"));
+                        "~/Content/earth2_home.css"));
 
             bundles.Add(new StyleBundle("~/Content/product").Include(
                         "~/Content/product.css"));

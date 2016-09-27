@@ -92,6 +92,7 @@ namespace USDutyGear.Data
                 Id = Convert.ToString(row["id"]),
                 ProductName = Convert.ToString(row["product_name"]),
                 ProductModel = Convert.ToString(row["product_model"]),
+                DependentModelsRegexStr = Convert.ToString(row["dependent_models"]),
                 Type = Convert.ToString(row["type"]),
                 Name = Convert.ToString(row["name"]),
                 PriceAdjustment = Convert.ToDecimal(row["price_adjustment"]),

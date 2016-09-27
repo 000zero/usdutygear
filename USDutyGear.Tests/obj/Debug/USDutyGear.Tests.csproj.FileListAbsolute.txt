@@ -203,3 +203,6 @@ C:\dev\sandbox\usdutygear\USDutyGear.Tests\bin\Debug\Antlr3.Runtime.pdb
 C:\dev\sandbox\usdutygear\USDutyGear.Tests\obj\Debug\USDutyGear.Tests.csprojResolveAssemblyReference.cache
 C:\dev\sandbox\usdutygear\USDutyGear.Tests\obj\Debug\USDutyGear.Tests.dll
 C:\dev\sandbox\usdutygear\USDutyGear.Tests\obj\Debug\USDutyGear.Tests.pdb
+C:\Sandbox\usdutygear\USDutyGear.Tests\bin\Debug\WebGrease.dll
+C:\Sandbox\usdutygear\USDutyGear.Tests\bin\Debug\Antlr3.Runtime.dll
+C:\Sandbox\usdutygear\USDutyGear.Tests\bin\Debug\Antlr3.Runtime.pdb

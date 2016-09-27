@@ -9,112 +9,120 @@
     @Styles.Render("~/Content/earth2")
 }
 
-<div class="row">
+@*<div class="row">
     <div class="container splash-container">
         <div class="splash">
             <img src="~/images/us_duty_gear_logo_brand_transparent.png" alt="US Duty Gear Logo" class="logo" />
         </div>
     </div>
-</div>
+</div>*@
 
 <!-- Page Features -->
 <div class="row">
     <div class="container">
 
         <!-- TODO: mission statement -->
-
-        @*<div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 category-title">
-                <img src="/images/pouches_title.png" alt="Pouches" />
+        <div class="row brand-showcase">
+            <div class="col-lg-5 col-md-5 col-sm-5 showcase-img-container">
+                <img src="~/images/earth2_main.png" alt="US DUTY GEAR" class="showcase-img" />
             </div>
-        </div>*@
-
-        <div class="row shelf">
-            <div class="container-fluid">
-                <div class="row">
-                    
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
-                        <h1>Magazine Pouch</h1>
-                        <p>
-                            Dual magazine pouch available in a variety of finishes and snaps. The pouch is designed to carry two magazines on
-                            a 2.25" (58mm) duty belt. Available for glock and 9mm magazines."
-                        </p>
-                        <a href="products/magazineholder" class="btn btn-block btn-default">Buy Magazine Pouch &raquo;</a>
-                    </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
-                                    <img src="~/images/magazineholders.png" alt="Magazine Holders with snap"/>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
-                                    <img src="~/images/magazineholders_hidden_snap.png" alt="Magazine Holder hidden snap"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-7 col-md-7 col-sm-7 showcase-text">
+                <h1>US DUTY GEAR</h1>
+                <p class="mission-statement">
+                    Here at US DUTY GEAR we are dedicated to providing quality products at an affordable price.
+                    Our team has over 50 years of combined experience and together we work to make durable duty gear
+                    that you can rely on. All of our products are made in the USA and backed by our warranty.
+                </p>
             </div>
+            <a class="btn btn-link contact-btn">Contact Us</a>
         </div>
 
-        <div class="row shelf">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
-                        <h1>Glove Pouches</h1>
+        <div class="row product-grid">
+            <div class="col-lg-4 col-md-4 col-sm-4 left-column">
+                <div class="product-feature">
+                    <div class="feature-img-container">
+                        <img src="~/images/sambrowne_leather.png" alt="Sam Browne Belt Duty Belt"/>
+                    </div>
+                    <div class="feature-text">
+                        <h2>Sam Browne Belt</h2>
                         <p>
                             Glove pouches available in a variety of finishes. Attaches easily to duty belts up to 2.25" wide. Perferct fit for a pair of
                             surgical gloves.
                         </p>
-                        <a href="products/beltkeeper" class="btn btn-block btn-default">Buy Glove Pouch &raquo;</a>
                     </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
-                                    <img src="~/images/glovepouches.png" alt="Glove Pouches" />
-                                </div>
-                            </div>
-                        </div>
+                    <div class="feature-footer">
+                        <div class="feature-price number">$18.49+</div>
+                        <a href="" class="btn btn-link feature-product-link">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="product-feature">
+                    <div class="feature-img-container">
+                        <img src="~/images/linerbelt_leather.png" alt="Liner Belt" />
+                    </div>
+                    <div class="feature-text">
+                        <h2>Reversible Velcro Duty Belt</h2>
+                        <p>
+                            The Reversible Velcro Duty Belt is available in Leather, Basketweave, High Gloss, and Nylon Look; from size 24 to 80. The belt is 1.25" wide and lined with velcro and
+                            designed to line the duty belt and keep it securely in place.
+                        </p>
+                    </div>
+                    <div class="feature-footer">
+                        <div class="feature-price number">$36.55+</div>
+                        <a href="" class="btn btn-link feature-product-link">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 category-title">
-                <img src="~/images/betls_title.png" alt="Belts" />
-            </div>
-        </div>
-
-        <div class="row shelf">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
-                        <h1>Sam Browne Belt</h1>
+            <div class="col-lg-4 col-md-4 col-sm-4 middle-column">
+                <div class="product-feature">
+                    <div class="feature-img-container">
+                        <img src="~/images/magazineholders.png" alt="Magazine Holders with snap" />
+                    </div>
+                    <div class="feature-img-container">
+                        <img src="~/images/magazineholders_hidden_snap.png" alt="Magazine Holders hidden snap" />
+                    </div>
+                    <div class="feature-text">
+                        <h2>Double Magazine Pouch</h2>
                         <p>
-                            Sam Browne belt available in a leather or basketweave finish. Attaches easily to duty belts up to 2.25" wide. Perferct fit for a pair of
+                            Dual magazine pouch available in a variety of finishes and snaps. The pouch is designed to carry two magazines on
+                            a 2.25" (58mm) duty belt. Available for glock, 9mm, and Colt magazines.
+                        </p>
+                    </div>
+                    <div class="feature-footer">
+                        <div class="feature-price number">$34.21+</div>
+                        <a href="/products/88" class="btn btn-link feature-product-link">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 right-column">
+                <div class="product-feature">
+                    <div class="feature-img-container">
+                        <img src="~/images/glovepouches.png" alt="Glove Pouches" />
+                    </div>
+                    <div class="feature-text">
+                        <h2>Glove Pouch</h2>
+                        <p>
+                            Glove pouches available in a variety of finishes. Attaches easily to duty belts up to 2.25" wide. Perferct fit for a pair of
                             surgical gloves.
                         </p>
-                        <a href="products/beltkeeper" class="btn btn-block btn-default">Buy Sam Browne Belt &raquo;</a>
                     </div>
-                    <div class="col-lg-8 col-md-8 col-sm-8">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
-                                    <img src="~/images/sambrowne_leather.png" alt="Sam Browne Leather Belt" />
-                                </div>
-                            </div>
-                        </div>
+                    <div class="feature-footer">
+                        <div class="feature-price number">$18.49</div>
+                        <a href="" class="btn btn-link feature-product-link">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="row shelf">
+        
+        
+        @*<div class="row shelf">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
@@ -136,9 +144,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
-        <div class="row shelf">
+        @*<div class="row shelf">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
@@ -159,15 +167,15 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
-        <div class="row">
+        @*<div class="row">
             <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 category-title">
                 <img src="~/images/betlkeepers_title.png" alt="Belts" />
             </div>
-        </div>
+        </div>*@
 
-        <div class="row shelf">
+        @*<div class="row shelf">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
@@ -191,7 +199,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
     </div>
 </div>

@@ -13,6 +13,12 @@
     <link rel="icon" href="@Url.Content("~/images/favicon.ico")"/>
     <link href='https://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
     @Styles.Render("~/Content/css")
     @RenderSection("styles", required: false)
 
@@ -27,7 +33,7 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">&#9776;</button>
                 <button type="button" class="navbar-toggle" data-toggle="collapse"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
-                <a class="navbar-brand" href="@Url.Content("~/")"></a>
+                <a class="navbar-brand" href="@Url.Content("~/")">US DUTY GEAR</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -36,7 +42,7 @@
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                @category.Category <span class="caret"></span>
+                                @category.Category @*<span class="caret"></span>*@
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach (var product in category.Products)
@@ -44,6 +50,7 @@
                             </ul>
                         </li>
                     }
+                    <li><a href="#">About Us</a></li>
                     <li class="belt-header-detail"><img src="~/images/belt_header_detail.png" /></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right cart">
@@ -51,15 +58,7 @@
                         <a href="/cart/">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         </a>
-                        @*@using (Html.BeginForm("Index", "Cart", FormMethod.Post, new {id = "shopping-cart-nav-form"}))
-                        {
-                            <div id="shopping-cart" data-bind="foreach: products">
-                                <input type="hidden" data-bind="attr: { name: 'cart[' + Model + ']', value: Quantity }"/>
-                            </div>
-                            <input type="submit" id="submit-shopping-cart" class="hidden"/>
-                        }*@
                     </li>
-                    @*<li><label for="submit-shopping-cart">Cart</label></li>*@
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

@@ -238,7 +238,7 @@
     <Content Include="Content\cart.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\product.css" />
-    <Content Include="Content\theme.css" />
+    <Content Include="Content\earth2_home.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -285,6 +285,7 @@
     <Content Include="images\betls_title.png" />
     <Content Include="images\divider.png" />
     <Content Include="images\dutybelt_feature.png" />
+    <Content Include="images\earth2_main.png" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\gloveholder_feature.png" />
     <Content Include="images\glovepouches.png" />
@@ -352,6 +353,7 @@
     <Content Include="images\magazinepouch_leather_hidden_snap_small.png" />
     <Content Include="images\magazinepouch_leather_with_snap_large.png" />
     <Content Include="images\magazinepouch_leather_with_snap_small.png" />
+    <Content Include="images\navbar-btn-highlight.png" />
     <Content Include="images\nylonkeeper_with_snap_large.png" />
     <Content Include="images\nylonkeeper_with_snap_small.png" />
     <Content Include="images\pouches_title.png" />
@@ -435,6 +437,9 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Checkout\Checkout.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\About\About.cshtml" />
+    <Content Include="Views\About\PrivacyPolicy.cshtml" />
+    <Content Include="Views\About\WarrantyPolicy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
