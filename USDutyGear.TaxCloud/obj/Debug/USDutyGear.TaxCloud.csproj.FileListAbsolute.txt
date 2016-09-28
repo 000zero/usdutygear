@@ -1,0 +1,5 @@
+C:\Sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\USDutyGear.TaxCloud.dll
+C:\Sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\USDutyGear.TaxCloud.pdb
+C:\Sandbox\usdutygear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.dll
+C:\Sandbox\usdutygear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.pdb
+C:\Sandbox\usdutygear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.csprojResolveAssemblyReference.cache

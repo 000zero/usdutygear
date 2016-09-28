@@ -38,3 +38,10 @@ https://www.behance.net/gallery/9819319/Free-Flat-UI-Kit
 http://www.graphberry.com/item/sven-modern-psd-ui-kit/
 http://blog.lemonstand.com/ultimate-list-free-ecommerce-ui-kits-design-resources/
 http://uispace.net/index.php?q=commerce
+
+
+Payeezy
+
+	PROD URL - https://checkout.globalgatewaye4.firstdata.com/payment
+	TEST URL - https://demo.globalgatewaye4.firstdata.com/payment
+	

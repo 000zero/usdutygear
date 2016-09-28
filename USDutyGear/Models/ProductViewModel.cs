@@ -32,7 +32,6 @@ namespace USDutyGear.Models
             Price = product.Price;
             Details = details;
             Images = images;
-            SelectedImage = product.DefaultImageModel;
             Finishes = adjustments
                 .Where(x => x.Type == ProductAdjustmentTypes.Finish)
                 .OrderBy(x => x.Priority)
@@ -58,11 +57,15 @@ namespace USDutyGear.Models
             if ((packages?.Count ?? 0) > 0)
             {
                 // add single package
-                Packages = new List<ProductPackage>();
-                Packages.Add(new ProductPackage
+                Packages = new List<ProductPackage>
                 {
-                    Name = "Single", Model = null, Price = 0
-                });
+                    new ProductPackage
+                    {
+                        Name = "Single",
+                        Model = null,
+                        Price = 0
+                    }
+                };
 
                 Packages.AddRange(packages.DistinctBy(x => x.Model));
             }

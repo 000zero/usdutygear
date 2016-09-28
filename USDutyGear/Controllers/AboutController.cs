@@ -13,7 +13,7 @@ namespace USDutyGear.Controllers
         }
 
         // GET: About
-        public ActionResult About()
+        public ActionResult Contact()
         {
             return View(vm);
         }
@@ -23,7 +23,7 @@ namespace USDutyGear.Controllers
             return View(vm);
         }
 
-        public ActionResult WarrantyPolicy()
+        public ActionResult ReturnPolicy()
         {
             return View(vm);
         }

@@ -1,0 +1,119 @@
+﻿.brand-showcase {
+    background-color: #f2f2f2;
+    position: relative;
+}
+
+.brand-showcase .showcase-img-container {
+    padding-left: 0
+}
+
+.brand-showcase .showcase-img-container .showcase-img {
+    width: 100%;
+}
+
+.brand-showcase .showcase-text .mission-statement {
+    font-family: 'Droid Serif', serif;
+    font-size: 16px;
+    /*font-weight: bold;*/
+    font-style: italic;
+    color: #777;
+}
+
+
+.brand-showcase .contact-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.product-grid {
+    margin-top: 10px;
+}
+
+.product-grid .left-column {
+    padding-left: 0;
+    padding-right: 5px;
+}
+
+.product-grid .middle-column {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.product-grid .right-column {
+    padding-left: 5px;
+    padding-right: 0;
+}
+
+.product-grid .product-feature {
+    background-color: #f2f2f2;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.product-grid .product-feature .feature-img-container {
+    background-color: #fff;
+}
+
+.product-grid .product-feature .feature-img-container img {
+    width: 100%;
+}
+
+.product-grid .product-feature .feature-text {
+    display: block;
+    padding: 5px 10px;
+}
+
+.product-grid .product-feature .feature-footer .price-label {
+    display: block;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    color: #fff;
+    font-family: 'Cabin', sans-serif;
+    font-size: 18px;
+}
+
+.product-grid .product-feature .feature-footer .feature-price {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    background-color: #017db9;
+    height: 50px;
+    color: #fff;
+    font-family: 'Fira Sans';
+    font-size: 30px;
+    padding-top: 5px;
+}
+
+.product-grid .product-feature .feature-footer .feature-product-link {
+    font-family: inherit;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #036D9F;
+    width: 60px;
+    font-size: 25px;
+    font-weight: lighter;
+    height: 50px;
+    margin-top: 0;
+    padding-top: 10px;
+}
+
+@media (max-width: 767px) {
+    .product-grid .left-column,
+    .product-grid .middle-column,
+    .product-grid .right-column {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .brand-showcase {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .brand-showcase .showcase-text .mission-statement {
+        padding-bottom: 40px;
+    }
+}

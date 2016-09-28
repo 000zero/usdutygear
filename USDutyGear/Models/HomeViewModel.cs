@@ -1,32 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using USDutyGear.Common;
+using USDutyGear.Data;
+using USDutyGear.Core.Models;
 
 namespace USDutyGear.Models
 {
-    // TODO: determine if this view model is used at all
     public class HomeViewModel : USDutyGearBaseViewModel
     {
-        public List<ProductFeatureViewModel> Products { get; set; }
+        public List<ProductFeatureViewModel> LeftColumn { get; set; } 
+        public List<ProductFeatureViewModel> MiddleColumn { get; set; } 
+        public List<ProductFeatureViewModel> RightColumn { get; set; } 
 
-        protected HomeViewModel(List<KeyValuePair<string, List<string>>> products)
+        protected HomeViewModel(IEnumerable<Product> products)
         {
-            Products = products
-                .Select(x => new ProductFeatureViewModel
+            LeftColumn = new List<ProductFeatureViewModel>();
+            MiddleColumn = new List<ProductFeatureViewModel>();
+            RightColumn = new List<ProductFeatureViewModel>();
+
+            var i = 0;
+            foreach (var p in products.OrderBy(x => x.DisplayOrder))
+            {
+                switch (i%3)
                 {
-                    Name = x.Key,
-                    Description = x.Value.Count > 1
-                        ? $"Available in {string.Join(", ", x.Value.Take(x.Value.Count - 1))}, and {x.Value.Last()}"
-                        : $"Available in {x.Value.First()}",
-                    RouteKey = x.Key,
-                    ImagePath = ""
-                }).ToList();
+                    case 0: // left column
+                        LeftColumn.Add(new ProductFeatureViewModel
+                        {
+                            Name = p.Name,
+                            Model = p.Model,
+                            Description = p.Description,
+                            StartingPrice = $"{p.Price.ToString("C")}+",
+                            Images = p.FeatureImages
+                        });
+                        break;
+                    case 1: // middle column
+                        MiddleColumn.Add(new ProductFeatureViewModel
+                        {
+                            Name = p.Name,
+                            Model = p.Model,
+                            Description = p.Description,
+                            StartingPrice = $"{p.Price.ToString("C")}+",
+                            Images = p.FeatureImages
+                        });
+                        break;
+                    case 2: // right column
+                        RightColumn.Add(new ProductFeatureViewModel
+                        {
+                            Name = p.Name,
+                            Model = p.Model,
+                            Description = p.Description,
+                            StartingPrice = $"{p.Price.ToString("C")}+",
+                            Images = p.FeatureImages
+                        });
+                        break;
+                }
+
+                i++;
+            }
         }
 
         public static HomeViewModel Create()
         {
-            return new HomeViewModel(Data.Products.GetProductFeatures());
+            return new HomeViewModel(Products.GetProducts());
         }
     }
 }

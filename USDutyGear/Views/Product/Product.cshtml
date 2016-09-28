@@ -26,7 +26,7 @@
                 <div class="main-image">
                     <!-- large image -->
                     <div>
-                        <img alt="@Model.Name" data-bind="attr: { src: '/images/' + selectedImage() + '_large.png' }"/>
+                        <img alt="@Model.Name" data-bind="attr: { src: '/images/' + selectedImage() }"/>
                     </div>
                 </div>
                 <div class="image-list">
@@ -34,7 +34,7 @@
                         <!-- foreach goes here over the selected images -->
                         <div class="image-thumbnail">
                             <a href="javascript:;" data-bind="click: ctrl.vm.selectedImage($data)">
-                                <img data-bind="attr: { src: '/images/' + $data + '_small.png', alt: $data }" />
+                                <img data-bind="attr: { src: '/images/thumbnail-' + $data, alt: $data }" />
                             </a>
                         </div>
                     </div>

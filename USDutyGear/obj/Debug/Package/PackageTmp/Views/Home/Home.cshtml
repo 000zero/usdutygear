@@ -1,0 +1,104 @@
+﻿@model USDutyGear.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/earth2")
+}
+
+<!-- Page Features -->
+<div class="row">
+    <div class="container">
+
+        <div class="row brand-showcase">
+            <div class="col-lg-5 col-md-5 col-sm-5 showcase-img-container">
+                <img src="~/images/earth2_main.png" alt="US DUTY GEAR" class="showcase-img" />
+                @*<img src="~/images/usdutygear_logo.png" alt="US DUTY GEAR" class="showcase-img" />*@
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7 showcase-text">
+                <h1>US DUTY GEAR</h1>
+                <p class="mission-statement">
+                    Here at US DUTY GEAR we are dedicated to providing quality products at an affordable price.
+                    Our team has over 50 years of combined experience and together we work to make durable duty gear
+                    that you can rely on. All of our products are made in the USA and backed by our warranty.
+                </p>
+            </div>
+            <a class="btn btn-link contact-btn">Contact Us</a>
+        </div>
+
+        <div class="row product-grid">
+            <div class="col-lg-4 col-md-4 col-sm-4 left-column">
+                @foreach (var p in Model.LeftColumn)
+                {
+                    <div class="product-feature">
+                        @foreach (var i in p.Images)
+                        {
+                            <div class="feature-img-container">
+                                <img src="~/images/@(i)" alt="@p.Name" />
+                            </div>
+                        }
+                        <div class="feature-text">
+                            <h2>@p.Name</h2>
+                            <p>@p.Description</p>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-price number">@p.StartingPrice</div>
+                            <a href="/products/@(p.Model)" class="btn btn-link feature-product-link">
+                                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 middle-column">
+                @foreach (var p in Model.MiddleColumn)
+                {
+                    <div class="product-feature">
+                        @foreach (var i in p.Images)
+                        {
+                            <div class="feature-img-container">
+                                <img src="~/images/@(i)" alt="@p.Name" />
+                            </div>
+                        }
+                        <div class="feature-text">
+                            <h2>@p.Name</h2>
+                            <p>@p.Description</p>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-price number">@p.StartingPrice</div>
+                            <a href="/products/@(p.Model)" class="btn btn-link feature-product-link">
+                                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 right-column">
+                @foreach (var p in Model.RightColumn)
+                {
+                    <div class="product-feature">
+                        @foreach (var i in p.Images)
+                        {
+                            <div class="feature-img-container">
+                                <img src="~/images/@(i)" alt="@p.Name" />
+                            </div>
+                        }
+                        <div class="feature-text">
+                            <h2>@p.Name</h2>
+                            <p>@p.Description</p>
+                        </div>
+                        <div class="feature-footer">
+                            <div class="feature-price number">@p.StartingPrice</div>
+                            <a href="/products/@(p.Model)" class="btn btn-link feature-product-link">
+                                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

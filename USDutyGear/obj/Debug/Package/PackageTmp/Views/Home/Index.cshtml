@@ -1,0 +1,191 @@
+﻿@model USDutyGear.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/home")
+}
+
+<div class="row">
+    <div class="container splash-container">
+        <div class="splash">
+            <img src="~/images/us_duty_gear_logo_brand_transparent.png" alt="US Duty Gear Logo" class="logo" />
+        </div>
+    </div>
+</div>
+
+<!-- Page Features -->
+<div class="row">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 category-title">
+                <img src="/images/pouches_title.png" alt="Pouches"/>
+            </div>
+        </div>
+
+        <div class="row shelf">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
+                        <h1>Magazine Pouch</h1>
+                        <p>
+                            Dual magazine pouch available in a variety of finishes and snaps. The pouch is designed to carry two magazines on
+                            a 2.25" (58mm) duty belt. Available for glock and 9mm magazines."
+                        </p>
+                        <a href="products/magazineholder" class="btn btn-block btn-default">Buy Magazine Pouch &raquo;</a>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
+                                    <img src="~/images/magazineholders.png" alt="Magazine Holders with snap" />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
+                                    <img src="~/images/magazineholders_hidden_snap.png" alt="Magazine Holder hidden snap" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row shelf">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
+                        <h1>Glove Pouches</h1>
+                        <p>
+                            Glove pouches available in a variety of finishes. Attaches easily to duty belts up to 2.25" wide. Perferct fit for a pair of 
+                            surgical gloves.
+                        </p>
+                        <a href="products/beltkeeper" class="btn btn-block btn-default">Buy Glove Pouch &raquo;</a>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
+                                    <img src="~/images/glovepouches.png" alt="Glove Pouches" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 category-title">
+                <img src="~/images/betls_title.png" alt="Belts" />
+            </div>
+        </div>
+
+        <div class="row shelf">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
+                        <h1>Sam Browne Belt</h1>
+                        <p>
+                            Sam Browne belt available in a leather or basketweave finish. Attaches easily to duty belts up to 2.25" wide. Perferct fit for a pair of
+                            surgical gloves.
+                        </p>
+                        <a href="products/beltkeeper" class="btn btn-block btn-default">Buy Sam Browne Belt &raquo;</a>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
+                                    <img src="~/images/sambrowne_leather.png" alt="Sam Browne Leather Belt"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row shelf">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
+                        <h1>Liner Belt</h1>
+                        <p>
+                            Liner belt available in leather and basketweave. The liner belt is 1.25" wide and lined with velcro and
+                            designed to line the duty belt and keep it securely in place.
+                        </p>
+                        <a href="products/beltkeeper" class="btn btn-block btn-default">Buy Liner Belt &raquo;</a>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
+                                    <img src="~/images/linerbelt_leather.png" alt="Leather Liner Belt" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row shelf">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
+                        <h1>Dress Belt</h1>
+                        <p>
+                            Dress belt with buckle available in leather and basketweave. Belt is 1.25" wide and has a chrome buckle.
+                        </p>
+                        <a href="products/beltkeeper" class="btn btn-block btn-default">Buy Dress Belt &raquo;</a>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
+                                    <img src="~/images/belt_leather.png" alt="Leather Dress Belt" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 category-title">
+                <img src="~/images/betlkeepers_title.png" alt="Belts" />
+            </div>
+        </div>
+
+        <div class="row shelf">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 shelf-card">
+                        <h1>Belt Keeper</h1>
+                        <p>
+                            Dress belt with buckle available in leather and basketweave. Belt is 1.25" wide and has a chrome buckle.
+                        </p>
+                        <a href="products/beltkeeper" class="btn btn-block btn-default">Buy Belt Keeper &raquo;</a>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
+                                    <img src="~/images/beltkeeper_leather_with_snap_large.png" alt="Leather Belt Keeper"/>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 shelf-image-container">
+                                    <img src="~/images/beltkeeper_leather_closed_large.png" alt="Leather Belt Keeper" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USDutyGear.Data", "USDutyGe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USDutyGear.UPS", "USDutyGear.UPS\USDutyGear.UPS.csproj", "{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USDutyGear.TaxCloud", "USDutyGear.TaxCloud\USDutyGear.TaxCloud.csproj", "{2A784CCE-1ED4-4BE7-9077-8AD86563C07D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C8D5C9D-E36C-48E2-A7F5-74B28EA6E17E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A784CCE-1ED4-4BE7-9077-8AD86563C07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A784CCE-1ED4-4BE7-9077-8AD86563C07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A784CCE-1ED4-4BE7-9077-8AD86563C07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A784CCE-1ED4-4BE7-9077-8AD86563C07D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

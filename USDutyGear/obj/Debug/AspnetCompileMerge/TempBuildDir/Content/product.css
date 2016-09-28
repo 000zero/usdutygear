@@ -10,7 +10,6 @@
 
 .product {
     background-color: #fff;
-    box-shadow: 5px 5px 5px -4px #888, -5px 5px 5px -4px #888, 0 5px 4px -2px #888;
     font-size: 14px;
     color: #555;
 }
@@ -21,8 +20,8 @@
 }
 
 .product .product-info {
-    margin-left: 0;
-    /*clear: left;*/
+    margin-left: 0left
+    /*clear: ;_;*/
 }
 
 .product .product-info .adj-label {
@@ -44,6 +43,10 @@
     border-top: 1px solid #eee;
     /*background-image: url('../images/divider.png');
     background-position: center center;*/
+}
+
+.product .showcase {
+    padding-left: 0;
 }
 
 .product .showcase .main-image {

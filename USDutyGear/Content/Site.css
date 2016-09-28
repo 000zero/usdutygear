@@ -67,33 +67,58 @@
     border-bottom: 2px solid #0288C7;
 }
 
-/* collapsed header 
+/* collapsed header */
 @media (max-width: 767px) {
-    .navbar .navbar-header .navbar-brand {
-        width: 170px;
+    .navbar {
+        position: fixed;
+        top: -1px;
+        width: 100%;
     }
 
-    .navbar .navbar-nav li.belt-header-detail {
+    .navbar .navbar-collapse {
+        margin-top: 14px;
+        background-color: #fff;
+        border-top: 3px solid #0288C7;
+        position: relative;
+        overflow: visible
+    }
+
+    .navbar .navbar-collapse:before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        /*right: 0;*/
+        margin: 0 auto;
+        width: 0;
+        border-bottom: solid 30px #0288C7;
+        border-left: solid 20px transparent;
+        border-right: solid 20px transparent;
+    }
+
+    .navbar .nav.navbar-nav > li {
+        border: none;
+        /*width: 100%;*/
+    }
+
+    .navbar .navbar-collapse .nav.navbar-nav > li > a {
+        color: #444;
+    }
+
+    .navbar .nav.navbar-nav a {
+        color: #444;
+    }
+
+    .navbar .nav.navbar-nav a:hover {
+        color: #444;
+        background-color: #f1f1f1;
+        background-image: none;
+    }
+
+    .navbar .nav.navbar-nav.cart {
         display: none;
     }
-
-    .nav.navbar-nav .dropdown-toggle {
-        background-image: url("../images/transparent_black.png");
-    }
-
-    .navbar .navbar-collapse ul.nav.navbar-nav,
-    .navbar .navbar-nav > li.dropdown > ul.dropdown-menu {
-        margin-top: 0;
-    }
-
-    .navbar .navbar-nav > li.dropdown > ul.dropdown-menu {
-        background-color: #fff;
-        opacity: .85;
-    }
 }
-    */
-
-
 
 .navbar .navbar-header button.navbar-toggle {
     font-size: 30px;
@@ -208,18 +233,22 @@ h1, h2, h3, h4 {
     /*border: 1px solid #985e6d;*/
 }
 
-.navbar .glyphicon.glyphicon-shopping-cart {
-    color: #fff;
-    padding-top: 10px;
+.navbar .navbar-nav.cart > li {
+    border: none;
+}
+
+.navbar .navbar-nav.cart > li:hover {
+    background-image: none;
+    background-color: transparent;
 }
 
 .navbar .glyphicon.glyphicon-shopping-cart {
     color: #fff;
-    padding-top: 10px;
+    padding-top: 3px;
 }
 
 .navbar .glyphicon.glyphicon-shopping-cart:hover {
-    opacity: .9;
+    background-color: transparent;
     cursor: pointer;
 }
 

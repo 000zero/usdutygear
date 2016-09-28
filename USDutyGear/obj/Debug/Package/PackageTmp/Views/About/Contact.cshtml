@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/about")
+}
+
+<div class="container contact-us">
+    <div class="row content">
+        <div class="col-lg-5 col-sm-5 col-sm-5 logo-container">
+            <img src="/images/usdutygear_logo.png" alt="US DUTY GEAR Logo" class="logo"/>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 office">
+            <h2>US Duty Gear Office</h2>
+            <div>2131 S. Hellman Ave. Unit D</div>
+            <div>Ontario, CA 91761</div>
+            <div><a href="tel:+9093918800">(909) 391-8800</a>
+            </div>
+        </div>
+        <a href="/" class="btn btn-link">View Products</a>
+    </div>
+</div>

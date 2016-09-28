@@ -22,5 +22,11 @@ namespace USDutyGear.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Receipt()
+        {
+            return View();
+        }
     }
 }

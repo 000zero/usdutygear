@@ -6,7 +6,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="US DUTY GEAR, Duty Gear, Duty Belt, Liner Belt, Sam Browne Belt, Sam Browne, Magazine Holder, Magazine Pouch, 
+                                      Glove Pouch, Glove Holder, Handcuff Holder, Handcuff Pouch, Baton Ring, Baton Ring Holder, Belt Keeper,
+                                      Liner Belt Keeper, Duty Belt Keeper, Police Gear, Officer Gear, Security Gear, Nylon Belt, Leather Belt">
     <meta name="author" content="Steven Garcia">
 
     <title>US Duty Gear - @ViewBag.Title</title>
@@ -48,8 +50,7 @@
                             </ul>
                         </li>
                     }
-                    <li><a href="#">About Us</a></li>
-                    <li class="belt-header-detail"><img src="~/images/belt_header_detail.png" /></li>
+                    <li>@Html.ActionLink("Contact", "Contact", "About")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right cart">
                     <li>
@@ -74,7 +75,7 @@
                 <div class="col-lg-12">
                     <span>Copyright &copy; US Duty Gear @DateTime.Now.Year</span>
                     &bull;
-                    <span>@Html.ActionLink("Warranty Policy", "WarrantyPolicy", "About")</span>
+                    <span>@Html.ActionLink("Return Policy", "ReturnPolicy", "About")</span>
                     &bull;
                     <span>@Html.ActionLink("Privacy Policy", "PrivacyPolicy", "About")</span>
                 </div>

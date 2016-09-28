@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace USDutyGear
 {
@@ -47,6 +46,9 @@ namespace USDutyGear
 
             bundles.Add(new StyleBundle("~/Content/cart").Include(
                         "~/Content/cart.css"));
+
+            bundles.Add(new StyleBundle("~/Content/about").Include(
+                        "~/Content/about.css"));
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Configuration;
-using System.Net.Http.Headers;
 using System.Web.Script.Serialization;
 using USDutyGear.UPS.Models;
 
@@ -18,13 +16,13 @@ namespace USDutyGear.UPS.Services
         private const string LicenseKey = "UpsLicense";
         private const string AccountKey = "UpsAccount";
 
-        private static string User { get; set; }
-        private static string Pw { get; set; }
-        private static string RatingUrl { get; set; }
-        private static string License { get; set; }
+        private static string User { get; }
+        private static string Pw { get; }
+        private static string RatingUrl { get; }
+        private static string License { get; }
         private static string Account { get; set; }
 
-        private static Security Credentials { get; set; }
+        private static Security Credentials { get; }
 
         static UpsServices()
         {
@@ -47,6 +45,7 @@ namespace USDutyGear.UPS.Services
                 }
             };
 
+            // NOTE: global application effects???
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }

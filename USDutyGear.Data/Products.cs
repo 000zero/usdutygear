@@ -55,17 +55,7 @@ namespace USDutyGear.Data
                 return null;
 
             var row = dt.AsEnumerable().First();
-            return new Product
-            {
-                Id = Convert.ToInt32(row["id"]),
-                Name = Convert.ToString(row["name"]),
-                Category = Convert.ToString(row["category"]),
-                Model = Convert.ToString(row["model"]),
-                Price = Convert.ToDecimal(row["price"]),
-                Title = Convert.ToString(row["title"]),
-                ModelTemplate = Convert.ToString(row["model_template"]),
-                ModelRegex = new Regex(Convert.ToString(row["model_regex"]))
-            };
+            return ConvertRowToProduct(row);
         }
 
         public static List<ProductAdjustment> GetProductAdjustmentsByModel(string model)
@@ -213,28 +203,6 @@ namespace USDutyGear.Data
             return models.Distinct().OrderBy(x => x).ToList();
         } 
 
-        public static List<string> GetProductImagesByName(string name)
-        {
-            var dt = new DataTable();
-            var conn = new MySqlConnection(ConnectionString);
-            conn.Open();
-
-            var cmd = new MySqlCommand
-            {
-                Connection = conn,
-                CommandText = "SELECT path FROM product_images WHERE name = @name;"
-            };
-            cmd.Parameters.AddWithValue("@name", name);
-            cmd.ExecuteNonQuery();
-
-            var adapter = new MySqlDataAdapter(cmd);
-            adapter.Fill(dt);
-
-            conn.Close();
-
-            return dt.AsEnumerable().Select(row => Convert.ToString(row["path"])).ToList();
-        }
-
         public static ProductPackage GetProductPackage(string model)
         {
             var dt = new DataTable();
@@ -338,7 +306,7 @@ namespace USDutyGear.Data
             return categories.ToList();
         }
 
-        public static List<KeyValuePair<string, List<string>>> GetProductFeatures()
+        public static List<Product> GetProducts()
         {
             // TODO: logging error handling
             var dt = new DataTable();
@@ -348,7 +316,7 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = @"SELECT name, title FROM products"
+                CommandText = "SELECT * FROM products;"
             };
             cmd.ExecuteNonQuery();
 
@@ -357,14 +325,28 @@ namespace USDutyGear.Data
 
             conn.Close();
 
-            return dt.AsEnumerable()
-                .Select(row => new KeyValuePair<string, List<string>>(
-                    Convert.ToString(row["name"]),
-                    Convert.ToString(row["title"])
-                        .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(x => x.Trim())
-                        .ToList()
-                )).ToList();
+            if (dt.Rows.Count < 1)
+                return null;
+
+            return dt.AsEnumerable().Select(ConvertRowToProduct).ToList();
+        }
+
+        private static Product ConvertRowToProduct(DataRow row)
+        {
+            return new Product
+            {
+                Id = Convert.ToInt32(row["id"]),
+                Name = Convert.ToString(row["name"]),
+                Category = Convert.ToString(row["category"]),
+                Model = Convert.ToString(row["model"]),
+                Price = Convert.ToDecimal(row["price"]),
+                Title = Convert.ToString(row["title"]),
+                ModelTemplate = Convert.ToString(row["model_template"]),
+                ModelRegex = new Regex(Convert.ToString(row["model_regex"])),
+                DisplayOrder = Convert.ToInt32(row["display_order"]),
+                Description = Convert.ToString(row["description"]),
+                FeatureImages = Convert.ToString(row["feature_images"]).Split(new [] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList()
+            };
         }
     }
 }

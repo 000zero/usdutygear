@@ -1,0 +1,34 @@
+﻿.white-container {
+    background-color: #fff;
+    padding: 15px 30px;
+}
+
+.highlight {
+    color: darkorange;
+}
+
+.italics {
+    font-style: italic;
+    margin-top: 25px;
+}
+
+.contact-us .content {
+    background-color: #f1f1f1;
+    position: relative;
+}
+
+.contact-us .logo-container {
+    background-color: #fff;
+}
+
+.contact-us .logo {
+    display: block;
+    margin: 15px auto;
+    width: 70%;
+}
+
+.contact-us .btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

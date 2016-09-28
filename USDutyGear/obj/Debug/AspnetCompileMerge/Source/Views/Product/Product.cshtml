@@ -1,0 +1,151 @@
+﻿@model USDutyGear.Models.ProductViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@section styles
+{
+    <link href='https://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/product")
+}
+
+<div class="row">
+    <div class="container">
+        <div class="row product-breadcrumb">
+            <ol class="breadcrumb">
+                <li>@Html.ActionLink("Home", "Index")</li>
+                <li>@Model.Category</li>
+                <li>@Model.Name</li>
+            </ol>
+        </div>
+
+        <div id="product-section" class="row product">
+            <!-- Image section -->
+            <div class="col-lg-8 col-md-8 showcase">
+                <div class="main-image">
+                    <!-- large image -->
+                    <div>
+                        <img alt="@Model.Name" data-bind="attr: { src: '/images/' + selectedImage() + '_large.png' }"/>
+                    </div>
+                </div>
+                <div class="image-list">
+                    <div class="" data-bind="foreach: imageList">
+                        <!-- foreach goes here over the selected images -->
+                        <div class="image-thumbnail">
+                            <a href="javascript:;" data-bind="click: ctrl.vm.selectedImage($data)">
+                                <img data-bind="attr: { src: '/images/' + $data + '_small.png', alt: $data }" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 product-info">
+                <h1 class="product-info-title">@Model.Name</h1>
+                <div class="product-info-price" data-bind="text: calculatePrice"></div>
+                <hr/>
+
+                <!-- show all available finishes -->
+                @if (Model.Finishes.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span class="adj-label">Finish: </span>
+                        <select data-bind="options: Finishes,
+                                           optionsText: 'Name',
+                                           value: selectedFinish,
+                                           event: { onchange: setImageList }"></select>
+                    </div>
+                    <hr />
+                }
+                
+                <!-- show all available snaps -->
+                @if (Model.Snaps.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span class="adj-label">Snap: </span>
+                        <select data-bind="options: Snaps,
+                                           optionsText: 'Name',
+                                           value: selectedSnap,
+                                           event: { onchange: setImageList }"></select>
+                    </div>
+                    <hr />
+                }
+
+                <!-- show all available buckles -->
+                @if (Model.Buckles.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span class="adj-label">Buckle: </span>
+                        <select data-bind="options: Buckles,
+                                           optionsText: 'Name',
+                                           value: selectedBuckle,
+                                           event: { onchange: setImageList }"></select>
+                    </div>
+                    <hr />
+                }
+
+                <!-- show all available inner liners -->
+                @if (Model.InnerLiners.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span class="adj-label">Inner Liner: </span>
+                        <select data-bind="options: InnerLiners,
+                                           optionsText: 'Name',
+                                           value: selectedInnerLiner,
+                                           event: { onchange: setImageList }"></select>
+                    </div>
+                    <hr />
+                }
+
+                <!-- show all available sizes -->
+                @if (Model.Sizes.Count > 0)
+                {
+                    <div class="product-finish">
+                        <span class="adj-label">Size: </span>
+                        <select data-bind="options: Sizes,
+                                           optionsText: 'Name',
+                                           value: selectedSize"></select>
+                    </div>
+                    <hr />
+                }
+
+                <!-- show all available packages -->
+                @if ((Model.Packages?.Count ?? 0) > 0)
+                {
+                    <div class="product-finish">
+                        <span class="adj-label">Package: </span>
+                        <select data-bind="options: Packages,
+                                           optionsText: 'Name',
+                                           value: selectedPackage"></select>
+                    </div>
+                    <hr />
+                }
+
+                <div class="product-info">
+                    <span class="adj-label">Quantity: </span><input type="number" name="quantity" class="quantity" data-bind="value: quantity" />
+                    <button class="btn add-to-cart-btn" onclick="ctrl.addToCart()">Add to Cart</button>
+                </div>
+                <hr />
+
+                <div class="product-info">Description</div>
+                <div class="product-info">
+                    <ul>
+                        @foreach (var detail in Model.Details)
+                        {
+                            <li>@detail</li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/js/__product.js"></script>
+    <script type="text/javascript">
+            ctrl.init(@Html.Raw(Json.Encode(@Model)));
+    </script>
+}
