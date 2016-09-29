@@ -41,16 +41,16 @@
 
 .product-grid .left-column {
     padding-left: 0;
-    padding-right: 5px;
+    padding-right: 6px;
 }
 
 .product-grid .middle-column {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 .product-grid .right-column {
-    padding-left: 5px;
+    padding-left: 6px;
     padding-right: 0;
 }
 
@@ -71,6 +71,7 @@
 .product-grid .product-feature .feature-text {
     display: block;
     padding: 5px 10px;
+    min-height: 170px;
 }
 
 .product-grid .product-feature .feature-text h2 {

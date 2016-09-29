@@ -3,3 +3,8 @@ C:\Sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\USDutyGear.TaxCloud.pdb
 C:\Sandbox\usdutygear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.dll
 C:\Sandbox\usdutygear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.pdb
 C:\Sandbox\usdutygear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.csprojResolveAssemblyReference.cache
+C:\dev\sandbox\USDutyGear\USDutyGear.TaxCloud\bin\Debug\USDutyGear.TaxCloud.dll
+C:\dev\sandbox\USDutyGear\USDutyGear.TaxCloud\bin\Debug\USDutyGear.TaxCloud.pdb
+C:\dev\sandbox\USDutyGear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.csprojResolveAssemblyReference.cache
+C:\dev\sandbox\USDutyGear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.dll
+C:\dev\sandbox\USDutyGear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.pdb

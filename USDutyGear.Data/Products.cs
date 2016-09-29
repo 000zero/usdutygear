@@ -306,8 +306,21 @@ namespace USDutyGear.Data
             return categories.ToList();
         }
 
-        public static List<Product> GetProducts()
+        public static List<Product> GetProducts(string category = null)
         {
+            switch (category?.ToLower())
+            {
+                case "belts":
+                    category = Categories.Belts;
+                    break;
+                case "beltkeepers":
+                    category = Categories.BeltKeepers;
+                    break;
+                case "pouches":
+                    category = Categories.Pouches;
+                    break;
+            }
+
             // TODO: logging error handling
             var dt = new DataTable();
             var conn = new MySqlConnection(ConnectionString);
@@ -316,8 +329,13 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = "SELECT * FROM products;"
+                CommandText = string.IsNullOrWhiteSpace(category)
+                    ? "SELECT * FROM products;"
+                    : "SELECT * FROM products WHERE category = @category;"
             };
+
+            if (!string.IsNullOrWhiteSpace(category))
+                cmd.Parameters.AddWithValue("@category", category);
             cmd.ExecuteNonQuery();
 
             var adapter = new MySqlDataAdapter(cmd);

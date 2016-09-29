@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections.Generic;
 using Microsoft.Ajax.Utilities;
 using USDutyGear.Data;
 using USDutyGear.Core.Models;
@@ -78,9 +78,16 @@ namespace USDutyGear.Models
                 Prices.Add(m, ProductHelper.GetTitleAndPrice(m, product, adjustments, packages).Item2);
         }
 
-        public static ProductViewModel Create(Product products, List<ProductAdjustment> adjustments, List<string> details, Dictionary<string, string[]> images, List<ProductPackage> packages = null)
+        public static ProductViewModel Create(string model)
         {
-            return new ProductViewModel(products, adjustments, details, images, packages);
+            // get the product by model then load up the products related table data
+            var product = Products.GetProductByModel(model);
+            var details = Products.GetProductDetailsByName(product.Model);
+            var images = Products.GetProductImagesByModel(product.Model);
+            var adjustments = Products.GetProductAdjustmentsByModel(product.Model);
+            var packages = Products.GetProductPackages(product.Model);
+
+            return new ProductViewModel(product, adjustments, details, images, packages);
         }
     }
 }

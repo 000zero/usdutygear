@@ -2,18 +2,12 @@
 
 namespace USDutyGear.Core.Common
 {
-    // TODO: do we need this?
-    //public static class Categories
-    //{
-    //    public const string LinerBelt = "Liner Belt";
-    //    public const string Belt = "Belt";
-    //    public const string SamBrowneBelt = "Sam Brown Belt";
-    //    public const string DutyBelt = "Duty Belt";
-    //    public const string Keeper = "Keeper";
-    //    public const string KeyHolderKeeper = "Key Holder Keeper";
-    //    public const string GloveHolder = "Glove Holder";
-    //    public const string MagazineHolder = "Magazine Holder";
-    //}
+    public static class Categories
+    {
+        public const string Belts = "Belts";
+        public const string BeltKeepers = "Belt Keepers";
+        public const string Pouches = "Pouches";
+    }
 
     public class ProductCategory
     {
