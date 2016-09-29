@@ -4,11 +4,20 @@
 }
 
 .brand-showcase .showcase-img-container {
-    padding-left: 0
+    position: relative;
+    padding-left: 0;
 }
 
 .brand-showcase .showcase-img-container .showcase-img {
     width: 100%;
+}
+
+.brand-showcase .showcase-img-container .showcase-logo {
+    position: absolute;
+    z-index: 100;
+    left: 20px;
+    width: 50%;
+    top: 45px;
 }
 
 .brand-showcase .showcase-text .mission-statement {
@@ -32,16 +41,16 @@
 
 .product-grid .left-column {
     padding-left: 0;
-    padding-right: 5px;
+    padding-right: 6px;
 }
 
 .product-grid .middle-column {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 .product-grid .right-column {
-    padding-left: 5px;
+    padding-left: 6px;
     padding-right: 0;
 }
 
@@ -62,6 +71,11 @@
 .product-grid .product-feature .feature-text {
     display: block;
     padding: 5px 10px;
+    min-height: 170px;
+}
+
+.product-grid .product-feature .feature-text h2 {
+    text-align: center;
 }
 
 .product-grid .product-feature .feature-footer .price-label {

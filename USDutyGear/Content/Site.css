@@ -263,49 +263,61 @@ h1, h2, h3, h4 {
     text-decoration: underline;
 }
 
-/* Main - 017db9 : Secondary - 036d9f */
+/* Main - 017db9 : Secondary - 0288C7 : Terciary - 036d9f */
 
 .selectric {
-    position: relative;
-    background-color: #0288C7;
-    width: 160px;
-    height: 31px;
-}
-
-.selectric .select-container {
-    border: 1px solid #017db9;
-    width: 120px;
+    width: 150px;
     overflow: hidden;
-    background-color: #017db9;
+    background-color: #036d9f;
+    background-image: url('../images/selectric-arrow.png');
+    background-position: top right;
+    background-repeat: no-repeat;
     color: #fff;
     display: inline-block;
+    position: relative;
+    font-size: 14px;
 }
 
-.selectric .select-container:after {
-    content: '';
-    position: absolute;
-    top: 15px;
-    left: 130px;
-    /*right: 0;*/
-    /*margin: 0 auto;*/
-    /*width: 20px;*/
-    border-top: solid 7px #fff;
-    /*border-bottom: solid 20px #0288C7;*/
-    border-left: solid 9px transparent;
-    border-right: solid 9px transparent;
-}
-
-.selectric .select-container select {
+.selectric select {
     padding: 5px 8px;
-    width: 130%;
+    height: 40px;
     border: none;
     box-shadow: none;
     background: transparent;
     background-image: none;
     -webkit-appearance: none;
+    z-index: 100;
+    width: -moz-calc(100% + 20px);
+    width: -webkit-calc(100% + 20px);
+    width: -o-calc(100% + 20px);
+    width: calc(100% + 20px);
 }
 
-.selectric .select-container select:focus {
+.selectric select:hover {
+    cursor: pointer;
+}
+
+.selectric select:focus {
     outline: none;
+    border: none;
+}
+
+.selectric select:focus option {
+    background-color: #fff;
     color: #000;
+}
+
+.selectric select option:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+    color: #444;
+}
+
+input.with-style {
+    background-color: #036d9f;
+    border: none;
+    color: #fff;
+    padding-left: 5px;
+    height: 40px;
+    font-size: 16px;
 }

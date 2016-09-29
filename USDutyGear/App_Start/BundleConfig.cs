@@ -31,6 +31,10 @@ namespace USDutyGear
                         "~/js/__constants.js",
                         "~/js/__usdutygear.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/product").Include(
+                        "~/Scripts/jquery.zoom.min.js",
+                        "~/js/__product.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

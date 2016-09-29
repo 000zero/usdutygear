@@ -20,7 +20,7 @@
     top: 10px;
     text-transform: uppercase;
     transform: translateX(-50%);
-    z-index: 100;
+    z-index: 200;
 }
 
 .navbar > .container {
@@ -75,12 +75,33 @@
         width: 100%;
     }
 
+    .navbar .navbar-collapse {
+        margin-top: 14px;
+        background-color: #fff;
+        border-top: 3px solid #0288C7;
+        position: relative;
+        overflow: visible
+    }
+
+    .navbar .navbar-collapse:before {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        /*right: 0;*/
+        margin: 0 auto;
+        width: 0;
+        border-bottom: solid 30px #0288C7;
+        border-left: solid 20px transparent;
+        border-right: solid 20px transparent;
+    }
+
     .navbar .nav.navbar-nav > li {
         border: none;
         /*width: 100%;*/
     }
 
-    .navbar .nav.navbar-nav > li > a {
+    .navbar .navbar-collapse .nav.navbar-nav > li > a {
         color: #444;
     }
 
@@ -190,13 +211,11 @@ h1, h2, h3, h4 {
     border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
-    /*background-color: #985e6d;*/
     background-color: #017db9;
     color: #fff;
     padding-top: 10px;
     padding-bottom: 10px;
     border: 0;
-    /*border: 1px solid #985e6d;*/
     font-family: 'Oswald';
     font-size: 16px;
 }
@@ -209,7 +228,6 @@ h1, h2, h3, h4 {
 .btn:hover {
     background-color: #036d9f;
     color: #fff;
-    /*border: 1px solid #985e6d;*/
 }
 
 .navbar .navbar-nav.cart > li {
@@ -243,4 +261,63 @@ h1, h2, h3, h4 {
 .footer a {
     color: #fff;
     text-decoration: underline;
+}
+
+/* Main - 017db9 : Secondary - 0288C7 : Terciary - 036d9f */
+
+.selectric {
+    width: 150px;
+    overflow: hidden;
+    background-color: #036d9f;
+    background-image: url('../images/selectric-arrow.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+    color: #fff;
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+}
+
+.selectric select {
+    padding: 5px 8px;
+    height: 40px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    z-index: 100;
+    width: -moz-calc(100% + 20px);
+    width: -webkit-calc(100% + 20px);
+    width: -o-calc(100% + 20px);
+    width: calc(100% + 20px);
+}
+
+.selectric select:hover {
+    cursor: pointer;
+}
+
+.selectric select:focus {
+    outline: none;
+    border: none;
+}
+
+.selectric select:focus option {
+    background-color: #fff;
+    color: #000;
+}
+
+.selectric select option:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+    color: #444;
+}
+
+input.with-style {
+    background-color: #036d9f;
+    border: none;
+    color: #fff;
+    padding-left: 5px;
+    height: 40px;
+    font-size: 16px;
 }

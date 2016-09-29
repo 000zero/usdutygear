@@ -24,6 +24,7 @@ ctrl.getModel = function () {
     if (model.slice(-1) === '-')
         model = model.slice(0, -1);
 
+    ctrl.vm.model(model);
     return model;
 };
 
@@ -50,6 +51,7 @@ ctrl.setImageList = function () {
                 ctrl.vm.imageList.push(list[i]);
             }
             ctrl.vm.selectedImage(list[0]);
+            ctrl.selectImage(list[0]);
             break;
         }
 
@@ -59,7 +61,12 @@ ctrl.setImageList = function () {
 };
 
 ctrl.selectImage = function (imageName) {
-
+    
+    ctrl.vm.selectedImage(imageName);
+    setTimeout(function() {
+        $(".main-image").trigger("zoom.destroy");
+        $(".main-image").zoom();
+    }, 100);
 };
 
 ctrl.addToCart = function() {
@@ -96,6 +103,7 @@ ctrl.init = function (vm) {
     ctrl.vm.selectedPackage = ko.observable(ctrl.vm.Packages()[0]);
     ctrl.vm.selectedImage = ko.observable();
     ctrl.vm.quantity = ko.observable("1");
+    ctrl.vm.model = ko.observable();
     // functions
     ctrl.vm.calculatePrice = ko.computed(ctrl.calculatePrice, ctrl.vm);
     ctrl.vm.setImageList = ko.computed(ctrl.setImageList, ctrl.vm);
@@ -103,5 +111,8 @@ ctrl.init = function (vm) {
 
     ctrl.setImageList();
     ctrl.calculatePrice();
+    ctrl.getModel();
+
+    $(".main-image").zoom();
 };
 

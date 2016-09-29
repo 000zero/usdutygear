@@ -13,6 +13,7 @@ namespace USDutyGear.Models
         public string Model { get; set; }
         public string Category { get; set; }
         public decimal Price { get; set; }
+        public string Description { get; set; }
         public List<string> Details { get; set; }
         public Dictionary<string, string[]> Images { get; set; }
         public string SelectedImage { get; set; }
@@ -30,6 +31,7 @@ namespace USDutyGear.Models
             Model = product.Model;
             Category = product.Category;
             Price = product.Price;
+            Description = product.Description;
             Details = details;
             Images = images;
             Finishes = adjustments
