@@ -53,6 +53,10 @@ namespace USDutyGear
 
             bundles.Add(new StyleBundle("~/Content/about").Include(
                         "~/Content/about.css"));
+
+            bundles.Add(new StyleBundle("~/Content/ie").Include(
+                        "~/Content/ie-10-11.css",
+                        "~/Content/ie-12.css"));
         }
     }
 }

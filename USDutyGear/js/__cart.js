@@ -2,15 +2,9 @@
 
 var ctrl = {};
 
-ctrl.doUpsStuff = function () {
-    var validation = ctrl.validateShippingAddress();
-    if (!validation.valid) {
-        // set error message notification
-        ctrl.vm.shipping.ShowError(true);
-        ctrl.vm.shipping.ErrorMessage(validation.error);
-        return;
-    }
 
+
+ctrl.getUpsShippingRates = function() {
     ctrl.vm.shipping.ShowError(false);
 
     var request = {
@@ -25,13 +19,7 @@ ctrl.doUpsStuff = function () {
         }
     };
 
-    $.ajax({
-        url: "/api/shipping/rates",
-        type: "POST",
-        data: JSON.stringify(request),
-        contentType: "application/json",
-        dataType: "json"
-    }).then(function (response) {
+    httpService.postJSON("/api/shipping/rates", request).then(function (response) {
         if (response) {
             // build the shipping options view model
             ctrl.vm.shipping.Options.removeAll();
@@ -44,6 +32,35 @@ ctrl.doUpsStuff = function () {
             });
         }
     });
+};
+
+ctrl.verifyTaxAddress = function () {
+
+    var request = {
+        "Address1": [ctrl.vm.cart.Street()],
+        "Address2": "",
+        "City": ctrl.vm.cart.City(),
+        "State": ctrl.vm.cart.State(),
+        "Zip5": ctrl.vm.cart.Zip(),
+        "Zip4": ""
+    };
+
+    httpService.postJSON("/api/taxes/address/verify", request).then(function(response) {
+        alert(JSON.stringify(response));
+    });
+};
+
+ctrl.doUpsStuff = function () {
+    var validation = ctrl.validateShippingAddress();
+    if (!validation.valid) {
+        // set error message notification
+        ctrl.vm.shipping.ShowError(true);
+        ctrl.vm.shipping.ErrorMessage(validation.error);
+        return;
+    }
+
+    ctrl.getUpsShippingRates();
+    ctrl.verifyTaxAddress();
 };
 
 ctrl.checkout = function () {

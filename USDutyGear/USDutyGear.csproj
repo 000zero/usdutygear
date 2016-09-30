@@ -216,6 +216,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShippingApiController.cs" />
+    <Compile Include="Controllers\TaxApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,6 +241,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cart.css" />
     <Content Include="Content\home.css" />
+    <Content Include="Content\ie-10-11.css" />
+    <Content Include="Content\ie-12.css" />
+    <Content Include="Content\ie-9-and-lower.css" />
     <Content Include="Content\product.css" />
     <Content Include="Content\earth2_home.css" />
     <Content Include="favicon.ico" />
@@ -310,6 +314,7 @@
     <Content Include="images\favicon.ico" />
     <Content Include="images\navbar-btn-highlight.png" />
     <Content Include="images\selectric-arrow.png" />
+    <Content Include="images\showcase.png" />
     <Content Include="images\thumbnail-100.jpg" />
     <Content Include="images\thumbnail-11-1.jpg" />
     <Content Include="images\thumbnail-120.jpg" />
@@ -464,6 +469,10 @@
     <ProjectReference Include="..\USDutyGear.Data\USDutyGear.Data.csproj">
       <Project>{0ec63df0-e477-477d-bb2e-558e0223da8c}</Project>
       <Name>USDutyGear.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\USDutyGear.TaxCloud\USDutyGear.TaxCloud.csproj">
+      <Project>{2a784cce-1ed4-4be7-9077-8ad86563c07d}</Project>
+      <Name>USDutyGear.TaxCloud</Name>
     </ProjectReference>
     <ProjectReference Include="..\USDutyGear.UPS\USDutyGear.UPS.csproj">
       <Project>{6c8d5c9d-e36c-48e2-a7f5-74b28ea6e17e}</Project>

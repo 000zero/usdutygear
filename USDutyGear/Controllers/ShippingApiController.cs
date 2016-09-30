@@ -49,7 +49,7 @@ namespace USDutyGear.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        private bool ValidateShippingInfo(ShippingInfo info, out string error)
+        private static bool ValidateShippingInfo(ShippingInfo info, out string error)
         {
             if (string.IsNullOrWhiteSpace(info.Name))
             {

@@ -281,3 +281,5 @@ C:\dev\sandbox\usdutygear\USDutyGear\bin\Microsoft.Owin.Security.MicrosoftAccoun
 C:\dev\sandbox\usdutygear\USDutyGear\obj\Debug\USDutyGear.csprojResolveAssemblyReference.cache
 C:\dev\sandbox\usdutygear\USDutyGear\obj\Debug\USDutyGear.dll
 C:\dev\sandbox\usdutygear\USDutyGear\obj\Debug\USDutyGear.pdb
+C:\Sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.dll
+C:\Sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.pdb

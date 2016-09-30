@@ -1,0 +1,9 @@
+﻿@supports (-ms-accelerator:true) {
+    .product-grid .product-feature .feature-text {
+        min-height: 185px;
+    }
+
+    .selectric > select {
+        width: calc(100% + 30px);
+    }
+}

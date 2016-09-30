@@ -35,11 +35,6 @@ namespace USDutyGear.Controllers
                 cart.SubTotal += item.Total;
             }
 
-            // apply shipping and tax if a service code is specified
-            cart.Shipping = 7.99m;
-
-            // TODO: apply tax
-
             cart.GrandTotal = cart.SubTotal + cart.Shipping;
 
             return Request.CreateResponse(HttpStatusCode.OK, cart);
