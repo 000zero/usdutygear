@@ -1,5 +1,7 @@
 ﻿using System.Web.Configuration;
 using System.Collections.Generic;
+using USDutyGear.UPS.Models;
+using WebGrease.Extensions;
 
 namespace USDutyGear.Common
 {
@@ -11,6 +13,14 @@ namespace USDutyGear.Common
         public static string State { get; set; }
         public static string CountryCode { get; set; }
         public static string ZipCode { get; set; }
+        public static ShippingInfo UpsOrigin { get; set; }
+        public static TaxCloud.Models.Address TaxCloudOrigin { get; set; }
+        public static string OrdersEmailAddress { get; set; }
+        // payeezy settings
+        public static string PayeezyPostUrl { get; set; }
+        public static string PayeezyPageId { get; set; }
+        public static string PayeezyLogin { get; set; }
+        public static string PayeezyTransactionKey { get; set; }
 
         static USDutyGearConfig()
         {
@@ -20,6 +30,33 @@ namespace USDutyGear.Common
             State = WebConfigurationManager.AppSettings["UsdgState"];
             CountryCode = WebConfigurationManager.AppSettings["UsdgCountry"];
             ZipCode = WebConfigurationManager.AppSettings["UsdgZip"];
+            PayeezyPostUrl = WebConfigurationManager.AppSettings["PayeezyUrl"];
+            PayeezyPageId = WebConfigurationManager.AppSettings["PayeezyPageId"];
+            PayeezyLogin = WebConfigurationManager.AppSettings["PayeezyLogin"];
+            PayeezyTransactionKey = WebConfigurationManager.AppSettings["PayeezyTransactionKey"];
+            OrdersEmailAddress = WebConfigurationManager.AppSettings["UsdgOrdersEmail"];
+
+            UpsOrigin = new ShippingInfo
+            {
+                Name = ShippingName,
+                Address = new UPS.Models.Address
+                {
+                    AddressLine = AddressLines,
+                    City = City,
+                    StateProvinceCode = State,
+                    CountryCode = CountryCode,
+                    PostalCode = ZipCode
+                }
+            };
+
+            TaxCloudOrigin = new TaxCloud.Models.Address
+            {
+                Address1 = string.Join(" ", AddressLines),
+                Address2 = string.Empty,
+                City = City,
+                State = State,
+                Zip5 = ZipCode
+            };
         }
     }
 }

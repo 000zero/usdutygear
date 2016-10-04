@@ -49,7 +49,7 @@ namespace USDutyGear.UPS.Services
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }
-
+        
         public static RateResponse GetRatings(Guid requestId, ShippingInfo from, ShippingInfo to, Dimensions dimensions = null, PackageWeight weight = null)
         {
             RateResponse response;

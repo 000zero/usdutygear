@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,24 +12,6 @@ namespace USDutyGear.Controllers
     [RoutePrefix("api/shipping")]
     public class ShippingApiController : ApiController
     {
-        private static ShippingInfo Origin { get; set; }
-
-        static ShippingApiController()
-        {
-            Origin = new ShippingInfo
-            {
-                Name = USDutyGearConfig.ShippingName,
-                Address = new Address
-                {
-                    AddressLine = USDutyGearConfig.AddressLines,
-                    City = USDutyGearConfig.City,
-                    StateProvinceCode = USDutyGearConfig.State,
-                    CountryCode = USDutyGearConfig.CountryCode,
-                    PostalCode = USDutyGearConfig.ZipCode
-                }
-            };
-        }
-
         [HttpPost]
         [Route("rates")]
         public HttpResponseMessage GetShippingRates(ShippingInfo to)
@@ -43,7 +24,7 @@ namespace USDutyGear.Controllers
             // TODO: validate address here
 
             var guid = Guid.NewGuid();
-            var result = UpsServices.GetRatings(guid, Origin, to);
+            var result = UpsServices.GetRatings(guid, USDutyGearConfig.UpsOrigin, to);
             result.RatedShipment = result.RatedShipment.OrderBy(x => x.TotalCharges.MonetaryValue).ToList();
 
             return Request.CreateResponse(HttpStatusCode.OK, result);

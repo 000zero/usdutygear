@@ -6,10 +6,10 @@ namespace USDutyGear.Models
     {
         public List<CartItem> Items { get; set; }
         public decimal SubTotal { get; set; }
+        public decimal TaxAmount { get; set; }
         public decimal GrandTotal { get; set; }
         public decimal Shipping { get; set; }
         public string ShippingServiceCode { get; set; }
-        public decimal Tax { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }
         public string City { get; set; }

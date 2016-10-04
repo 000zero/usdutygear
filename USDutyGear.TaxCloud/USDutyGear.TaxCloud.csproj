@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\CartItemResponse.cs" />
     <Compile Include="Models\SalesTaxRequest.cs" />
+    <Compile Include="Models\SalesTaxResponse.cs" />
     <Compile Include="Models\TaxCloudRequest.cs" />
     <Compile Include="Models\VerifyAddressRequest.cs" />
     <Compile Include="Models\VerifyAddressResponse.cs" />
