@@ -4,18 +4,21 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
+using USDutyGear.Data;
 using USDutyGear.Common;
 using USDutyGear.Models;
-using USDutyGear.TaxCloud.Services;
 using USDutyGear.UPS.Models;
+using USDutyGear.Core.Models;
 using USDutyGear.UPS.Services;
+using USDutyGear.TaxCloud.Services;
 using Address = USDutyGear.TaxCloud.Models.Address;
+using System.Web.Script.Serialization;
 
 namespace USDutyGear.Controllers
 {
     public class CheckoutController : Controller
     {
-        // GET: Checkout
+        // Checkout
         [HttpPost]
         public ActionResult Checkout(CheckoutViewModel cart)
         {
@@ -23,6 +26,7 @@ namespace USDutyGear.Controllers
 
             // validate email
 
+            var cartId = Guid.NewGuid();
             cart.Items = CartHelper.FillCartItemInfo(cart.Items);
 
             cart.SubTotal = cart.Items.Sum(x => x.Price*x.Quantity);
@@ -52,7 +56,7 @@ namespace USDutyGear.Controllers
                 }).ToList());
 
             cart.Tax = taxResponse.CartItemsResponse.Sum(x => x.TaxAmount);
-
+            
             // get the shipping price for a specific service
             var guid = Guid.NewGuid();
             var to = new ShippingInfo
@@ -79,11 +83,29 @@ namespace USDutyGear.Controllers
             // set the grand total
             cart.GrandTotal = cart.SubTotal + cart.Tax + cart.Shipping;
 
-            // TODO: save the order here
+            var order = new Order
+            {
+                CartId = Guid.Parse(taxResponse.CartID),
+                UpsServiceCode = cart.ShippingServiceCode,
+                Tax = cart.Tax,
+                Shipping = cart.Shipping,
+                ItemTotal = cart.SubTotal,
+                Email = cart.Email,
+                Name = cart.Name,
+                Street = cart.Street,
+                City = cart.City,
+                State = cart.State,
+                PostalCode = cart.Zip,
+                Items = cart.Items.Select(x => new OrderItem
+                {
+                    Model = x.Model,
+                    Quantity = x.Quantity
+                }).ToList()
+            };
+            cart.OrderId = Orders.SaveOrder(order);
 
             cart.PayeezyPostUrl = USDutyGearConfig.PayeezyPostUrl;
             cart.PayeezyPageId = USDutyGearConfig.PayeezyPageId;
-            cart.PayeezyLogin = USDutyGearConfig.PayeezyLogin;
             cart.OrderConfirmedEmail = USDutyGearConfig.OrdersEmailAddress;
             cart.Hash = CreateHash(cart.PayeezyPageId, cart.Sequence, cart.TimeStamp, cart.GrandTotal, USDutyGearConfig.PayeezyTransactionKey);
 
@@ -107,15 +129,39 @@ namespace USDutyGear.Controllers
         }
 
         [HttpPost]
-        public ActionResult Receipt()
+        public ActionResult Complete(PayeezyPaymentResultsModel paymentResults)
         {
+            var vm = new CheckoutCompleteViewModel();
+
+            if (paymentResults.Transaction_Approved != "YES")
+            {
+                // transaction FAILED update order to Rejected
+                // show error on page
+
+                return View(vm);
+            }
+
+            vm.Success = true;
+            vm.OrderId = Convert.ToInt32(paymentResults.Reference_No);
+            vm.Receipt = paymentResults.exact_ctr.Replace("\r\n", "<br />");
+            
+            // load the order
+
+            // finalize order on tax cloud 
+            //TaxCloudService.CaptureSale(paymentResults.Reference_No, )
+
+            // clear the cart upon success (this needs to be done client side)
+
             // finalize UPS shipping API call
 
             // finalize TaxCloud API call
 
             // send emails
+            var serializer = new JavaScriptSerializer();
 
-            return View();
+            vm.responseJSON = serializer.Serialize(paymentResults);
+
+            return View(vm);
         }
     }
 }

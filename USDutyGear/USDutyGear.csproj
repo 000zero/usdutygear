@@ -225,8 +225,10 @@
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\CheckoutCompleteViewModel.cs" />
     <Compile Include="Models\CheckoutViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\PayeezyPaymentResultsModel.cs" />
     <Compile Include="Models\ProductsViewModel.cs" />
     <Compile Include="Models\USDutyGearBaseViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -451,6 +453,7 @@
     <Content Include="Views\About\ReturnPolicy.cshtml" />
     <Content Include="Views\Checkout\Receipt.cshtml" />
     <Content Include="Views\Products\Products.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

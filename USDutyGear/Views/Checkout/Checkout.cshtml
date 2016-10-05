@@ -20,7 +20,7 @@
         </div>
         <div class="row checkout-items">
             <input name="x_login" value="@Model.PayeezyPageId" type="hidden"/>
-            <input name="x_amount" value="@Model.GrandTotal" type="hidden"/>
+            <input name="x_amount" value="@Model.GrandTotal.ToString("F")" type="hidden"/>
             <input name="x_fp_sequence" value="@Model.Sequence" type="hidden"/>
             <input name="x_fp_timestamp" value="@Model.TimeStamp" type="hidden"/>
             <input name="x_fp_hash" value="@Model.Hash" type="hidden"/>
@@ -28,12 +28,22 @@
             <!-- optional stuff -->
             <input name="x_freight" value="@Model.Shipping" type="hidden"/>
             <input name="x_tax" value="@Model.Tax" type="hidden" />
-            <input name="x_test_request" value="@(Model.TestMode ? "TRUE" : "FALSE")" type="hidden"/>
             <input name="x_type" value="AUTH_CAPTURE" type="hidden"/>
             <input name="x_email_customer" value="TRUE" type="hidden"/>
             <input name="x_merchant_email" value="@Model.OrderConfirmedEmail" type="hidden"/>
             <input name="x_cust_id" value="@Model.OrderId" type="hidden"/>
+            <input name="x_po_num" value="@Model.OrderId" type="hidden" />
+            <input name="x_invoice_num" value="@Model.OrderId" type="hidden"/>
             <input name="x_email" value="@Model.Email" type="hidden"/>
+            <input name="x_first_name" value="@Model.FirstName" type="hidden"/>
+            <input name="x_last_name" value="@Model.LastName" type="hidden"/>
+            <input name="x_ship_to_first_name" value="@Model.FirstName" type="hidden" />
+            <input name="x_ship_to_last_name" value="@Model.LastName" type="hidden" />
+            <input name="x_ship_to_address" value="@Model.Street" type="hidden"/>
+            <input name="x_ship_to_city" value="@Model.City" type="hidden" />
+            <input name="x_ship_to_state" value="@Model.State" type="hidden" />
+            <input name="x_ship_to_zip" value="@Model.Zip" type="hidden" />
+            <input name="x_ship_to_country" value="US" type="hidden" />
             <table class="invoice-table">
                 <thead>
                     <tr>

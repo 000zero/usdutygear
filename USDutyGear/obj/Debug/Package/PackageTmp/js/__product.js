@@ -31,7 +31,7 @@ ctrl.getModel = function () {
 ctrl.calculatePrice = function () {
     var model = ctrl.getModel();
 
-    price = ctrl.vm.Prices[model]
+    var price = ctrl.vm.Prices[model]
         ? ctrl.vm.Prices[model]
         : 0;
 

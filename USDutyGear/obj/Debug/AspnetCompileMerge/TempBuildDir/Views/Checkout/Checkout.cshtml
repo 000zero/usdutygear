@@ -6,53 +6,103 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row checkout">
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <h1>Checkout</h1>
+@section styles
+{
+    @Styles.Render("~/Content/checkout")
+}
+
+<form name="checkout-form" action="@Model.PayeezyPostUrl" method="POST">
+    <div class="container checkout">
+        <div class="row checkout-header">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h1>Checkout</h1>
+            </div>
+        </div>
+        <div class="row checkout-items">
+            <input name="x_login" value="@Model.PayeezyPageId" type="hidden"/>
+            <input name="x_amount" value="@Model.GrandTotal.ToString("F")" type="hidden"/>
+            <input name="x_fp_sequence" value="@Model.Sequence" type="hidden"/>
+            <input name="x_fp_timestamp" value="@Model.TimeStamp" type="hidden"/>
+            <input name="x_fp_hash" value="@Model.Hash" type="hidden"/>
+            <input name="x_show_form" value="PAYMENT_FORM" type="hidden">
+            <!-- optional stuff -->
+            <input name="x_freight" value="@Model.Shipping" type="hidden"/>
+            <input name="x_tax" value="@Model.Tax" type="hidden" />
+            <input name="x_type" value="AUTH_CAPTURE" type="hidden"/>
+            <input name="x_email_customer" value="TRUE" type="hidden"/>
+            <input name="x_merchant_email" value="@Model.OrderConfirmedEmail" type="hidden"/>
+            <input name="x_cust_id" value="@Model.OrderId" type="hidden"/>
+            <input name="x_po_num" value="@Model.OrderId" type="hidden" />
+            <input name="x_invoice_num" value="@Model.OrderId" type="hidden"/>
+            <input name="x_email" value="@Model.Email" type="hidden"/>
+            <input name="x_first_name" value="@Model.FirstName" type="hidden"/>
+            <input name="x_last_name" value="@Model.LastName" type="hidden"/>
+            <input name="x_ship_to_first_name" value="@Model.FirstName" type="hidden" />
+            <input name="x_ship_to_last_name" value="@Model.LastName" type="hidden" />
+            <input name="x_ship_to_address" value="@Model.Street" type="hidden"/>
+            <input name="x_ship_to_city" value="@Model.City" type="hidden" />
+            <input name="x_ship_to_state" value="@Model.State" type="hidden" />
+            <input name="x_ship_to_zip" value="@Model.Zip" type="hidden" />
+            <input name="x_ship_to_country" value="US" type="hidden" />
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Line Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Model</td>
+                            <td>@item.Title</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price.ToString("C")</td>
+                            <td>
+                                @item.Total.ToString("C")
+                                <input name="x_line_item" value="@string.Join("<|>", item.Model, item.Title, item.Title, item.Quantity, item.Price)" type="hidden" />
+                            </td>
+                        </tr>
+                    }
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Customer Info</td>
+                        <td colspan="2">@Model.Name</td>
+                        <td>Sub Total</td>
+                        <td>@Model.SubTotal.ToString("C")</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">@Model.Email</td>
+                        <td>Shipping (@Model.ShippingDescription)</td>
+                        <td>@Model.Shipping.ToString("C")</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">@Model.Street</td>
+                        <td>Tax</td>
+                        <td>@Model.Tax.ToString("C")</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td></td>
+                        <td colspan="2">@Model.City, @Model.State @Model.Zip</td>
+                        <td>Total</td>
+                        <td>@Model.GrandTotal.ToString("C")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="row checkout-footer">
+            <button type="submit" class="btn btn-primary order-btn">Place Order</button>
         </div>
     </div>
-    <div class="checkout-items">
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>Description</th>
-                    <th>Quantit</th>
-                    <th>Unit Price</th>
-                    <th>Line Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in @Model.Items)
-            {
-                    <tr>
-                        <td>@item.Model</td>
-                        <td>@item.Title</td>
-                        <td>@item.Quantity</td>
-                        <td>@item.Price</td>
-                        <td>@item.Total</td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4">Sub Total</td>
-                    <td>$@Model.SubTotal.ToString("C")</td>
-                </tr>
-                <tr>
-                    <td colspan="4">Shipping (@Model.ShippingDescription)</td>
-                    <td>$@Model.Shipping.ToString("C")</td>
-                </tr>
-                <tr>
-                    <td colspan="4">Tax</td>
-                    <td>$@Model.Tax.ToString("C")</td>
-                </tr>
-                <tr class="total-row">
-                    <td colspan="4">Total</td>
-                    <td>$@Model.Total.ToString("C")</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-</div>
+</form>

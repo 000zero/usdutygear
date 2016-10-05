@@ -1,7 +1,6 @@
 ﻿using System.Web.Configuration;
 using System.Collections.Generic;
 using USDutyGear.UPS.Models;
-using WebGrease.Extensions;
 
 namespace USDutyGear.Common
 {
@@ -19,7 +18,6 @@ namespace USDutyGear.Common
         // payeezy settings
         public static string PayeezyPostUrl { get; set; }
         public static string PayeezyPageId { get; set; }
-        public static string PayeezyLogin { get; set; }
         public static string PayeezyTransactionKey { get; set; }
 
         static USDutyGearConfig()
@@ -32,7 +30,6 @@ namespace USDutyGear.Common
             ZipCode = WebConfigurationManager.AppSettings["UsdgZip"];
             PayeezyPostUrl = WebConfigurationManager.AppSettings["PayeezyUrl"];
             PayeezyPageId = WebConfigurationManager.AppSettings["PayeezyPageId"];
-            PayeezyLogin = WebConfigurationManager.AppSettings["PayeezyLogin"];
             PayeezyTransactionKey = WebConfigurationManager.AppSettings["PayeezyTransactionKey"];
             OrdersEmailAddress = WebConfigurationManager.AppSettings["UsdgOrdersEmail"];
 

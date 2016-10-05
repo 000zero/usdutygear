@@ -1,0 +1,21 @@
+﻿@model USDutyGear.Models.CheckoutCompleteViewModel
+
+@{
+    ViewBag.Title = "Complete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <h2>Complete</h2>
+            <div>
+                Order @(Model.Success ? "Complete!" : "Failed!"). You're order number is #@Model.OrderId. Thank you for your business.
+            </div>
+            <p>@Html.Raw(Model.Receipt)</p>
+        </div>
+    </div>
+    
+    
+    @Model.responseJSON
+</div>

@@ -11,7 +11,9 @@ namespace USDutyGear.Models
         {
             TestMode = true;
             Sequence = new Random().Next(0, _maxSequence);
-            TimeStamp = DateTime.UtcNow.Ticks;
+            TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            int secondsSinceEpoch = (int)t.TotalSeconds;
+            TimeStamp = secondsSinceEpoch;
         }
 
         public List<CartItem> Items { get; set; }
@@ -29,12 +31,33 @@ namespace USDutyGear.Models
         public string Zip { get; set; }
         public string PayeezyPostUrl { get; set; }
         public string PayeezyPageId { get; set; }
-        public string PayeezyLogin { get; set; }
         public bool TestMode { get; set; }
         public string OrderConfirmedEmail { get; set; }
         public int OrderId { get; set; }
         public int Sequence { get; set; }
         public string Hash { get; set; }
         public long TimeStamp { get; set; }
+
+        public string FirstName
+        {
+            get
+            {
+                var tokens = Name.Split(' ');
+                if (tokens.Length < 1)
+                    return string.Empty;
+                return tokens[0];
+            }
+        }
+
+        public string LastName
+        {
+            get
+            {
+                var tokens = Name.Split(' ');
+                if (tokens.Length < 2)
+                    return string.Empty;
+                return Name.Substring(Name.IndexOf(' ')).Trim();
+            }
+        }
     }
 }

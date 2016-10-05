@@ -1,0 +1,9 @@
+﻿@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .product-grid .product-feature .feature-text {
+        min-height: 185px;
+    }
+
+    .selectric > select {
+        width: calc(100% + 30px);
+    }
+}

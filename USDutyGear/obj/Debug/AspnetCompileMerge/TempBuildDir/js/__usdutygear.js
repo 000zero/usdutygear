@@ -113,3 +113,18 @@ var rootCtrl = (function () {
         }
     };
 })();
+
+
+var httpService = (function() {
+    return {
+        postJSON: function(url, data) {
+            return $.ajax({
+                url: url,
+                type: "POST",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "json"
+            });
+        }
+    };
+})();

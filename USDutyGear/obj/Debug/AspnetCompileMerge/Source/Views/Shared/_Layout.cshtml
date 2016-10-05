@@ -22,6 +22,11 @@
     @Styles.Render("~/Content/css")
     @RenderSection("styles", required: false)
 
+    <!-- [if IE] -->
+    <link href="~/Content/ie-9-and-lower.css" rel="stylesheet" type="text/css">
+    <!-- [endif] -->
+    @Styles.Render("~/Content/ie")
+
     @Scripts.Render("~/bundles/modernizr")
 
 </head>

@@ -1,0 +1,27 @@
+﻿.checkout .checkout-items {
+    background-color: #fff;
+}
+
+.invoice-table {
+    margin: 15px;
+    width: calc(100% - 30px);
+    border: 1px solid #000;
+    color: #000;
+}
+
+.invoice-table thead {
+    border-bottom: 1px solid #000;
+}
+
+.invoice-table th,
+.invoice-table td {
+    padding: 5px;
+}
+
+.invoice-table tfoot {
+    border-top: 1px solid #000;
+}
+
+.checkout .checkout-footer .order-btn {
+    float: right;
+}

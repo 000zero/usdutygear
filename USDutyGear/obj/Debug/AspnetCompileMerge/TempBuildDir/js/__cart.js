@@ -2,15 +2,9 @@
 
 var ctrl = {};
 
-ctrl.doUpsStuff = function () {
-    var validation = ctrl.validateShippingAddress();
-    if (!validation.valid) {
-        // set error message notification
-        ctrl.vm.shipping.ShowError(true);
-        ctrl.vm.shipping.ErrorMessage(validation.error);
-        return;
-    }
 
+
+ctrl.getUpsShippingRates = function() {
     ctrl.vm.shipping.ShowError(false);
 
     var request = {
@@ -25,13 +19,7 @@ ctrl.doUpsStuff = function () {
         }
     };
 
-    $.ajax({
-        url: "/api/shipping/rates",
-        type: "POST",
-        data: JSON.stringify(request),
-        contentType: "application/json",
-        dataType: "json"
-    }).then(function (response) {
+    httpService.postJSON("/api/shipping/rates", request).then(function (response) {
         if (response) {
             // build the shipping options view model
             ctrl.vm.shipping.Options.removeAll();
@@ -44,6 +32,69 @@ ctrl.doUpsStuff = function () {
             });
         }
     });
+};
+
+ctrl.verifyTaxAddress = function (address) {
+    return httpService.postJSON("/api/taxes/address/verify", address);
+};
+
+ctrl.getSalesTax = function () {
+    var destination = {
+        "Address1": ctrl.vm.cart.Street(),
+        "Address2": "",
+        "City": ctrl.vm.cart.City(),
+        "State": ctrl.vm.cart.State(),
+        "Zip5": ctrl.vm.cart.Zip(),
+        "Zip4": ""
+    };
+
+    ctrl.verifyTaxAddress(destination).then(function(response) {
+        if (response.ErrNumber != "0") {
+            // TODO: return error promise
+        }
+
+        // TODO: test if the address verified is good
+        var verifiedTaxAddress = {
+            "Address1": response.Address1,
+            "Address2": response.Address2,
+            "City": response.City,
+            "State": response.State,
+            "Zip5": response.Zip5,
+            "Zip4": response.Zip4
+        };
+
+        var cartIndex = 0;
+        var request = {
+            destination: verifiedTaxAddress,
+            cartItems: _.map(ctrl.vm.cart.Items(), function (item) {
+                return {
+                    "Qty": item.Quantity(),
+                    "Price": item.Price,
+                    "TIC": "00000",
+                    "ItemID": item.Model,
+                    "Index": cartIndex++
+                };
+            })
+        };
+
+        httpService.postJSON("/api/taxes/sales", request).then(function(response) {
+            if (response.Success)
+                ctrl.vm.cart.TaxAmount(response.TaxAmount);
+        });
+    });
+};
+
+ctrl.doUpsStuff = function () {
+    var validation = ctrl.validateShippingAddress();
+    if (!validation.valid) {
+        // set error message notification
+        ctrl.vm.shipping.ShowError(true);
+        ctrl.vm.shipping.ErrorMessage(validation.error);
+        return;
+    }
+
+    ctrl.getUpsShippingRates();
+    ctrl.getSalesTax();
 };
 
 ctrl.checkout = function () {
@@ -146,6 +197,8 @@ ctrl.init = function () {
         ctrl.vm.cart.State = ko.observable(ctrl.vm.cart.State);
         ctrl.vm.cart.Zip = ko.observable(ctrl.vm.cart.Zip);
 
+        ctrl.vm.cart.TaxAmount = ko.observable();
+
         // only the total of the items
         ctrl.vm.cart.SubTotal = ko.pureComputed(function() {
             var subTotal = _.reduce(this.cart.Items(), function (memo, item) {
@@ -160,6 +213,9 @@ ctrl.init = function () {
             var grandTotal = _.reduce(this.cart.Items(), function (memo, item) {
                 return memo + parseFloat(item.TotalFn());
             }, 0);
+
+            if (this.cart.TaxAmount())
+                grandTotal += this.cart.TaxAmount();
 
             if (this.shipping.SelectedRate())
                 grandTotal += this.shipping.SelectedRate().Charge;

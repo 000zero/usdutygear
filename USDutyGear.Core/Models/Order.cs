@@ -24,6 +24,7 @@ namespace USDutyGear.Core.Models
         public decimal Shipping { get; set; }
         public decimal ItemTotal { get; set; }
         public string Email { get; set; }
+        public string PayeezyTransId { get; set; }
         // address info
         public string Name { get; set; }
         public string Street { get; set; }

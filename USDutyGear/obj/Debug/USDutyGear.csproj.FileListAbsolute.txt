@@ -283,3 +283,5 @@ C:\dev\sandbox\usdutygear\USDutyGear\obj\Debug\USDutyGear.dll
 C:\dev\sandbox\usdutygear\USDutyGear\obj\Debug\USDutyGear.pdb
 C:\Sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.dll
 C:\Sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.pdb
+C:\dev\sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.dll
+C:\dev\sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.pdb

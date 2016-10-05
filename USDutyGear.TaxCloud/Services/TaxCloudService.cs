@@ -139,9 +139,47 @@ namespace USDutyGear.TaxCloud.Services
             return response;
         }
 
-        public static void CaptureSale()
+        public static CaptureResponse CaptureSale(int orderId, string cartId)
         {
-            
+            return CaptureSale(new CaptureRequest
+            {
+                customerID = orderId,
+                orderID = orderId,
+                cartID = cartId,
+            });
+        }
+
+        public static CaptureResponse CaptureSale(CaptureRequest request)
+        {
+            // set the login and key
+            request.apiLoginID = ApiId;
+            request.apiKey = ApiKey;
+
+            var serializer = new JavaScriptSerializer();
+
+            // create the web request for the rating API
+            var httpRequest = (HttpWebRequest)WebRequest.Create($"{ApiUrl}Authorized");
+            httpRequest.Accept = "application/json";
+            httpRequest.ContentType = "application/json";
+            httpRequest.Method = "POST";
+            using (var stream = new StreamWriter(httpRequest.GetRequestStream()))
+            {
+                var json = serializer.Serialize(request);
+
+                stream.Write(json);
+                stream.Flush();
+                stream.Close();
+            }
+
+            CaptureResponse response;
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+                response = serializer.Deserialize<CaptureResponse>(result);
+            }
+
+            return response;
         }
     }
 }

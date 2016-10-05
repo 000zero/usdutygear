@@ -44,11 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\CaptureRequest.cs" />
+    <Compile Include="Models\CaptureResponse.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CartItemResponse.cs" />
     <Compile Include="Models\SalesTaxRequest.cs" />
     <Compile Include="Models\SalesTaxResponse.cs" />
     <Compile Include="Models\TaxCloudRequest.cs" />
+    <Compile Include="Models\TaxCloudResponse.cs" />
     <Compile Include="Models\VerifyAddressRequest.cs" />
     <Compile Include="Models\VerifyAddressResponse.cs" />
     <Compile Include="Services\TaxCloudService.cs" />
