@@ -25,3 +25,7 @@
 .checkout .checkout-footer .order-btn {
     float: right;
 }
+
+.checkout-complete {
+    background-color: #fff;
+}

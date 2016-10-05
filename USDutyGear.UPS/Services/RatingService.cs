@@ -1,50 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Configuration;
 using System.Web.Script.Serialization;
+using USDutyGear.UPS.Common;
 using USDutyGear.UPS.Models;
 
 
 namespace USDutyGear.UPS.Services
 {
-    public static class UpsServices
+    public static class RatingServices
     {
-        private const string UserKey = "UpsUser";
-        private const string PwKey = "UpsPw";
-        private const string RatingUrlKey = "UpsRatingUrl";
-        private const string LicenseKey = "UpsLicense";
-        private const string AccountKey = "UpsAccount";
-
-        private static string User { get; }
-        private static string Pw { get; }
-        private static string RatingUrl { get; }
-        private static string License { get; }
-        private static string Account { get; set; }
-
-        private static Security Credentials { get; }
-
-        static UpsServices()
+        static RatingServices()
         {
-            User = ConfigurationManager.AppSettings[UserKey];
-            Pw = ConfigurationManager.AppSettings[PwKey];
-            RatingUrl = ConfigurationManager.AppSettings[RatingUrlKey];
-            License = ConfigurationManager.AppSettings[LicenseKey];
-            Account = ConfigurationManager.AppSettings[AccountKey];
-
-            Credentials = new Security
-            {
-                UsernameToken = new UserToken
-                {
-                    Username = User,
-                    Password = Pw
-                },
-                ServiceAccessToken = new ServiceAccessToken
-                {
-                    AccessLicenseNumber = License
-                }
-            };
-
             // NOTE: global application effects???
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -55,12 +22,12 @@ namespace USDutyGear.UPS.Services
             RateResponse response;
 
             // set the UPS license number
-            from.ShipperNumber = License;
+            from.ShipperNumber = UpsConfig.License;
 
             // create the UPS rating request
             var request = new RatesRequest
             {
-                UPSSecurity = Credentials,
+                UPSSecurity = UpsConfig.Credentials,
                 RateRequest = new RateRequestInfo
                 {
                     Request = new RequestInfo
@@ -71,7 +38,7 @@ namespace USDutyGear.UPS.Services
                             CustomerContext = requestId.ToString()
                         }
                     },
-                    Shipment = new Shipment
+                    Shipment = new RateShipment
                     {
                         Shipper = from,
                         ShipTo = to,
@@ -114,7 +81,7 @@ namespace USDutyGear.UPS.Services
             var serializer = new JavaScriptSerializer();
 
             // create the web request for the rating API
-            var httpRequest = (HttpWebRequest)WebRequest.Create(RatingUrl);
+            var httpRequest = (HttpWebRequest)WebRequest.Create(UpsConfig.RatingUrl);
             httpRequest.ContentType = "application/json";
             httpRequest.Method = "POST";
             using (var stream = new StreamWriter(httpRequest.GetRequestStream()))

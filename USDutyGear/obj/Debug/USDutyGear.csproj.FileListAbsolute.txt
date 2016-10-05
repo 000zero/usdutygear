@@ -285,3 +285,6 @@ C:\Sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.dll
 C:\Sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.pdb
 C:\dev\sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.dll
 C:\dev\sandbox\usdutygear\USDutyGear\bin\USDutyGear.TaxCloud.pdb
+C:\Sandbox\usdutygear\USDutyGear\bin\NLog.config
+C:\Sandbox\usdutygear\USDutyGear\bin\NLog.dll
+C:\Sandbox\usdutygear\USDutyGear\bin\NLog.xml

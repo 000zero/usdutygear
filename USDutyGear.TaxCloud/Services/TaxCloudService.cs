@@ -4,12 +4,15 @@ using System.IO;
 using System.Net;
 using System.Configuration;
 using System.Web.Script.Serialization;
+using NLog;
 using USDutyGear.TaxCloud.Models;
 
 namespace USDutyGear.TaxCloud.Services
 {
     public static class TaxCloudService
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         private const string ApiIdKey = "TaxCloudApiId";
         private const string ApiKeyKey = "TaxCloudApiKey";
         private const string ApiUrlKey = "TaxCloudApiUrl";
@@ -91,7 +94,7 @@ namespace USDutyGear.TaxCloud.Services
             return response;
         }
 
-        public static SalesTaxResponse GetTaxAmount(Address origin, Address destination, List<CartItem> items)
+        public static SalesTaxResponse GetTaxAmount(Address origin, Address destination, List<CartItem> items, Guid? cartId = null)
         {
             var request = new SalesTaxRequest
             {
@@ -100,17 +103,17 @@ namespace USDutyGear.TaxCloud.Services
                 cartItems = items
             };
 
-            return GetTaxAmount(request);
+            return GetTaxAmount(request, cartId);
         }
 
-        public static SalesTaxResponse GetTaxAmount(SalesTaxRequest request)
+        public static SalesTaxResponse GetTaxAmount(SalesTaxRequest request, Guid? cartId = null)
         {
             // set the login and key
             request.apiLoginID = ApiId;
             request.apiKey = ApiKey;
             request.customerID = Guid.NewGuid().ToString();
             request.deliverdBySeller = false;
-            request.cartID = Guid.NewGuid().ToString();
+            request.cartID = (cartId ?? Guid.NewGuid()).ToString();
 
             var serializer = new JavaScriptSerializer();
 
@@ -176,7 +179,21 @@ namespace USDutyGear.TaxCloud.Services
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 var result = streamReader.ReadToEnd();
-                response = serializer.Deserialize<CaptureResponse>(result);
+                try
+                {
+                    response = serializer.Deserialize<CaptureResponse>(result);
+                    response.Success = true;
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, $"Failed to capture tax cloud transaction. CartID - {request.cartID}, OrderID - {request.orderID} :: {result}");
+                    response = new CaptureResponse
+                    {
+                        Success = false,
+                        Error = result
+                    };
+                }
+                
             }
 
             return response;

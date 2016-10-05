@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace USDutyGear.UPS.Models
+﻿namespace USDutyGear.UPS.Models
 {
-    public class ShipmentRequest
+    public class ShippingRequest
     {
-        public Security UPSSercurity { get; set; }
+        public ShippingRequest()
+        {
+            UPSSecurity = new Security();
+            ShipmentRequest = new ShipmentRequestInfo();
+        }
 
+        public Security UPSSecurity { get; set; }
+        public ShipmentRequestInfo ShipmentRequest { get; set; }
     }
 }

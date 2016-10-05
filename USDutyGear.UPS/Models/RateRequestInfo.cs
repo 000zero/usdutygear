@@ -9,6 +9,6 @@
         }
 
         public RequestInfo Request { get; set; }
-        public Shipment Shipment { get; set; }
+        public RateShipment Shipment { get; set; }
     }
 }

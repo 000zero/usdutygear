@@ -24,7 +24,7 @@ namespace USDutyGear.Controllers
             // TODO: validate address here
 
             var guid = Guid.NewGuid();
-            var result = UpsServices.GetRatings(guid, USDutyGearConfig.UpsOrigin, to);
+            var result = RatingServices.GetRatings(guid, USDutyGearConfig.UpsOrigin, to);
             result.RatedShipment = result.RatedShipment.OrderBy(x => x.TotalCharges.MonetaryValue).ToList();
 
             return Request.CreateResponse(HttpStatusCode.OK, result);

@@ -19,7 +19,7 @@ namespace USDutyGear.Models
         public List<CartItem> Items { get; set; }
         public decimal Shipping { get; set; }
         public string ShippingServiceCode { get; set; }
-        public string ShippingDescription { get; set; }
+        public string ShippingServiceDesc { get; set; }
         public decimal Tax { get; set; }
         public decimal SubTotal { get; set; }
         public decimal GrandTotal { get; set; }
@@ -37,6 +37,7 @@ namespace USDutyGear.Models
         public int Sequence { get; set; }
         public string Hash { get; set; }
         public long TimeStamp { get; set; }
+        public string CartId { get; set; }
 
         public string FirstName
         {

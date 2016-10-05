@@ -41,7 +41,7 @@ namespace USDutyGear.Tests.UPS
             };
 
             var guid = Guid.NewGuid();
-            var result = UpsServices.GetRatings(guid, from, to);
+            var result = RatingServices.GetRatings(guid, from, to);
 
             // test request
             Assert.IsNotNull(result, "The result should not be null");

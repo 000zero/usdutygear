@@ -93,15 +93,16 @@
                 </div>
             </div>
             <a href="javascript:;" class="btn btn-default cart-empty-cart-btn" onclick="rootCtrl.emptyCart()">Empty Cart</a>
-            <button class="btn btn-default cart-checkout-btn" type="submit">Checkout</button>
+            <button class="btn btn-default cart-checkout-btn" type="submit" data-bind="enable: cart.isCheckoutReady">Checkout</button>
         </div>
 
         <div class="row shipping-info">
-            <div class="col-lg-6 col-md-6">
-                <h1>Shipping Address</h1>
+            <div class="col-lg-6 col-md-6 col-sm-6 cart-input">
+                <h2 class="cart-input-header">Shipping Address</h2>
                 <div class="shipping-address">
                     <div>
                         <span>Email: </span><input type="text" name="Email" data-bind="value: cart.Email"/>
+                        <div class="has-error" data-bind="visible: !cart.isEmailValid"></div>
                     </div>
                     <div>
                         <span>Name: </span><input type="text" name="Name" data-bind="value: cart.Name"/>
@@ -182,8 +183,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <h1>Shipping Options</h1>
+            <div class="col-lg-6 col-md-6 col-sm-6 cart-input">
+                <h2 class="cart-input-header">Shipping Options</h2>
                 <div id="shipping-options" class="shipping-options">
                     <span data-bind="visible: shipping.Options().length === 0" class="warning">Enter a valid shipping address, then hit the Calculate button, to see shipping rates.</span>
                     <span data-bind="visible: shipping.Options().length > 0">Select your shipping method:</span>
@@ -195,7 +196,8 @@
                             <span data-bind="text: Service"></span>
                         </div>
                     </div>
-                    <input type="hidden" name="ShippingServiceCode" data-bind="value: (shipping.SelectedRate() ? shipping.SelectedRate().ServiceCode : null)" />
+                    <input type="hidden" name="ShippingServiceCode" data-bind="value: (shipping.SelectedRate() ? shipping.SelectedRate().ServiceCode : null)"/>
+                    <input type="hidden" name="ShippingServiceDesc" data-bind="value: (shipping.SelectedRate() ? shipping.SelectedRate().Service : null)" />
                 </div>
             </div>
         </div>

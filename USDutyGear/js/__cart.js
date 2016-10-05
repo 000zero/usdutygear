@@ -191,6 +191,7 @@ ctrl.init = function () {
         }
 
         // track the shipping address info
+        ctrl.vm.cart.Email = ko.observable(ctrl.vm.cart.Email);
         ctrl.vm.cart.Name = ko.observable(ctrl.vm.cart.Name);
         ctrl.vm.cart.Street = ko.observable(ctrl.vm.cart.Street);
         ctrl.vm.cart.City = ko.observable(ctrl.vm.cart.City);
@@ -221,6 +222,26 @@ ctrl.init = function () {
                 grandTotal += this.shipping.SelectedRate().Charge;
 
             return '$' + grandTotal.toFixed(2);
+        }, ctrl.vm);
+
+        ctrl.vm.cart.isShippingAddressValid = ko.pureComputed(function() {
+            return this.cart.Name() && this.cart.Name().trim() != '' &&
+                this.cart.Street() && this.cart.Street().trim() != '' &&
+                this.cart.City() && this.cart.City().trim() != '' &&
+                this.cart.State() && this.cart.State().trim() != '' &&
+                this.cart.Zip() && this.cart.Zip().trim() != '';
+        }, ctrl.vm);
+
+        ctrl.vm.cart.isEmailValid = ko.pureComputed(function() {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return this.cart.Email() && re.test(this.cart.Email());
+        }, ctrl.vm);
+
+        ctrl.vm.cart.isCheckoutReady = ko.pureComputed(function() {
+            var isShippingInfoValid = this.cart.isShippingAddressValid();
+            var isEmailValid = this.cart.isEmailValid();
+
+            return isShippingInfoValid && isEmailValid;
         }, ctrl.vm);
 
         // setup shipping view model

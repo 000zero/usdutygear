@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using USDutyGear.Core.Models;
 using MySql.Data.MySqlClient;
+using USDutyGear.Core.Common;
 
 namespace USDutyGear.Data
 {
@@ -12,6 +14,7 @@ namespace USDutyGear.Data
 
         public static Order GetOrder(int orderId)
         {
+            Order order = null;
             var dt = new DataTable();
             var conn = new MySqlConnection(ConnectionString);
             conn.Open();
@@ -19,20 +22,40 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = @"
-                    SELECT * FROM orders o
-                    JOIN order_items i USING (order_id)
-                    WHERE order_id = @order_id"
+                CommandText = @"SELECT * FROM orders WHERE order_id = @order_id"
             };
             cmd.Parameters.AddWithValue("@order_id", orderId);
             cmd.ExecuteNonQuery();
 
             var adapter = new MySqlDataAdapter(cmd);
             adapter.Fill(dt);
-
             conn.Close();
 
-            return null;
+            if (dt.Rows.Count > 0)
+            {
+                conn.Open();
+                order = ConvertRowToOrder(dt.Rows[0]);
+
+                // need to get order items now
+                var subCmd = new MySqlCommand
+                {
+                    Connection = conn,
+                    CommandText = @"SELECT * FROM order_items WHERE order_id = @order_id"
+                };
+                subCmd.Parameters.AddWithValue("@order_id", orderId);
+                subCmd.ExecuteNonQuery();
+
+                var itemsDt = new DataTable();
+                var subAdapter = new MySqlDataAdapter(subCmd);
+                subAdapter.Fill(itemsDt);
+
+                if (itemsDt.Rows.Count > 0)
+                    order.Items = itemsDt.AsEnumerable().Select(ConvertRowToOrderItem).ToList();
+
+                conn.Close();
+            }
+
+            return order;
         }
 
         public static int SaveOrder(Order order)
@@ -52,7 +75,7 @@ namespace USDutyGear.Data
             cmd.Parameters.AddWithValue("@cart_id", order.CartId.ToString());
             cmd.Parameters.AddWithValue("@created", order.Created);
             cmd.Parameters.AddWithValue("@status", order.Status);
-            cmd.Parameters.AddWithValue("@ups_service_code", order.UpsServiceCode); 
+            cmd.Parameters.AddWithValue("@ups_service_code", order.UpsServiceCode);
             cmd.Parameters.AddWithValue("@tax", order.Tax);
             cmd.Parameters.AddWithValue("@shipping", order.Shipping);
             cmd.Parameters.AddWithValue("@item_total", order.ItemTotal);
@@ -85,15 +108,62 @@ namespace USDutyGear.Data
             return orderId;
         }
 
-        public static void CompleteOrder(int orderId, string upsTracking)
+        public static void CompleteOrder(int orderId, string upsTracking, string payeezyTransId)
         {
             // set status to complete
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
 
-            // update ups tracking id
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = @"
+                    UPDATE orders 
+                    SET status = @status, ups_tracking_id = @ups_tracking_id, payeezy_trans_id = @payeezy_trans_id
+                    WHERE order_id = @order_id"
+            };
+            cmd.Parameters.AddWithValue("@status", OrderStatuses.Complete);
+            cmd.Parameters.AddWithValue("@ups_tracking_id", upsTracking);
+            cmd.Parameters.AddWithValue("@payeezy_trans_id", payeezyTransId);
+            cmd.Parameters.AddWithValue("@order_id", orderId);
+            cmd.ExecuteNonQuery();
 
-
+            conn.Close();
         }
 
-        //private Order ConvertRowsToProducts(DataRow )
+        private static Order ConvertRowToOrder(DataRow row)
+        {
+            return new Order
+            {
+                OrderId = Convert.ToInt32(row["order_id"]),
+                CartId = Guid.Parse(Convert.ToString(row["cart_id"])),
+                Created = Convert.ToDateTime(row["created"]),
+                Status = Convert.ToString(row["status"]),
+                UpsServiceCode = Convert.ToString(row["ups_service_code"]),
+                UpsTrackingId = Convert.ToString(row["ups_tracking_id"]),
+                Tax = Convert.ToDecimal(row["tax"]),
+                Shipping = Convert.ToDecimal(row["shipping"]),
+                ItemTotal = Convert.ToDecimal(row["item_total"]),
+                Email = Convert.ToString(row["email"]),
+                PayeezyTransId = Convert.ToString(row["payeezy_trans_id"]),
+                Name = Convert.ToString(row["name"]),
+                Street = Convert.ToString(row["status"]),
+                City = Convert.ToString(row["city"]),
+                State = Convert.ToString(row["state"]),
+                Country = Convert.ToString(row["country"]),
+                PostalCode = Convert.ToString(row["postal_code"])
+            };
+        }
+
+        private static OrderItem ConvertRowToOrderItem(DataRow row)
+        {
+            return new OrderItem
+            {
+                OrderItemId = Convert.ToInt32(row["order_item_id"]),
+                OrderId = Convert.ToInt32(row["order_id"]),
+                Model = Convert.ToString(row["model"]),
+                Quantity = Convert.ToInt32(row["quantity"])
+            };
+        }
     }
 }
