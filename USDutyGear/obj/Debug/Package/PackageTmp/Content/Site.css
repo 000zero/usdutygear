@@ -1,4 +1,6 @@
-﻿body {
+﻿/* Main - 017db9 : Secondary - 0288C7 : Terciary - 036d9f */
+
+body {
     background-color: #2F2F2F;
     background-image: none;
     padding-top: 70px;
@@ -75,12 +77,28 @@
         width: 100%;
     }
 
+    .navbar .navbar-header .cart-link {
+        display: block;
+        padding-top: 2px;
+    }
+
+    .navbar .navbar-header .glyphicon.glyphicon-shopping-cart {
+        padding-top: 0;
+        font-size: 20px;
+    }
+
+    .navbar .nav.navbar-nav {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
     .navbar .navbar-collapse {
         margin-top: 14px;
         background-color: #fff;
         border-top: 3px solid #0288C7;
         position: relative;
-        overflow: visible
+        overflow: visible;
+        box-shadow: 0 10px 5px -8px #2F2F2F;
     }
 
     .navbar .navbar-collapse:before {
@@ -88,7 +106,6 @@
         position: absolute;
         bottom: 100%;
         left: 50%;
-        /*right: 0;*/
         margin: 0 auto;
         width: 0;
         border-bottom: solid 30px #0288C7;
@@ -98,10 +115,9 @@
 
     .navbar .nav.navbar-nav > li {
         border: none;
-        /*width: 100%;*/
     }
 
-    .navbar .navbar-collapse .nav.navbar-nav > li > a {
+    .navbar .navbar-collapse .nav.navbar-nav a {
         color: #444;
     }
 
@@ -109,14 +125,38 @@
         color: #444;
     }
 
-    .navbar .nav.navbar-nav a:hover {
-        color: #444;
-        background-color: #f1f1f1;
+    .navbar .navbar-collapse .nav.navbar-nav a:hover {
+        color: #fff;
+        background-color: #017db9;
         background-image: none;
     }
 
     .navbar .nav.navbar-nav.cart {
         display: none;
+    }
+
+    .navbar .nav.navbar-nav > li {
+        position: relative;
+        height: auto;
+    }
+
+    .navbar .navbar-nav > li.dropdown.open > ul {
+        z-index: 1000;
+        background-color: #f1f1f1;
+        position: relative;
+        margin-top: 0;
+        padding-top: 0;
+        top: 0;
+        border: none;
+    }
+
+    .navbar .navbar-nav > li.open {
+        background-image: none;
+        margin-top: 0;
+    }
+
+    .navbar .navbar-nav > li.dropdown.open > ul:before {
+        border: none;
     }
 }
 
@@ -266,8 +306,6 @@ h1, h2, h3, h4 {
     color: #fff;
     text-decoration: underline;
 }
-
-/* Main - 017db9 : Secondary - 0288C7 : Terciary - 036d9f */
 
 .selectric {
     width: 150px;

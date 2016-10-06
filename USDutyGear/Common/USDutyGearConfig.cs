@@ -15,6 +15,7 @@ namespace USDutyGear.Common
         public static ShippingInfo UpsOrigin { get; set; }
         public static TaxCloud.Models.Address TaxCloudOrigin { get; set; }
         public static string OrdersEmailAddress { get; set; }
+        public static bool TestMode { get; }
         // payeezy settings
         public static string PayeezyPostUrl { get; set; }
         public static string PayeezyPageId { get; set; }
@@ -32,6 +33,7 @@ namespace USDutyGear.Common
             PayeezyPageId = WebConfigurationManager.AppSettings["PayeezyPageId"];
             PayeezyTransactionKey = WebConfigurationManager.AppSettings["PayeezyTransactionKey"];
             OrdersEmailAddress = WebConfigurationManager.AppSettings["UsdgOrdersEmail"];
+            TestMode = WebConfigurationManager.AppSettings["UsdgTestMode"].ToLower() == "true";
 
             UpsOrigin = new ShippingInfo
             {

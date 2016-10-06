@@ -1,4 +1,6 @@
-﻿@model USDutyGear.Models.CheckoutCompleteViewModel
+﻿@using USDutyGear.Core.Common
+@using USDutyGear.Data
+@model USDutyGear.Models.CheckoutCompleteViewModel
 
 @{
     ViewBag.Title = "Order Complete";
@@ -12,28 +14,66 @@
 
 <div class="container checkout-complete">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 card">
-            <h2 class="card-header">Order Summary</h2>
-            @if (Model.Success)
-            {
-                <div>
-                    Order Complete! You're order number is #@Model.OrderId. Thank you for your business.
-                </div>
-            }
-            else
-            {
-                <div>
-                    Order Failed! Sorry for the inconvenience, please go back to the <a href="/cart">shopping cart</a> and try again. If the
-                    problem persists please email our support <a href="mailto:support@usdutygear.com">support@usdutygear.com</a> for assistance.
-                </div>
-            }
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card left">
+                <h2 class="card-header">Order Summary</h2>
+                @if (Model.Success)
+                {
+                    <p>
+                        Order Complete! Your order number is #@Model.Order.OrderId. Thank you for your business.
+                    </p>
+                    <div class="purchase-list">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Item</th><th>Quantity</th><th>Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var i in Model.Order.Items)
+                            {
+                                <tr>
+                                    <td>@Products.GetProductTitle(@i.Model)</td><td>@i.Quantity</td><td>@i.Price.ToString("C")</td>
+                                </tr>
+                                <tr class="sub-row">
+                                    <td colspan="3">@i.Model</td>
+                                </tr>
+                            }
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td class="total" colspan="2">Tax</td>
+                                <td>@Model.Order.Tax.ToString("C")</td>
+                            </tr>
+                            <tr>
+                                <td class="total" colspan="2">Shipping</td>
+                                <td>@Model.Order.Shipping.ToString("C")</td>
+                            </tr>
+                            <tr>
+                                <td class="total grand-total" colspan="2">Total</td>
+                                <td class="grand-total">@((Model.Order.ItemTotal + Model.Order.Shipping + Model.Order.Tax).ToString("C"))</td>
+                            </tr>
+                            </tfoot>
 
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p>
+                        Order Failed! Sorry for the inconvenience, please go back to the <a href="/cart">shopping cart</a> and try again. If the
+                        problem persists please email our support <a href="mailto:support@usdutygear.com">support@usdutygear.com</a> for assistance.
+                    </p>
+                }
+            </div>
         </div>
         @if (Model.Success)
         {
-            <div class="col-lg-6 col-md-6 col-sm-6 card">
-                <h2 class="card-header">Receipt</h2>
-                <p>@Html.Raw(Model.Receipt)</p>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="card right">
+                    <h2 class="card-header">Receipt</h2>
+                    <p>@Html.Raw(Model.Receipt)</p>
+                </div>
             </div>
         }
 

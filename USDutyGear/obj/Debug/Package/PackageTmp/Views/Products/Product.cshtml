@@ -22,7 +22,7 @@
 
         <div id="product-section" class="row product">
             <!-- Image section -->
-            <div class="col-lg-8 col-md-8 col-sm-7 showcase">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 showcase">
                 <div class="main-image">
                     <img id="main-img" alt="@Model.Name" data-bind="attr: { src: '/images/' + selectedImage() }"/>
                 </div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-5 product-info">
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 product-info">
                 <div class="product-header">
                     <h3 class="product-info-title">@Model.Name</h3>
                     <span class="model-number">Model # <span data-bind="text: model"></span></span>
@@ -143,7 +143,9 @@
                         @Model.Description
                     </p>
                 </div>
-                <a href="/cart" class="btn checkout-btn">Checkout</a>
+                <div class="product-info-footer">
+                    <a href="/cart" class="btn btn-primary checkout-btn">Checkout</a>    
+                </div>
             </div>
         </div>
     </div>

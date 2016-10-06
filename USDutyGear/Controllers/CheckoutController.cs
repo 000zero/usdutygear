@@ -111,9 +111,58 @@ namespace USDutyGear.Controllers
             return View(cart);
         }
 
+        [HttpGet]
+        [Route("complete/test/{orderId}/{success?}")]
+        public ActionResult TestComplete(int orderId, bool success = true)
+        {
+            var vm = new CheckoutCompleteViewModel
+            {
+                Success = success,
+                Order = Orders.GetOrder(orderId),
+                Receipt = @"========== TRANSACTION RECORD ==========
+US Duty Gear Test DEMO0347
+2131 S Hellman Ave
+Ontario, CA 91761
+United States
+
+
+TYPE: Purchase
+
+ACCT: Visa $ 17.72 USD
+
+CARDHOLDER NAME : Steven O Garcia
+CARD NUMBER : ############1111
+DATE/TIME : 06 Oct 16 13:18:12
+REFERENCE # : 03 000013 M
+AUTHOR. # : ET179708
+TRANS. REF. : 17
+
+Approved - Thank You 100
+
+
+Please retain this copy for your records.
+
+Cardholder will pay above amount to
+card issuer pursuant to cardholder
+agreement.
+========================================"
+            };
+
+            vm.Receipt = vm.Receipt.Replace("\r\n", "<br />");
+
+            return View("Complete", vm);
+        }
+
         [HttpPost]
         [Route("complete")]
         public ActionResult Complete(PayeezyPaymentResultsModel paymentResults)
+        {
+            var vm = CreateCheckoutCompleteVm(paymentResults);
+
+            return View(vm);
+        }
+
+        private CheckoutCompleteViewModel CreateCheckoutCompleteVm(PayeezyPaymentResultsModel paymentResults)
         {
             var vm = new CheckoutCompleteViewModel();
 
@@ -123,22 +172,19 @@ namespace USDutyGear.Controllers
                 // show error on page
                 vm.Success = false;
 
-                return View(vm);
+                return vm;
             }
 
             vm.Success = true;
-            vm.OrderId = Convert.ToInt32(paymentResults.Reference_No);
             vm.Receipt = paymentResults.exact_ctr.Replace("\r\n", "<br />");
-            
-            // load the order
-            var order = Orders.GetOrder(vm.OrderId);
+            vm.Order = Orders.GetOrder(Convert.ToInt32(paymentResults.Reference_No));
 
             var taxDestination = new Address
             {
-                Address1 = order.Street,
-                City = order.City,
-                State = order.State,
-                Zip5 = order.PostalCode
+                Address1 = vm.Order.Street,
+                City = vm.Order.City,
+                State = vm.Order.State,
+                Zip5 = vm.Order.PostalCode
             };
 
             // verify address for tax cloud; if a better address is not found then just use the destination supplied by the customer
@@ -159,36 +205,36 @@ namespace USDutyGear.Controllers
 
             //cart.Tax = taxResponse.CartItemsResponse.Sum(x => x.TaxAmount);
 
-            var taxResponse = TaxCloudService.CaptureSale(order.OrderId, order.CartId.ToString().ToUpper());
+            var taxResponse = TaxCloudService.CaptureSale(vm.Order.OrderId, vm.Order.CartId.ToUpper());
             vm.taxResponseJSON = taxResponse.Error;
 
             var destination = new ShippingInfo
             {
-                Name = order.Name,
-                EMailAddress = order.Email,
+                Name = vm.Order.Name,
+                EMailAddress = vm.Order.Email,
                 Address = new UPS.Models.Address
                 {
-                    AddressLine = new List<string> { order.Street },
-                    City = order.City,
-                    StateProvinceCode = order.State,
-                    CountryCode = order.Country,
-                    PostalCode = order.PostalCode
+                    AddressLine = new List<string> { vm.Order.Street },
+                    City = vm.Order.City,
+                    StateProvinceCode = vm.Order.State,
+                    CountryCode = vm.Order.Country,
+                    PostalCode = vm.Order.PostalCode
                 }
             };
 
-            var upsResponse = ShipmentService.RequestShipment(order.CartId, order.UpsServiceCode, USDutyGearConfig.UpsOrigin, destination);
+            var upsResponse = ShipmentService.RequestShipment(vm.Order.CartId, vm.Order.UpsServiceCode, USDutyGearConfig.UpsOrigin, destination);
 
             if (upsResponse.Response.ResponseStatus.Code == "1")
             {
-                order.UpsTrackingId = upsResponse.ShipmentResults.ShipmentIdentificationNumber;
+                vm.Order.UpsTrackingId = upsResponse.ShipmentResults.ShipmentIdentificationNumber;
             }
 
             // save the order update here
-            Orders.CompleteOrder(order.OrderId, order.UpsTrackingId, paymentResults.x_trans_id);
+            Orders.CompleteOrder(vm.Order.OrderId, vm.Order.UpsTrackingId, paymentResults.x_trans_id);
 
             // clear the cart upon success (this needs to be done client side)
 
-            return View(vm);
+            return vm;
         }
 
         private static string CreateHash(string pageId, int sequence, long timestamp, decimal amount, string transactionKey)

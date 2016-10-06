@@ -1,0 +1,45 @@
+﻿@model USDutyGear.Models.CheckoutCompleteViewModel
+
+@{
+    ViewBag.Title = "Order Complete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    @Styles.Render("~/Content/checkout")
+}
+
+<div class="container checkout-complete">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card left">
+                <h2 class="card-header">Order Summary</h2>
+                @if (Model.Success)
+            {
+                    <p>
+                        Order Complete! You're order number is #@Model.OrderId. Thank you for your business.
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        Order Failed! Sorry for the inconvenience, please go back to the <a href="/cart">shopping cart</a> and try again. If the
+                        problem persists please email our support <a href="mailto:support@usdutygear.com">support@usdutygear.com</a> for assistance.
+                    </p>
+                }
+            </div>
+        </div>
+        @if (Model.Success)
+        {
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="card right">
+                    <h2 class="card-header">Receipt</h2>
+                    <p>@Html.Raw(Model.Receipt)</p>
+                </div>
+            </div>
+        }
+
+        <div class="card">@Model.taxResponseJSON</div>
+    </div>
+</div>

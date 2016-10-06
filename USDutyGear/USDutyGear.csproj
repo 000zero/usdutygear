@@ -464,6 +464,7 @@
     <Content Include="Views\Checkout\Receipt.cshtml" />
     <Content Include="Views\Products\Products.cshtml" />
     <Content Include="Views\Checkout\Complete.cshtml" />
+    <Content Include="Views\Checkout\TestComplete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

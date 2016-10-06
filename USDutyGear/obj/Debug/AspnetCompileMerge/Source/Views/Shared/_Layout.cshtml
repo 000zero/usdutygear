@@ -1,4 +1,5 @@
-﻿@model USDutyGear.Models.USDutyGearBaseViewModel
+﻿@using USDutyGear.Common
+@model USDutyGear.Models.USDutyGearBaseViewModel
 
 <!DOCTYPE html>
 <html>
@@ -37,8 +38,8 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">&#9776;</button>
-                <button type="button" class="navbar-toggle" data-toggle="collapse"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
-                <a class="navbar-brand" href="@Url.Content("~/")">US DUTY GEAR</a>
+                <a href="/cart/" class="navbar-toggle cart-link"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                <a class="navbar-brand" href="@Url.Content("~/")">US DUTY GEAR @(USDutyGearConfig.TestMode ? "TEST" : "")</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

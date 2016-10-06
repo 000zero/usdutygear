@@ -41,7 +41,7 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = $"SELECT * FROM products WHERE {field} = @value;"
+                CommandText = $"SELECT * FROM products WHERE is_active = 1 AND {field} = @value;"
             };
             cmd.Parameters.AddWithValue("@value", value);
             cmd.ExecuteNonQuery();
@@ -168,7 +168,7 @@ namespace USDutyGear.Data
 	                LEFT JOIN product_adjustments AS snaps ON p.model = snaps.product_model AND snaps.type = 'Snap'
 	                LEFT JOIN product_adjustments AS sizes ON p.model = sizes.product_model AND sizes.type = 'Size'
 	                LEFT JOIN product_adjustments AS innerLiners ON p.model = innerLiners.product_model AND innerLiners.type = 'Inner Liner'
-	                WHERE p.model = @model
+	                WHERE is_active = 1 AND p.model = @model
                 ) AS models
                 LEFT JOIN product_packages packages ON models.model RLIKE packages.applicable_model
                 ORDER BY models.model;";
@@ -283,6 +283,7 @@ namespace USDutyGear.Data
                 CommandText = @"
                     SELECT DISTINCT category, name, model
                     FROM products
+                    WHERE is_active = 1
                     ORDER BY category, name;"
             };
             cmd.ExecuteNonQuery();
@@ -330,8 +331,8 @@ namespace USDutyGear.Data
             {
                 Connection = conn,
                 CommandText = string.IsNullOrWhiteSpace(category)
-                    ? "SELECT * FROM products;"
-                    : "SELECT * FROM products WHERE category = @category;"
+                    ? "SELECT * FROM products WHERE is_active = 1;"
+                    : "SELECT * FROM products WHERE is_active = 1 AND category = @category;"
             };
 
             if (!string.IsNullOrWhiteSpace(category))
@@ -347,6 +348,50 @@ namespace USDutyGear.Data
                 return null;
 
             return dt.AsEnumerable().Select(ConvertRowToProduct).ToList();
+        }
+
+        public static string GetProductTitle(string fullModel)
+        {
+            var models = fullModel.Split('-');
+
+            if (models.Length < 2)
+                return null;
+
+            var dt = new DataTable();
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = $@"
+                    SELECT p.model AS product_model, a.model AS adj_model, A.type, a.name, title 
+                    FROM products p
+                    JOIN product_adjustments a ON p.model = a.product_model
+                    WHERE p.model = @model AND a.model IN ({string.Join(",", models.Skip(1).Select(x => $"'{x}'"))})"
+            };
+            cmd.Parameters.AddWithValue("@model", models.First());
+            cmd.ExecuteNonQuery();
+
+            var adapter = new MySqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+            if (dt.Rows.Count < 1)
+                return null;
+
+            var title = new StringBuilder();
+            foreach (var row in dt.AsEnumerable())
+            {
+                // init the title
+                if (title.Length == 0)
+                    title.Append(row["title"]);
+                    
+
+                // do replacement on the adjustment model
+                title.Replace($"{{{Convert.ToString(row["type"])}}}", Convert.ToString(row["name"]));
+            }
+
+            return title.ToString();
         }
 
         private static Product ConvertRowToProduct(DataRow row)

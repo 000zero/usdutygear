@@ -162,7 +162,8 @@ namespace USDutyGear.Data
                 OrderItemId = Convert.ToInt32(row["order_item_id"]),
                 OrderId = Convert.ToInt32(row["order_id"]),
                 Model = Convert.ToString(row["model"]),
-                Quantity = Convert.ToInt32(row["quantity"])
+                Quantity = Convert.ToInt32(row["quantity"]),
+                Price = row["price"] != DBNull.Value ?  Convert.ToInt32(row["price"]) : 0
             };
         }
     }

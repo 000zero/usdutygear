@@ -71,7 +71,7 @@ namespace USDutyGear.Core.Common
             return new Tuple<string, decimal>(title, price);
         }
 
-        private static string BuildProductTitle(string model, Product product, List<ProductAdjustment> adjustments)
+        public static string BuildProductTitle(string model, Product product, List<ProductAdjustment> adjustments)
         {
             var match = product.ModelRegex.Match(model);
             var title = new StringBuilder(product.Title);

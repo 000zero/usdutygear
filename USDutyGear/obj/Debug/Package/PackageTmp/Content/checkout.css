@@ -26,6 +26,64 @@
     float: right;
 }
 
-.checkout-complete {
+.checkout-complete .card {
     background-color: #fff;
+}
+
+/*.checkout-complete .card.left {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+.checkout-complete .card.right {
+    margin-right: 0;
+    margin-left: 5px;
+}*/
+
+.checkout-complete .card .card-header {
+    background-color: #0288C7;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    padding: 20px 15px 10px
+}
+
+.checkout-complete .card p {
+    padding: 15px;
+}
+
+.checkout-complete .card .purchase-list {
+    padding-bottom: 30px;
+}
+
+.checkout-complete .card table {
+    margin: 0 15px;
+    width: calc(100% - 30px);
+
+}
+
+.checkout-complete .card table thead {
+    border-bottom: 1px solid #eee;
+}
+
+.checkout-complete .card table tbody .sub-row {
+    font-style: italic;
+    font-size: 13px;
+}
+
+.checkout-complete .card table tbody .sub-row td {
+    padding-bottom: 10px;
+}
+
+.checkout-complete .card table tfoot {
+    border-top: 1px solid #eee;
+}
+
+.checkout-complete .card table tfoot .total {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.checkout-complete .card table tfoot .total.grand-total {
+    font-weight: bold;
 }

@@ -46,9 +46,9 @@ var rootCtrl = (function () {
                 scope.cart.items = {};
 
             if (scope.cart.items[model]) {
-                scope.cart.items[model] += quantity;
+                scope.cart.items[model] += parseInt(quantity);
             } else {
-                scope.cart.items[model] = quantity;
+                scope.cart.items[model] = parseInt(quantity);
             }
 
             scope.cart.lastWrite = moment();
@@ -65,7 +65,7 @@ var rootCtrl = (function () {
         },
         updateQuantity: function (model, quantity) {
             if (scope.cart.items[model])
-                scope.cart.items[model] = quantity;
+                scope.cart.items[model] = parseInt(quantity);
 
             scope.cart.lastWrite = moment();
             scope.setCartViewModel();

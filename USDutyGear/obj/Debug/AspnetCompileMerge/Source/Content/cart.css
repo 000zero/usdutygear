@@ -161,3 +161,13 @@
     padding-left: 20px;
     padding-bottom: 10px;
 }
+
+@media (max-width: 767px) {
+    .cart .cart-items .cart-item-detail {
+        padding-left: 40%;
+    }
+
+    .cart .cart-items-footer {
+        padding-left: 40%;
+    }
+}
