@@ -14,7 +14,7 @@ namespace USDutyGear.Core.Models
         }
 
         public int OrderId { get; set; }
-        public Guid CartId { get; set; }
+        public string CartId { get; set; }
         public DateTime Created { get; set; }
         public string Status { get; set; }
         public string UpsServiceCode { get; set; }

@@ -84,7 +84,7 @@ namespace USDutyGear.Controllers
 
             var order = new Order
             {
-                CartId = Guid.Parse(taxResponse.CartID),
+                CartId = taxResponse.CartID,
                 UpsServiceCode = cart.ShippingServiceCode,
                 Tax = cart.Tax,
                 Shipping = cart.Shipping,
@@ -142,8 +142,8 @@ namespace USDutyGear.Controllers
             };
 
             // verify address for tax cloud; if a better address is not found then just use the destination supplied by the customer
-            Address verifiedAddress;
-            TaxCloudService.VerifyAddress(taxDestination, out verifiedAddress);
+            //Address verifiedAddress;
+            //TaxCloudService.VerifyAddress(taxDestination, out verifiedAddress);
 
             //var cartIndex = 0;
             //var lookupResponse = TaxCloudService.GetTaxAmount(
@@ -159,7 +159,7 @@ namespace USDutyGear.Controllers
 
             //cart.Tax = taxResponse.CartItemsResponse.Sum(x => x.TaxAmount);
 
-            var taxResponse = TaxCloudService.CaptureSale(order.OrderId, order.CartId.ToString());
+            var taxResponse = TaxCloudService.CaptureSale(order.OrderId, order.CartId.ToString().ToUpper());
             vm.taxResponseJSON = taxResponse.Error;
 
             var destination = new ShippingInfo

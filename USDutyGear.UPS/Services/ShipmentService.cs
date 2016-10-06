@@ -16,7 +16,7 @@ namespace USDutyGear.UPS.Services
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }
 
-        public static ShipmentResponse RequestShipment(Guid requestId, string serviceCode, ShippingInfo from, ShippingInfo to, Dimensions dimensions = null, PackageWeight weight = null)
+        public static ShipmentResponse RequestShipment(string requestId, string serviceCode, ShippingInfo from, ShippingInfo to, Dimensions dimensions = null, PackageWeight weight = null)
         {
             ShipmentResponse response;
 
@@ -42,7 +42,7 @@ namespace USDutyGear.UPS.Services
                         RequestOption = "validate",
                         TransactionReference = new TransactionRef
                         {
-                            CustomerContext = requestId.ToString()
+                            CustomerContext = requestId
                         }
                     },
                     Shipment = new Shipment

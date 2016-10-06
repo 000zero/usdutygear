@@ -11,3 +11,6 @@ C:\dev\sandbox\USDutyGear\USDutyGear.TaxCloud\obj\Debug\USDutyGear.TaxCloud.pdb
 C:\Sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\NLog.config
 C:\Sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\NLog.dll
 C:\Sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\NLog.xml
+C:\dev\sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\NLog.config
+C:\dev\sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\NLog.dll
+C:\dev\sandbox\usdutygear\USDutyGear.TaxCloud\bin\Debug\NLog.xml

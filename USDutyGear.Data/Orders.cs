@@ -136,7 +136,7 @@ namespace USDutyGear.Data
             return new Order
             {
                 OrderId = Convert.ToInt32(row["order_id"]),
-                CartId = Guid.Parse(Convert.ToString(row["cart_id"])),
+                CartId = Convert.ToString(row["cart_id"]),
                 Created = Convert.ToDateTime(row["created"]),
                 Status = Convert.ToString(row["status"]),
                 UpsServiceCode = Convert.ToString(row["ups_service_code"]),
