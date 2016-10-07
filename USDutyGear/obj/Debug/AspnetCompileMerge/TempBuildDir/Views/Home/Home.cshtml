@@ -16,7 +16,6 @@
         <div class="row brand-showcase">
             <div class="col-lg-5 col-md-5 col-sm-5 showcase-img-container">
                 <img src="~/images/showcase.png" alt="US DUTY GEAR" class="showcase-img"/>
-                @*<img src="~/images/earth2_main.png" alt="US DUTY GEAR" class="showcase-img"/>*@
                 <img src="~/images/usdutygear_logo.png" alt="US DUTY GEAR" class="showcase-logo" />
             </div>
             <div class="col-lg-7 col-md-7 col-sm-7 showcase-text">
@@ -38,7 +37,7 @@
                         @foreach (var i in p.Images)
                         {
                             <div class="feature-img-container">
-                                <img src="~/images/@(i)" alt="@p.Name" />
+                                <img src="~/images/med-@(i)" alt="@p.Name" />
                             </div>
                         }
                         <div class="feature-text">
@@ -61,7 +60,7 @@
                         @foreach (var i in p.Images)
                         {
                             <div class="feature-img-container">
-                                <img src="~/images/@(i)" alt="@p.Name" />
+                                <img src="~/images/med-@(i)" alt="@p.Name" />
                             </div>
                         }
                         <div class="feature-text">
@@ -84,7 +83,7 @@
                         @foreach (var i in p.Images)
                         {
                             <div class="feature-img-container">
-                                <img src="~/images/@(i)" alt="@p.Name" />
+                                <img src="~/images/med-@(i)" alt="@p.Name" />
                             </div>
                         }
                         <div class="feature-text">

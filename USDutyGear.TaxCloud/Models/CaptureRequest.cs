@@ -10,7 +10,7 @@ namespace USDutyGear.TaxCloud.Models
             dateCaptured = DateTime.Today;
         }
 
-        public int customerID { get; set; }
+        public string customerID { get; set; }
         public string cartID { get; set; }
         public int orderID { get; set; }
         public DateTime dateAuthorized { get; set; }

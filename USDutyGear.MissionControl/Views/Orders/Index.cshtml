@@ -1,0 +1,52 @@
+﻿@model IEnumerable<USDutyGear.Core.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Created</th>
+        <th>Status</th>
+        <th>Completed</th>
+        <th>Tax</th>
+        <th>Shipping</th>
+        <th>Item Total</th>
+        <th>Order Total</th>
+        <th>Tracking ID</th>
+        <th>Email</th>
+        <th>Zip</th>
+        <th>Cart ID</th>
+        <th>Payeezy ID</th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.OrderId</td>
+        <td>@item.Created</td>
+        <td>@item.Status</td>
+        <td>Completed (TODO)</td>
+        <td>@item.Tax.ToString("C")</td>
+        <td>@item.Shipping.ToString("C")</td>
+        <td>@item.ItemTotal.ToString("C")</td>
+        <td>@item.GrandTotal.ToString("C")</td>
+        <td>@item.UpsTrackingId</td>
+        <td>@item.Email</td>
+        <td>@item.PostalCode</td>
+        <td>@item.CartId</td>
+        <td>@item.PayeezyTransId</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
+        </td>
+    </tr>
+}
+
+</table>

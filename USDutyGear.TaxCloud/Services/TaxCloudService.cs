@@ -94,10 +94,12 @@ namespace USDutyGear.TaxCloud.Services
             return response;
         }
 
-        public static SalesTaxResponse GetTaxAmount(Address origin, Address destination, List<CartItem> items)
+        public static SalesTaxResponse GetTaxAmount(Guid lookupId, Address origin, Address destination, List<CartItem> items)
         {
             var request = new SalesTaxRequest
             {
+                cartID = lookupId.ToString(),
+                customerID = lookupId.ToString(),
                 origin = origin,
                 destination = destination,
                 cartItems = items
@@ -111,7 +113,6 @@ namespace USDutyGear.TaxCloud.Services
             // set the login and key
             request.apiLoginID = ApiId;
             request.apiKey = ApiKey;
-            request.customerID = Guid.NewGuid().ToString();
             request.deliverdBySeller = false;
 
             var serializer = new JavaScriptSerializer();
@@ -145,7 +146,7 @@ namespace USDutyGear.TaxCloud.Services
         {
             return CaptureSale(new CaptureRequest
             {
-                customerID = orderId,
+                customerID = cartId,
                 orderID = orderId,
                 cartID = cartId,
             });

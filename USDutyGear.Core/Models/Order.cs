@@ -16,6 +16,7 @@ namespace USDutyGear.Core.Models
         public int OrderId { get; set; }
         public string CartId { get; set; }
         public DateTime Created { get; set; }
+        public DateTime? Completed { get; set; }
         public string Status { get; set; }
         public string UpsServiceCode { get; set; }
         public string UpsTrackingId { get; set; }
@@ -23,6 +24,7 @@ namespace USDutyGear.Core.Models
         public decimal Tax { get; set; }
         public decimal Shipping { get; set; }
         public decimal ItemTotal { get; set; }
+        public decimal GrandTotal => Tax + Shipping + ItemTotal;
         public string Email { get; set; }
         public string PayeezyTransId { get; set; }
         // address info

@@ -22,10 +22,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2016 10:08:09</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>10/06/2016 16:33:17</publishTime>
+      <publishTime>10/07/2016 15:43:40</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>10/06/2016 16:33:17</publishTime>
+      <publishTime>10/07/2016 15:43:40</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>09/20/2016 10:09:05</publishTime>
@@ -178,28 +178,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2016 10:09:04</publishTime>
     </File>
     <File Include="bin/USDutyGear.Core.dll">
-      <publishTime>10/06/2016 13:35:43</publishTime>
+      <publishTime>10/07/2016 15:12:21</publishTime>
     </File>
     <File Include="bin/USDutyGear.Core.pdb">
-      <publishTime>10/06/2016 13:35:43</publishTime>
+      <publishTime>10/07/2016 15:12:21</publishTime>
     </File>
     <File Include="bin/USDutyGear.Data.dll">
-      <publishTime>10/06/2016 15:18:10</publishTime>
+      <publishTime>10/07/2016 15:15:05</publishTime>
     </File>
     <File Include="bin/USDutyGear.Data.pdb">
-      <publishTime>10/06/2016 15:18:10</publishTime>
+      <publishTime>10/07/2016 15:15:05</publishTime>
     </File>
     <File Include="bin/USDutyGear.dll">
-      <publishTime>10/06/2016 15:18:11</publishTime>
+      <publishTime>10/07/2016 15:43:33</publishTime>
     </File>
     <File Include="bin/USDutyGear.pdb">
-      <publishTime>10/06/2016 15:18:11</publishTime>
+      <publishTime>10/07/2016 15:43:33</publishTime>
     </File>
     <File Include="bin/USDutyGear.TaxCloud.dll">
-      <publishTime>10/06/2016 10:03:20</publishTime>
+      <publishTime>10/07/2016 12:07:10</publishTime>
     </File>
     <File Include="bin/USDutyGear.TaxCloud.pdb">
-      <publishTime>10/06/2016 10:03:20</publishTime>
+      <publishTime>10/07/2016 12:07:10</publishTime>
     </File>
     <File Include="bin/USDutyGear.UPS.dll">
       <publishTime>10/06/2016 10:03:20</publishTime>
@@ -780,6 +780,186 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/magazinepouch_leather_with_snap_small.png">
       <publishTime>09/21/2016 12:29:55</publishTime>
     </File>
+    <File Include="images/med-100.JPG">
+      <publishTime>10/07/2016 15:36:36</publishTime>
+    </File>
+    <File Include="images/med-11-1.JPG">
+      <publishTime>10/07/2016 15:39:40</publishTime>
+    </File>
+    <File Include="images/med-120.JPG">
+      <publishTime>10/07/2016 15:39:40</publishTime>
+    </File>
+    <File Include="images/med-13-1.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-14-2.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-14-3.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-14-5.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-15-1.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-15-2.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-15-3.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-15-5.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-180-1-CH.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-180-1-HS.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-180-2-CH.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-180-2-HS.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-180-3-CH.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-180-3-HS.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-180-5-CH.JPG">
+      <publishTime>10/07/2016 15:39:41</publishTime>
+    </File>
+    <File Include="images/med-180-5-HS.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-22-1.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-22-2.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-22-3.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-22-5.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-556-2.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-556-3.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-556-5-CH-CO.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-556-5-CH-SU.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-556-5-CH-VL.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-66-1-CH-4P.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-66-1-CH.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-66-1-HS-4P.JPG">
+      <publishTime>10/07/2016 15:39:42</publishTime>
+    </File>
+    <File Include="images/med-66-1-HS.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-2-CH-4P.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-2-CH.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-2-HS-4P.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-2-HS.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-3-CH-4P.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-3-CH.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-3-HS-4P.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-3-HS.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-5-CH-4P.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-5-CH.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-5-HS-4P.JPG">
+      <publishTime>10/07/2016 15:39:43</publishTime>
+    </File>
+    <File Include="images/med-66-5-HS.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-67-1-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-67-2-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-67-3-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-67-5-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-69-1-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-69-2-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-69-3-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-69-5-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-88-1-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-88-2-CH.JPG">
+      <publishTime>10/07/2016 15:39:44</publishTime>
+    </File>
+    <File Include="images/med-88-2-HS.JPG">
+      <publishTime>10/07/2016 15:39:45</publishTime>
+    </File>
+    <File Include="images/med-88-3-CH.JPG">
+      <publishTime>10/07/2016 15:39:45</publishTime>
+    </File>
+    <File Include="images/med-88-3-HS.JPG">
+      <publishTime>10/07/2016 15:39:45</publishTime>
+    </File>
+    <File Include="images/med-88-4-HS.JPG">
+      <publishTime>10/07/2016 15:39:45</publishTime>
+    </File>
+    <File Include="images/med-88-5-CH.JPG">
+      <publishTime>10/07/2016 15:39:45</publishTime>
+    </File>
+    <File Include="images/med-88-5-HS.JPG">
+      <publishTime>10/07/2016 15:39:45</publishTime>
+    </File>
     <File Include="images/nasty_fabric.png">
       <publishTime>10/26/2012 14:50:26</publishTime>
     </File>
@@ -1060,7 +1240,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/05/2016 16:10:38</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>10/06/2016 16:33:12</publishTime>
+      <publishTime>10/07/2016 15:43:35</publishTime>
     </File>
     <File Include="Scripts/ai.0.15.0-build58334.js">
       <publishTime>09/20/2016 10:08:09</publishTime>
@@ -1192,7 +1372,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/20/2016 10:08:09</publishTime>
     </File>
     <File Include="Views/Home/Home.cshtml">
-      <publishTime>09/28/2016 11:00:20</publishTime>
+      <publishTime>10/07/2016 15:43:04</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>09/20/2016 10:08:09</publishTime>

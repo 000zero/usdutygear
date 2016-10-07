@@ -43,7 +43,9 @@ namespace USDutyGear.Controllers
             TaxCloudService.VerifyAddress(destination, out verifiedAddress);
 
             var cartIndex = 0;
+            var lookupId = Guid.NewGuid();
             var taxResponse = TaxCloudService.GetTaxAmount(
+                lookupId,
                 USDutyGearConfig.TaxCloudOrigin, 
                 verifiedAddress ?? destination,
                 cart.Items.Select(x => new TaxCloud.Models.CartItem
@@ -55,7 +57,7 @@ namespace USDutyGear.Controllers
                 }).ToList());
 
             cart.Tax = taxResponse.CartItemsResponse.Sum(x => x.TaxAmount);
-            cart.CartId = taxResponse.CartID;
+            cart.CartId = lookupId.ToString();
             
             // get the shipping price for a specific service
             var guid = Guid.NewGuid();
@@ -98,7 +100,9 @@ namespace USDutyGear.Controllers
                 Items = cart.Items.Select(x => new OrderItem
                 {
                     Model = x.Model,
-                    Quantity = x.Quantity
+                    Quantity = x.Quantity,
+                    Name = x.Title,
+                    Price = x.Price
                 }).ToList()
             };
             cart.OrderId = Orders.SaveOrder(order);
@@ -178,32 +182,6 @@ agreement.
             vm.Success = true;
             vm.Receipt = paymentResults.exact_ctr.Replace("\r\n", "<br />");
             vm.Order = Orders.GetOrder(Convert.ToInt32(paymentResults.Reference_No));
-
-            var taxDestination = new Address
-            {
-                Address1 = vm.Order.Street,
-                City = vm.Order.City,
-                State = vm.Order.State,
-                Zip5 = vm.Order.PostalCode
-            };
-
-            // verify address for tax cloud; if a better address is not found then just use the destination supplied by the customer
-            //Address verifiedAddress;
-            //TaxCloudService.VerifyAddress(taxDestination, out verifiedAddress);
-
-            //var cartIndex = 0;
-            //var lookupResponse = TaxCloudService.GetTaxAmount(
-            //    USDutyGearConfig.TaxCloudOrigin,
-            //    verifiedAddress ?? destination,
-            //    order.Items.Select(x => new TaxCloud.Models.CartItem
-            //    {
-            //        Index = cartIndex++,
-            //        ItemID = x.Model,
-            //        Price = x.Price,
-            //        Qty = x.Quantity
-            //    }).ToList());
-
-            //cart.Tax = taxResponse.CartItemsResponse.Sum(x => x.TaxAmount);
 
             var taxResponse = TaxCloudService.CaptureSale(vm.Order.OrderId, vm.Order.CartId.ToUpper());
             vm.taxResponseJSON = taxResponse.Error;

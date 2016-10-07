@@ -5,7 +5,6 @@ using System.Web.Http;
 using USDutyGear.Common;
 using USDutyGear.TaxCloud.Models;
 using USDutyGear.TaxCloud.Services;
-using Address = USDutyGear.TaxCloud.Models.Address;
 
 namespace USDutyGear.Controllers
 {

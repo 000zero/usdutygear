@@ -7,11 +7,6 @@ namespace USDutyGear.Controllers
     {
         protected static HomeViewModel ViewModel = HomeViewModel.Create();
 
-        public ActionResult Index()
-        {
-            return View(ViewModel);
-        }
-
         public ActionResult Home()
         {
             return View(ViewModel);
