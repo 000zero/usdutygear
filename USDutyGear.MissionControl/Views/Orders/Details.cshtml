@@ -55,7 +55,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Tax)
+            @Html.DisplayFor(model => model.Tax.ToString("C"))
         </dd>
 
         <dt>
@@ -63,7 +63,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Shipping)
+            @Html.DisplayFor(model => model.Shipping.ToString("C"))
         </dd>
 
         <dt>
@@ -71,7 +71,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ItemTotal)
+            @Html.DisplayFor(model => model.ItemTotal.ToString("C"))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrandTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrandTotal.ToString("C"))
         </dd>
 
         <dt>

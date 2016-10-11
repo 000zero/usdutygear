@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<USDutyGear.Core.Models.Order>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Orders";
 }
 
-<h2>Index</h2>
+<h2>Orders</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>ID</th>
@@ -43,8 +40,7 @@
         <td>@item.CartId</td>
         <td>@item.PayeezyTransId</td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderId })
         </td>
     </tr>
 }

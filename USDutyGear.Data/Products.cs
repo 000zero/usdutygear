@@ -16,6 +16,8 @@ namespace USDutyGear.Data
         private const string ConnectionString =
             "Server=MYSQL5011.Smarterasp.net;Database=db_9f5a66_usdgts;Uid=9f5a66_usdgts;Pwd=flores2016;";
 
+        #region Get
+
         public static Product GetProductById(int id)
         {
             return GetProduct("id", id);
@@ -41,7 +43,7 @@ namespace USDutyGear.Data
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = $"SELECT * FROM products WHERE is_active = 1 AND {field} = @value;"
+                CommandText = $"SELECT * FROM products WHERE {field} = @value;"
             };
             cmd.Parameters.AddWithValue("@value", value);
             cmd.ExecuteNonQuery();
@@ -307,7 +309,7 @@ namespace USDutyGear.Data
             return categories.ToList();
         }
 
-        public static List<Product> GetProducts(string category = null)
+        public static List<Product> GetProducts(string category = null, bool? isActive = true)
         {
             switch (category?.ToLower())
             {
@@ -327,14 +329,18 @@ namespace USDutyGear.Data
             var conn = new MySqlConnection(ConnectionString);
             conn.Open();
 
+            var queryStr = new StringBuilder("SELECT * FROM products WHERE (@is_active IS NULL OR is_active = @is_active) ");
+            if (string.IsNullOrWhiteSpace(category))
+                queryStr.Append("AND category = @category");
+            queryStr.Append(";");
+
             var cmd = new MySqlCommand
             {
                 Connection = conn,
-                CommandText = string.IsNullOrWhiteSpace(category)
-                    ? "SELECT * FROM products WHERE is_active = 1;"
-                    : "SELECT * FROM products WHERE is_active = 1 AND category = @category;"
+                CommandText = queryStr.ToString()
             };
 
+            cmd.Parameters.AddWithValue("@is_active", isActive);
             if (!string.IsNullOrWhiteSpace(category))
                 cmd.Parameters.AddWithValue("@category", category);
             cmd.ExecuteNonQuery();
@@ -411,5 +417,16 @@ namespace USDutyGear.Data
                 FeatureImages = Convert.ToString(row["feature_images"]).Split(new [] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList()
             };
         }
+
+        #endregion
+
+        #region Create
+
+        public void Save(Product product)
+        {
+            
+        }
+
+        #endregion
     }
 }
