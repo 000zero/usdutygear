@@ -330,7 +330,7 @@ namespace USDutyGear.Data
             conn.Open();
 
             var queryStr = new StringBuilder("SELECT * FROM products WHERE (@is_active IS NULL OR is_active = @is_active) ");
-            if (string.IsNullOrWhiteSpace(category))
+            if (!string.IsNullOrWhiteSpace(category))
                 queryStr.Append("AND category = @category");
             queryStr.Append(";");
 
@@ -340,7 +340,11 @@ namespace USDutyGear.Data
                 CommandText = queryStr.ToString()
             };
 
-            cmd.Parameters.AddWithValue("@is_active", isActive);
+            if (!isActive.HasValue)
+                cmd.Parameters.AddWithValue("@is_active", DBNull.Value);
+            else
+                cmd.Parameters.AddWithValue("@is_active", isActive);
+
             if (!string.IsNullOrWhiteSpace(category))
                 cmd.Parameters.AddWithValue("@category", category);
             cmd.ExecuteNonQuery();
@@ -422,9 +426,77 @@ namespace USDutyGear.Data
 
         #region Create
 
-        public void Save(Product product)
+        public static int Create(Product product)
         {
-            
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = @"
+                    INSERT INTO products(name, category, model, is_active, title, price, model_template, model_regex, display_order, description, feature_images) 
+                    VALUES(@name, @category, @model, @is_active, @title, @price, @model_template, @model_regex, @display_order, @description, @feature_images);
+                    SELECT last_insert_id();"
+            };
+
+            cmd.Parameters.AddWithValue("@name", product.Name);
+            cmd.Parameters.AddWithValue("@category", product.Category);
+            cmd.Parameters.AddWithValue("@model", product.Model);
+            cmd.Parameters.AddWithValue("@is_active", product.IsActive);
+            cmd.Parameters.AddWithValue("@title", product.Title);
+            cmd.Parameters.AddWithValue("@price", product.Price);
+            cmd.Parameters.AddWithValue("@model_template", product.ModelTemplate);
+            cmd.Parameters.AddWithValue("@model_regex", product.ModelRegex.ToString());
+            cmd.Parameters.AddWithValue("@display_order", product.DisplayOrder);
+            cmd.Parameters.AddWithValue("@description", product.Description);
+            cmd.Parameters.AddWithValue("@feature_images", string.Join(",", product.FeatureImages));
+
+            var productId = Convert.ToInt32(cmd.ExecuteScalar());
+
+            return productId;
+        }
+
+        public static int Save(Product product)
+        {
+            var conn = new MySqlConnection(ConnectionString);
+            conn.Open();
+
+            var cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = @"
+                    UPDATE products SET 
+                        name=@name, 
+                        category=@category, 
+                        model=@model, 
+                        is_active=@is_active, 
+                        title=@title, 
+                        price=@price, 
+                        model_template=@model_template, 
+                        model_regex=@model_regex, 
+                        display_order=@display_order, 
+                        description=@description, 
+                        feature_images=@feature_images
+                    WHERE product_id=@product_id;"
+            };
+
+            cmd.Parameters.AddWithValue("@product_id", product.Id);
+            cmd.Parameters.AddWithValue("@name", product.Name);
+            cmd.Parameters.AddWithValue("@category", product.Category);
+            cmd.Parameters.AddWithValue("@model", product.Model);
+            cmd.Parameters.AddWithValue("@is_active", product.IsActive);
+            cmd.Parameters.AddWithValue("@title", product.Title);
+            cmd.Parameters.AddWithValue("@price", product.Price);
+            cmd.Parameters.AddWithValue("@model_template", product.ModelTemplate);
+            cmd.Parameters.AddWithValue("@model_regex", product.ModelRegex.ToString());
+            cmd.Parameters.AddWithValue("@display_order", product.DisplayOrder);
+            cmd.Parameters.AddWithValue("@description", product.Description);
+            cmd.Parameters.AddWithValue("@feature_images", string.Join(",", product.FeatureImages));
+
+            var productId = Convert.ToInt32(cmd.ExecuteScalar());
+
+            return productId;
         }
 
         #endregion

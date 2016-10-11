@@ -1,2 +1,4 @@
 ./packages/*
 USDutyGear/bin/*
+USDutyGear.MissionControl/bin/*
+USDutyGear.MissionControl/ConnectionStrings.config

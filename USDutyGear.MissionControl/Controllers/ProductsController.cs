@@ -31,7 +31,7 @@ namespace USDutyGear.MissionControl.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Product());
         }
 
         // POST: Products/Create
@@ -40,7 +40,6 @@ namespace USDutyGear.MissionControl.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 var product = new Product()
 
                 {
@@ -55,7 +54,7 @@ namespace USDutyGear.MissionControl.Controllers
                     Description = collection["Description"]
                 };
 
-
+                Products.Save(product);
 
                 return RedirectToAction("Index");
             }
@@ -68,7 +67,9 @@ namespace USDutyGear.MissionControl.Controllers
         // GET: Products/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var product = Products.GetProductById(id);
+
+            return View(product);
         }
 
         // POST: Products/Edit/5
@@ -77,7 +78,9 @@ namespace USDutyGear.MissionControl.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                var product = CreateProductFromFormCollection(collection);
+
+                Products.Save(product);
 
                 return RedirectToAction("Index");
             }
@@ -107,6 +110,26 @@ namespace USDutyGear.MissionControl.Controllers
             {
                 return View();
             }
+        }
+
+        private static Product CreateProductFromFormCollection(FormCollection collection)
+        {
+            var product = new Product()
+
+            {
+                Name = collection["Name"],
+                Category = collection["Category"],
+                Model = collection["Model"],
+                Title = collection["Title"],
+                Price = Convert.ToDecimal(collection["Price"]),
+                ModelTemplate = collection["ModelTemplate"],
+                ModelRegex = new Regex(collection["ModelRegex"]),
+                DisplayOrder = Convert.ToInt32(collection["DisplayOrder"]),
+                Description = collection["Description"]
+            };
+
+            return product;
+
         }
     }
 }

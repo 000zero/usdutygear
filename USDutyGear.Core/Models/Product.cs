@@ -7,10 +7,12 @@ namespace USDutyGear.Core.Models
     {
         public Product()
         {
+            IsActive = false;
             FeatureImages = new List<string>();
         }
 
         public int Id { get; set; }
+        public bool IsActive { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public string Model { get; set; }
